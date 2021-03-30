@@ -1,0 +1,57 @@
+<div class="row mt-3">
+    <div class="col-lg-6">
+        <h3>Listado De Personas</h3>
+    </div>
+   
+</div>
+<div class="col-lg-15">
+    <button class="btn btn-primary float-end" routerLink="/Agregar-Persona">Nuevo Registro</button>
+</div>
+<table *ngIf="listPersonas.length > 0" class="table table-dark table-striped">
+    <thead>
+        <tr>
+            <td>Nombre Completo</td>
+            <td>Documento de Identidad</td>
+            <td>Genero</td>
+            <td>Edad</td>
+            <td>Provincia</td>
+            <td>Canton</td>
+            <td>Parroquia</td>
+            <td></td>
+            <td>Opciones</td>
+            <td></td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let persona of listPersonas" class="table-warning">
+            <td>{{ persona.nombreCompleto }}</td>
+            <td>{{ persona.documentoIdentidad }}</td>
+            <td>{{ persona.idGenero }}</td>
+            <td>{{ persona.edad }}</td>
+            <td>{{ persona.idProvincia }}</td>
+            <td>{{ persona.idCanton }}</td>
+            <td>{{ persona.idParroquia }}</td>
+
+            <td style="width: 1%;">
+                <button [routerLink]="['/Editar-Persona', persona.idPersona]"
+                    class="btn btn-success btn-sm float-end">Editar</button>
+
+            </td>
+            <td style="width: 1%;">
+                <button [routerLink]="['/Ver-Persona', persona.idPersona]" 
+                   class="btn btn-warning btn-sm float-end">Detalles</button>
+            </td>
+            <td style="width: 1%;">
+                <button (click)="eliminarPersona (persona.idPersona)"
+                    class="btn btn-danger btn-sm float-end">Eliminar</button>
+            </td>
+
+        </tr>
+    </tbody>
+</table>
+<div *ngIf="listPersonas.length == 0" class="row mt-5">
+    <h5>
+        No hay registros para mostrar. 
+      
+    </h5>
+</div>
