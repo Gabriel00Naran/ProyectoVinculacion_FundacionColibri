@@ -1,0 +1,13 @@
+paso 1
+-----ejecuta este comando---
+dotnet run
+paso dos abres el navegador web que gustes y 
+ve a esta direccion
+
+https://localhost:5001/swagger/index.html
+
+
+si no muestra nada es por la conexion del servicio entonces
+ve al archivo appsettings.json
+ y modifica la cadena de conexion
+

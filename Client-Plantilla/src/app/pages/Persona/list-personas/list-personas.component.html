@@ -1,0 +1,70 @@
+<div class=" content">
+    <div class=" row">
+        <div class=" col-md-12">
+            <div class=" card">
+                <div class=" card-header">
+                    <h1 class=" card-title">PERSONAS REGISTRADAS </h1>
+                </div>
+
+                <div class="card-header">
+                    <button class="btn btn-primary float-end" routerLink="/Agregar-Persona">Nuevo Registro</button>
+                </div>
+                <div class=" card-body">
+                    <div class=" table-dark">
+                        <table *ngIf="listPersonas.length > 0" class="table table-dark table-striped"
+                            class=" table tablesorter">
+                            <thead class=" text-primary">
+                                <tr>
+                                    <th>Nombre Completo</th>
+                                    <th>N°Cedula/Pasaporte</th>
+                                    <th>Genero</th>
+                                    <th>Edad</th>
+                                    <th>Provincia</th>
+                                    <th>Canton</th>
+                                    <th>Parroquia</th>
+                                    <th></th>
+                                    <th>Opciones</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let persona of listPersonas" class="table-warning">
+                                    <td>{{ persona.nombreCompleto }}</td>
+                                    <td>{{ persona.documentoIdentidad }}</td>
+                                    <td>{{ persona.idGenero }}</td>
+                                    <td>{{ persona.edad }}</td>
+                                    <td>{{ persona.idProvincia }}</td>
+                                    <td>{{ persona.idCanton }}</td>
+                                    <td>{{ persona.idParroquia }}</td>
+
+                                    <td style="width: 0.5%;">
+                                        <button [routerLink]="['/Editar-Persona', persona.idPersona]"
+                                            class="btn btn-success btn-sm float-end">Editar</button>
+
+                                    </td>
+                                    <td style="width: 0.5%;">
+                                        <button [routerLink]="['/Ver-Persona', persona.idPersona]"
+                                            class="btn btn-warning btn-sm float-end">Detalles</button>
+                                    </td>
+                                    <td style="width: 0.5%;">
+                                        <button (click)="eliminarPersona (persona.idPersona)"
+                                            class="btn btn-danger btn-sm float-end">Eliminar</button>
+                                    </td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+
+                       
+                    </div>
+                    <div class="card-header " *ngIf="listPersonas.length == 0" class="row mt-5">
+                        <h1>
+                            No hay registros para mostrar o el servidor no funciona
+
+                        </h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

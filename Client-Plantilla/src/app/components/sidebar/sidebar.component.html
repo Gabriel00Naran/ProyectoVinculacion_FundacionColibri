@@ -1,0 +1,24 @@
+<div class="logo">
+  <a href="https://www.creative-tim.com?ref=bda-sidebar-logo" class="simple-text logo-mini">
+    <div class="logo-img">
+      <img src="./assets/Colibri.png" />
+    </div>
+  </a>
+  <div class="simple-text logo-normal">
+      Datos Nido AFC
+  </div>
+</div>
+<div class="sidebar-wrapper">
+  <ul class="nav">
+    <li
+      routerLinkActive="active"
+      *ngFor="let menuItem of menuItems"
+      class="{{ menuItem.class }} nav-item"
+    >
+      <a [routerLink]="[menuItem.path]">
+        <i class="tim-icons  {{ menuItem.icon }}"></i>
+        <h4><p>{{ menuItem.title }}</p></h4>
+      </a>
+    </li>
+  </ul>
+</div>

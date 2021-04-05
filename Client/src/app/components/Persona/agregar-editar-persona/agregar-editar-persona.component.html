@@ -1,0 +1,101 @@
+<h3 class="mt-3">{{ accion }} Persona </h3>
+<form [formGroup]="agregarPersona" (ngSubmit)="agregarEditarPersona()">
+
+    <div class="mb-3">
+        <label for="idOrganizacion" class="form-label">Organizacion</label>
+        <input formControlName="idOrganizacion" name="idOrganizacion" type="number" class="form-control" id="idOrganizacion">
+    </div>
+
+    <div class="mb-3">
+        <label for="Modalidad" class="form-label">Modalidad</label>
+        <input formControlName="idModalidad" type="number" class="form-control" id="idModalidad">
+    </div>
+
+    <div class="mb-3">
+        <label for="nombres" class="form-label">Nombres</label>
+        <input formControlName="nombres" type="text" class="form-control" id="nombres">
+    </div>
+
+    <div class="mb-3">
+        <label for="apellidos" class="form-label">Apellidos</label>
+        <input formControlName="apellidos" type="text" class="form-control" id="apellidos">
+    </div>
+
+    <div class="mb-3">
+        <label for="telefono" class="form-label">Telefono</label>
+        <input formControlName="telefono" type="text" class="form-control" id="telefono">
+    </div>
+
+    <div class="mb-3">
+        <label for="documentoIdentidad" class="form-label">Documento de Identidad</label>
+        <input formControlName="documentoIdentidad" type="text" class="form-control" id="documentoIdentidad">
+    </div>
+
+    <div class="mb-3">
+        <label for="idGenero" class="form-label">Genero</label>
+        <input formControlName="idGenero" type="text" class="form-control" id="idGenero">
+    </div>
+
+    <div class="mb-3">
+        <label for="idEtnia" class="form-label">Etnia</label>
+        <input formControlName="idEtnia" type="text" class="form-control" id="idEtnia">
+    </div>
+
+    <div class="mb-3">
+        <label for="idNacionalidad" class="form-label">Nacionalidad</label>
+        <input formControlName="idNacionalidad" type="text" class="form-control" id="idNacionalidad">
+    </div>
+
+    <div class="mb-3">
+        <label for="fechaNacimiento" class="form-label">Fecha de Nacimiento</label>
+        <input formControlName="fechaNacimiento" type="text" class="form-control" id="fechaNacimiento">
+    </div>
+
+    <div class="mb-3">
+        <label for="idProvincia" class="form-label">Provincia</label>
+        <input formControlName="idProvincia" type="text" class="form-control" id="idProvincia">
+    </div>
+
+    <div class="mb-3">
+        <label for="idCanton" class="form-label">Canton</label>
+        <input formControlName="idCanton" type="text" class="form-control" id="idCanton">
+    </div>
+
+    <div class="mb-3">
+        <label for="idParroquia" class="form-label">Parroquia</label>
+        <input formControlName="idParroquia" type="text" class="form-control" id="idParroquia">
+    </div>
+
+    <div class="mb-3">
+        <label for="barrio" class="form-label">Barrio</label>
+        <input formControlName="barrio" type="text" class="form-control" id="barrio">
+    </div>
+
+    <div class="mb-3">
+        <label for="direccion" class="form-label">Direccion</label>
+        <input formControlName="direccion" type="text" class="form-control" id="direccion">
+    </div>
+
+    <div class="mb-3">
+        <label for="fechaDeIngresoUnidadAtencion" class="form-label">Fecha De Ingreso a la Unidad de Atencion</label>
+        <input formControlName="fechaDeIngresoUnidadAtencion" type="text" class="form-control" id="fechaDeIngresoUnidadAtencion">
+    </div>
+
+    <div class="mb-3">
+        <label for="edadIngreso" class="form-label">Edad de Ingreso</label>
+        <input formControlName="edadIngreso" type="text" class="form-control" id="edadIngreso">
+    </div>
+
+    <div class="mb-3">
+        <label for="tiempoPermanenciaAños" class="form-label">Tiempo De Permanencia En Años</label>
+        <input formControlName="tiempoPermanenciaAños" type="text" class="form-control" id="tiempoPermanenciaAños">
+    </div>
+
+    <div class="mb-3">
+        <label for="idMotivoIngreso" class="form-label"> Motivo de Ingreso</label>
+        <input formControlName="idMotivoIngreso" type="text" class="form-control" id="idMotivoIngreso">
+    </div>
+
+    <button type="submit" class="btn btn-primary float-end">Aceptar</button>
+    <button type="button" routerLink="/" class="btn btn-secondary">Volver</button>
+</form>

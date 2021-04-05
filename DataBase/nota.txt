@@ -1,0 +1,12 @@
+las que estan con ID tipo de dato unico global son las de persona, historial, plan globar familiar,
+datos salud y datos juridicos. los demas son colecciones, de id tipo de dato int
+y una descripcion, 
+
+ejemplo
+tabla Canton
+ idCanton : int
+ descripcionCanton: vnchar(20)
+
+perdon por ser tan descriptivo pero por si acaso lo pongo, por si acaso. 
+atentamente Gabriel Naran DP 
+conocido como Deadpool por eso el DP al final XD
