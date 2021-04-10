@@ -7,19 +7,19 @@
                 </div>
                 <div class=" card-body">
                     <!--desde aqui empieza el formulario-->
-                    <form [formGroup]="agregarPersona" (ngSubmit)="agregarEditarPersona()">
+                    <form [formGroup]="agregarPersona" (ngSubmit)="submit()">
                         <div class=" row">
                             <div class=" col-md-6 pr-md-1">
                                 <div class=" form-group">
                                     <label for="idOrganizacion"> Organizacion </label>
-                                    <input id="idOrganizacion" formControlName="idOrganizacion" name="idOrganizacion"
+                                    <input [(ngModel)]="persona.idOrganizacion" id="idOrganizacion" formControlName="idOrganizacion" name="idOrganizacion"
                                         type="number" class=" form-control" />
                                 </div>
                             </div>
                             <div class=" col-md-5 px-md-1">
                                 <div class=" form-group">
                                     <label for="idModalidad"> Modalidad </label>
-                                    <input formControlName="idModalidad" id="idModalidad" type="number" class="form-control" >
+                                    <input [(ngModel)]="persona.idModalidad" formControlName="idModalidad" id="idModalidad" type="number" class="form-control" >
                                 </div>
                             </div>
                         </div>
@@ -27,13 +27,13 @@
                             <div class=" col-md-6 pr-md-1">
                                 <div class=" form-group">
                                     <label for="nombres"> Nombres </label>
-                                    <input formControlName="nombres" id="nombres" type="text" class="form-control" placeholder="Primer y Segundo Nombre" required >
+                                    <input [(ngModel)]="persona.nombres" formControlName="nombres" id="nombres" type="text" class="form-control" placeholder="Primer y Segundo Nombre" required >
                                 </div>
                             </div>
                             <div class=" col-md-6 pl-md-1">
                                 <div class=" form-group">
                                     <label for="apellidos"> Apellidos </label>
-                                    <input formControlName="apellidos" id="apellidos" type="text" class="form-control" placeholder="Primer y Segundo Apellido" required >
+                                    <input [(ngModel)]="persona.apellidos" formControlName="apellidos" id="apellidos" type="text" class="form-control" placeholder="Primer y Segundo Apellido" required >
                                 </div>
                             </div>
                         </div>
@@ -41,14 +41,14 @@
                             <div class=" col-md-5">
                                 <div class=" form-group">
                                     <label for="telefono"> Telefono </label>
-                                    <input formControlName="telefono" id="telefono" type="number" class="form-control" placeholder="ejem: 09999999999" >
+                                    <input [(ngModel)]="persona.telefono" formControlName="telefono" id="telefono" type="text" class="form-control" placeholder="ejem: 09999999999" >
                                   
                                 </div>
                             </div>
                             <div class=" col-md-5">
                                 <div class=" form-group">
                                     <label for="documentoIdentidad"> Documento de Identidad </label>
-                                    <input formControlName="documentoIdentidad" id="documentoIdentidad" type="text" class="form-control" placeholder="Cedula o Pasaporte">
+                                    <input [(ngModel)]="persona.documentoIdentidad" formControlName="documentoIdentidad" id="documentoIdentidad" type="text" class="form-control" placeholder="Cedula o Pasaporte">
                                 </div>
                             </div>
                         </div>
@@ -56,25 +56,25 @@
                             <div class=" col-md-3 pr-md-1">
                                 <div class=" form-group">
                                     <label for="idGenero"> Genero </label>
-                                    <input formControlName="idGenero" id="idGenero" type="number" class="form-control">
+                                    <input [(ngModel)]="persona.idGenero" formControlName="idGenero" id="idGenero" type="number" class="form-control">
                                 </div>
                             </div>
                             <div class=" col-md-3 pr-md-1">
                                 <div class=" form-group">
                                     <label for="idEtnia"> Etnia </label>
-                                    <input formControlName="idEtnia"id="idEtnia" type="number" class="form-control" >
+                                    <input  [(ngModel)]="persona.idEtnia" formControlName="idEtnia"id="idEtnia" type="number" class="form-control" >
                                 </div>
                             </div>
                             <div class=" col-md-3 pr-md-1">
                                 <div class=" form-group">
                                     <label for="idNacionalidad"> Nacionalidad </label>
-                                    <input formControlName="idNacionalidad" id="idNacionalidad" type="number" class="form-control">
+                                    <input  [(ngModel)]="persona.idNacionalidad"  formControlName="idNacionalidad" id="idNacionalidad" type="number" class="form-control">
                                 </div>
                             </div>
                             <div class=" col-md-3 pr-md-1">
                                 <div class=" form-group">
                                     <label for="fechaNacimiento"> Fecha de Nacimiento </label>
-                                    <input formControlName="fechaNacimiento" id="fechaNacimiento" type="date" class="form-control">
+                                    <input [(ngModel)]="persona.fechaNacimiento" formControlName="fechaNacimiento" id="fechaNacimiento" type="datetime" class="form-control">
                                 </div>
                             </div>
                         </div>
@@ -82,25 +82,25 @@
                             <div class=" col-md-3 pr-md-1">
                                 <div class=" form-group">
                                     <label for="idProvincia"> Provincia </label>
-                                    <input formControlName="idProvincia" id="idProvincia" type="number" class="form-control">
+                                    <input [(ngModel)]="persona.idProvincia" formControlName="idProvincia" id="idProvincia" type="number" class="form-control">
                                 </div>
                             </div>
                             <div class=" col-md-3 px-md-1">
                                 <div class=" form-group">
                                     <label for="idCanton"> Canton </label>
-                                    <input formControlName="idCanton"id="idCanton" type="number" class="form-control" >
+                                    <input [(ngModel)]="persona.idCanton" formControlName="idCanton"id="idCanton" type="number" class="form-control" >
                                 </div>
                             </div>
                             <div class=" col-md-3 pl-md-1">
                                 <div class=" form-group">
                                     <label for="idParroquia"> Parroquia </label>
-                                    <input formControlName="idParroquia" id="idParroquia" type="number" class="form-control">
+                                    <input [(ngModel)]="persona.idParroquia" formControlName="idParroquia" id="idParroquia" type="number" class="form-control">
                                 </div>
                             </div>
                             <div class=" col-md-3 pl-md-1">
                                 <div class=" form-group">
                                     <label for="barrio"> Barrio </label>
-                                    <input formControlName="barrio" id="barrio" type="text" class="form-control">
+                                    <input [(ngModel)]="persona.barrio" formControlName="barrio" id="barrio" type="text" class="form-control">
                                 </div>
                             </div>
                         </div>
@@ -108,7 +108,7 @@
                             <div class=" col-md-12">
                                 <div class=" form-group">
                                     <label for="direccion"> Direccion </label>
-                                    <input formControlName="direccion" id="direccion" type="text" class="form-control">
+                                    <input [(ngModel)]="persona.direccion" formControlName="direccion" id="direccion" type="text" class="form-control">
                                 </div>
                             </div>
                         </div>
@@ -116,13 +116,13 @@
                             <div class=" col-md-4">
                                 <div class=" form-group">
                                     <label for="fechaDeIngresoUnidadAtencion"> Fecha de Ingreso A la Unidad </label>
-                                    <input formControlName="fechaDeIngresoUnidadAtencion" id="fechaDeIngresoUnidadAtencion" type="date" class="form-control">
+                                    <input [(ngModel)]="persona.fechaDeIngresoUnidadAtencion" formControlName="fechaDeIngresoUnidadAtencion" id="fechaDeIngresoUnidadAtencion" type="date" class="form-control">
                                 </div>
                             </div>
                             <div class=" col-md-3">
                                 <div class=" form-group">
                                     <label for="edadIngreso"> Edad De Ingreso </label>
-                                    <input formControlName="edadIngreso" id="edadIngreso" type="text" class="form-control" >
+                                    <input [(ngModel)]="persona.edadIngreso" formControlName="edadIngreso" id="edadIngreso" type="text" class="form-control" >
                                 </div>
                             </div>
                             <div class=" col-md-5">

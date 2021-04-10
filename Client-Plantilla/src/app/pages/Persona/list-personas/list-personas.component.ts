@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Persona } from 'src/app/models/persona';
 import { PersonaService } from 'src/app/services/persona.service';
@@ -13,6 +14,7 @@ export class ListPersonasComponent implements OnInit {
   listPersonas: Persona[] = [];
 
   constructor(private _personaService: PersonaService,
+    private router: Router,
        private toastr: ToastrService) { }
 
   ngOnInit(): void {
@@ -37,5 +39,12 @@ export class ListPersonasComponent implements OnInit {
       this.toastr.error('el servidor no responde','Error');
       console.log(error);
     })
+  }
+
+  edit(id){
+    console.log('ID'+ id)
+    this.router.navigate(['/Editar-Persona', id], {
+      skipLocationChange: true,
+    });
   }
 }

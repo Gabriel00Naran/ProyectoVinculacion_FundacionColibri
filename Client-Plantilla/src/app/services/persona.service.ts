@@ -1,45 +1,64 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Persona } from '../models/persona';
 import { Guid } from 'guid-typescript';
+import { environment } from 'src/environments/environment';
+
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json',
+    Accept: 'application/json'
+  })
+};
 
 @Injectable({
   providedIn: 'root'
 })
 export class PersonaService {
 
-  private Server = 'https://localhost:5001/';
+  
   //private Server = 'https://localhost:44351/';
 
   /////////////API-REST/////////////////////////
   private GET ='api/Persona/GetPersona';
   private GETbyID ='api/Persona/GetPersonaById?idPersona='
   private POST ='api/Persona/AddPersona/';
-  private PUT = 'api/Persona/UpdatePersona?idPersona=';
+  private PUT = 'api/Persona/EditPersona';
   private DELETE ='api/Persona/DeletePersona?idPersona=';
   /////////////////////////////////////////////
 
   constructor(private http: HttpClient) { }
 
   getPersona(): Observable<any> {
-    return this.http.get(this.Server + this.GET);
+    return this.http.get(environment.SERVER + this.GET );
   }
 
   deletePersona(idPersona: number): Observable<any> {
-    return this.http.delete(this.Server + this.DELETE + idPersona);
+    return this.http.delete(environment.SERVER + this.DELETE + idPersona);
   }
 
   addPersona(persona: Persona): Observable<any> {
-    return this.http.post(this.Server + this.POST, persona);
+    return this.http.post(environment.SERVER+ this.POST, persona);
   }
 
   //// volvi a dejar el tipo de dato en number ya que antes estana en Guid
-  getPersonaById(idPersona: number): Observable<any> {
-    return this.http.get(this.Server + this.GETbyID + idPersona);
+  getPersonaById(idPersona): Observable<any> {
+    return this.http.get(environment.SERVER + this.GETbyID + idPersona);
   }
 //// lo mismo en el update.
-  updatePersona(idPersona: number, persona: Persona): Observable<any> {
-    return this.http.put( this.Server + this.PUT + idPersona, persona);
+  updatePersona(persona: Persona): Observable<any> {
+    return this.http.put((environment.SERVER+ this.PUT), persona);
+  }
+
+  put(data: any) {
+    return this.http.put(environment.SERVER + this.PUT, data).subscribe(
+      response => {
+
+      },
+      error => {
+      }
+
+    );
   }
 }

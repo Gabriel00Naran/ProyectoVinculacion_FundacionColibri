@@ -14,7 +14,7 @@ export const AdminLayoutRoutes: Routes = [
    ///PERSONA
    { path: 'Listar-Persona', component: ListPersonasComponent },
    { path: 'Agregar-Persona', component: AgregarEditarPersonaComponent },
-   { path: 'Editar-Persona/:idPersona', component: AgregarEditarPersonaComponent },
+   { path: 'Editar-Persona/:id', component: AgregarEditarPersonaComponent },
    { path: 'Ver-Persona/:idPersona', component: VerPersonaComponent },
    { path: '**', redirectTo: '/', pathMatch: 'full' },
 
