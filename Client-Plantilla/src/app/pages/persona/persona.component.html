@@ -1,4 +1,5 @@
 <div class=" content">
+    <div class=" container-fluid">
     <div class=" row">
         <div class=" col-md-12">
             <div class=" card">
@@ -10,8 +11,8 @@
                     <button class="btn btn-primary float-end" routerLink="/Agregar-Persona">Nuevo Registro</button>
                 </div>
                 <div class=" card-body">
-                    <div class=" table-dark">
-                        <table *ngIf="listPersonas.length > 0" class="table table-dark table-striped"
+                    <div class=" table">
+                        <table *ngIf="persona.length > 0" class="table table-striped"
                             class=" table tablesorter">
                             <thead class=" text-primary">
                                 <tr>
@@ -28,26 +29,26 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr *ngFor="let persona of listPersonas" class="table-warning">
-                                    <td>{{ persona.nombreCompleto }}</td>
-                                    <td>{{ persona.documentoIdentidad }}</td>
-                                    <td>{{ persona.idGenero }}</td>
-                                    <td>{{ persona.edad }}</td>
-                                    <td>{{ persona.idProvincia }}</td>
-                                    <td>{{ persona.idCanton }}</td>
-                                    <td>{{ persona.idParroquia }}</td>
+                                <tr *ngFor="let p of persona" class="table-warning">
+                                    <td>{{ p.nombreCompleto }}</td>
+                                    <td>{{ p.documentoIdentidad }}</td>
+                                    <td>{{ p.idGenero }}</td>
+                                    <td>{{ p.edad }}</td>
+                                    <td>{{ p.idProvincia }}</td>
+                                    <td>{{ p.idCanton }}</td>
+                                    <td>{{ p.idParroquia }}</td>
 
                                     <td style="width: 0.5%;">
-                                        <button   (click)="edit(persona.idPersona)"
+                                        <button   (click)="edit(p.idPersona)"
                                             class="btn btn-success btn-sm float-end">Editar</button>
 
                                     </td>
                                     <td style="width: 0.5%;">
-                                        <button [routerLink]="['/Ver-Persona', persona.idPersona]"
+                                        <button [routerLink]="['/Ver-Persona', p.idPersona]"
                                             class="btn btn-warning btn-sm float-end">Detalles</button>
                                     </td>
                                     <td style="width: 0.5%;">
-                                        <button (click)="eliminarPersona (persona.idPersona)"
+                                        <button (click)="eliminarPersona (p.idPersona)"
                                             class="btn btn-danger btn-sm float-end">Eliminar</button>
                                     </td>
 
@@ -57,7 +58,7 @@
 
                        
                     </div>
-                    <div class="card-header " *ngIf="listPersonas.length == 0" class="row mt-5">
+                    <div class="card-header " *ngIf="persona.length == 0" class="row mt-5">
                         <h1>
                             No hay registros para mostrar o el servidor no funciona
 
@@ -68,3 +69,5 @@
         </div>
     </div>
 </div>
+</div>
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "square-jelly-box" [fullScreen] = "true"><p style="color: white" > Cargando.. </p></ngx-spinner>

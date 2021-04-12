@@ -1,29 +1,38 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { Persona } from 'src/app/models/persona';
 import { PersonaService } from 'src/app/services/persona.service';
 
 @Component({
-  selector: 'app-list-personas',
-  templateUrl: './list-personas.component.html',
-  styleUrls: ['./list-personas.component.css']
+  selector: 'app-persona',
+  templateUrl: './persona.component.html',
+  styleUrls: ['./persona.component.scss']
 })
-export class ListPersonasComponent implements OnInit {
-
-  listPersonas: Persona[] = [];
-
-  constructor(private _personaService: PersonaService,
+export class PersonaComponent implements OnInit {
+  persona: Persona[] = [];;
+  cols: any[];
+  pregunta: any;
+  constructor(private personaService: PersonaService,
     private router: Router,
-       private toastr: ToastrService) { }
+       private toastr: ToastrService,
+       private spinner: NgxSpinnerService) { }
 
   ngOnInit(): void {
+    this.spinner.show();
+
+    setTimeout(() => {
+      /** spinner ends after 5 seconds */
+      this.spinner.hide();
+    }, 3000);
     this.getPersonaList();
   }
 
+
   getPersonaList() {
-    this._personaService.getPersona().subscribe(data => {
-      this.listPersonas = data;
+    this.personaService.getPersona().subscribe(data => {
+      this.persona = data;
     }, error => {
       this.toastr.error('el servidor no funciona','Error');
       console.log(error);
@@ -32,7 +41,7 @@ export class ListPersonasComponent implements OnInit {
 
   eliminarPersona(idPersona: any) {
     console.log(idPersona);
-    this._personaService.deletePersona(idPersona).subscribe(data => {
+    this.personaService.deletePersona(idPersona).subscribe(data => {
       this.getPersonaList();
       this.toastr.error('El Registro Fue eliminado Permanentemente!','Registro eliminado');
     }, error => {
@@ -47,4 +56,7 @@ export class ListPersonasComponent implements OnInit {
       skipLocationChange: true,
     });
   }
+
+ 
+
 }

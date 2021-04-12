@@ -14,6 +14,10 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { AppRoutingModule } from "./app-routing.module";
 import { ComponentsModule } from "./components/components.module";
 import { PersonaService } from "./services/persona.service";
+import { PersonaComponent } from './pages/persona/persona.component';
+import { AgregarPersonaComponent } from './pages/persona/agregar-persona/agregar-persona.component';
+import { EditarPersonaComponent } from './pages/persona/editar-persona/editar-persona.component';
+import { NgxSpinnerModule } from "ngx-spinner";
 
 @NgModule({
   imports: [
@@ -21,6 +25,7 @@ import { PersonaService } from "./services/persona.service";
     FormsModule,
     HttpClientModule,
     ComponentsModule,
+    NgxSpinnerModule,
     NgbModule,
     RouterModule,
     AppRoutingModule,

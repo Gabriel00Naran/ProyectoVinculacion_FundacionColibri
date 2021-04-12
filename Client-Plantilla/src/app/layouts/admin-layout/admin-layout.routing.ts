@@ -1,20 +1,15 @@
 import { Routes } from "@angular/router";
-
+import { AgregarPersonaComponent } from "src/app/pages/persona/agregar-persona/agregar-persona.component";
+import { EditarPersonaComponent } from "src/app/pages/persona/editar-persona/editar-persona.component";
+import { PersonaComponent } from "src/app/pages/persona/persona.component";
 import { DashboardComponent } from "../../pages/dashboard/dashboard.component";
-
-
-import { AgregarEditarPersonaComponent } from '../../pages/Persona/agregar-editar-persona/agregar-editar-persona.component';
-import { ListPersonasComponent } from '../../pages/Persona/list-personas/list-personas.component';
-import { VerPersonaComponent } from '../../pages/Persona/ver-persona/ver-persona.component';
+import { VerPersonaComponent } from '../../pages/persona/ver-persona/ver-persona.component';
 
 export const AdminLayoutRoutes: Routes = [
   { path: "dashboard", component: DashboardComponent },
-
-
-   ///PERSONA
-   { path: 'Listar-Persona', component: ListPersonasComponent },
-   { path: 'Agregar-Persona', component: AgregarEditarPersonaComponent },
-   { path: 'Editar-Persona/:id', component: AgregarEditarPersonaComponent },
+   { path: 'Listar-Persona', component: PersonaComponent },
+   { path: 'Agregar-Persona', component: AgregarPersonaComponent },
+   { path: 'Editar-Persona/:id', component: EditarPersonaComponent },
    { path: 'Ver-Persona/:idPersona', component: VerPersonaComponent },
    { path: '**', redirectTo: '/', pathMatch: 'full' },
 

@@ -5,34 +5,31 @@ import { CommonModule } from "@angular/common";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { AdminLayoutRoutes } from "./admin-layout.routing";
 import { DashboardComponent } from "../../pages/dashboard/dashboard.component";
-
 // import { RtlComponent } from "../../pages/rtl/rtl.component";
-
-
-import { AgregarEditarPersonaComponent } from '../../pages/Persona/agregar-editar-persona/agregar-editar-persona.component';
-import { ListPersonasComponent } from '../../pages/Persona/list-personas/list-personas.component';
-import { VerPersonaComponent } from '../../pages/Persona/ver-persona/ver-persona.component';
-
+import { VerPersonaComponent } from '../../pages/persona/ver-persona/ver-persona.component';
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
+import { PersonaComponent } from "src/app/pages/persona/persona.component";
+import { EditarPersonaComponent } from "src/app/pages/persona/editar-persona/editar-persona.component";
+import { AgregarPersonaComponent } from "src/app/pages/persona/agregar-persona/agregar-persona.component";
+import { NgxSpinnerModule } from "ngx-spinner";
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule.forChild(AdminLayoutRoutes),
     FormsModule,
+    NgxSpinnerModule,
     HttpClientModule,
     NgbModule,
     ReactiveFormsModule,
   ],
   declarations: [
     DashboardComponent,
+        VerPersonaComponent,
+        PersonaComponent,
+        AgregarPersonaComponent,
+        EditarPersonaComponent,
 
-    // RtlComponent
-
-        //persona
-        AgregarEditarPersonaComponent,
-        ListPersonasComponent,
-        VerPersonaComponent
   ]
 })
 export class AdminLayoutModule {}

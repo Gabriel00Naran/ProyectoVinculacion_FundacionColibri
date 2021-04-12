@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { Persona } from '../models/persona';
 import { Guid } from 'guid-typescript';
 import { environment } from 'src/environments/environment';
-
+import { map } from 'rxjs/operators';
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type': 'application/json',
@@ -49,6 +49,26 @@ export class PersonaService {
 //// lo mismo en el update.
   updatePersona(persona: Persona): Observable<any> {
     return this.http.put((environment.SERVER+ this.PUT), persona);
+  }
+
+  get(url: string) {
+    return this.http.get(environment.SERVER + url).pipe(
+      map(data => {
+        return data;
+      })
+    );
+  }
+
+
+  post(data: any) {
+    return this.http.post(environment.SERVER + this.POST, data).subscribe(
+      response => {
+
+      },
+      error => {
+      }
+
+    );
   }
 
   put(data: any) {

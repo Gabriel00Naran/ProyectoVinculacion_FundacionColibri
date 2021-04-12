@@ -3,7 +3,7 @@
         <div class=" col-md-8">
             <div class=" card">
                 <div class=" card-header">
-                    <h2 class=" title">{{accion}} Persona</h2>
+                    <h2 class=" title">Agregar Persona</h2>
                 </div>
                 <div class=" card-body">
                     <!--desde aqui empieza el formulario-->
@@ -11,15 +11,24 @@
                         <div class=" row">
                             <div class=" col-md-6 pr-md-1">
                                 <div class=" form-group">
-                                    <label for="idOrganizacion"> Organizacion </label>
-                                    <input [(ngModel)]="persona.idOrganizacion" id="idOrganizacion" formControlName="idOrganizacion" name="idOrganizacion"
-                                        type="number" class=" form-control" />
+                         <label for="idOrganizacion"> Organizacion </label>
+                                <select formControlName="idOrganizacion" class="form-control"
+                                 [(ngModel)]="persona.idOrganizacion" name="organizacion" id="idOrganizacion">
+                                <option *ngFor="let o of organizaciones; let i = index" [value]="o.idOrganizacion">
+                                 {{o.descripcionOrganizacion}}
+                                </option>
+                                </select>
                                 </div>
                             </div>
                             <div class=" col-md-5 px-md-1">
                                 <div class=" form-group">
                                     <label for="idModalidad"> Modalidad </label>
-                                    <input [(ngModel)]="persona.idModalidad" formControlName="idModalidad" id="idModalidad" type="number" class="form-control" >
+                                    <select formControlName="idModalidad" class="form-control"
+                                    [(ngModel)]="persona.idModalidad" name="idModalidad" id="idModalidad">
+                                   <option *ngFor="let m of modalidades; let i = index" [value]="m.idModalidad">
+                                    {{m.descripcionModalidad}}
+                                   </option>
+                                   </select>
                                 </div>
                             </div>
                         </div>
@@ -56,19 +65,34 @@
                             <div class=" col-md-3 pr-md-1">
                                 <div class=" form-group">
                                     <label for="idGenero"> Genero </label>
-                                    <input [(ngModel)]="persona.idGenero" formControlName="idGenero" id="idGenero" type="number" class="form-control">
+                                    <select formControlName="idGenero" class="form-control"
+                                    [(ngModel)]="persona.idGenero" name="idGenero" id="idGenero">
+                                   <option *ngFor="let g of generos; let i = index" [value]="g.idGenero">
+                                    {{g.descripcionGenero}}
+                                   </option>
+                                   </select>
                                 </div>
                             </div>
                             <div class=" col-md-3 pr-md-1">
                                 <div class=" form-group">
                                     <label for="idEtnia"> Etnia </label>
-                                    <input  [(ngModel)]="persona.idEtnia" formControlName="idEtnia"id="idEtnia" type="number" class="form-control" >
+                                    <select formControlName="idEtnia" class="form-control"
+                                    [(ngModel)]="persona.idEtnia" name="idEtnia" id="idEtnia">
+                                   <option *ngFor="let e of etnias; let i = index" [value]="e.idEtnia">
+                                    {{e.descripcionEtnia}}
+                                   </option>
+                                   </select>
                                 </div>
                             </div>
                             <div class=" col-md-3 pr-md-1">
                                 <div class=" form-group">
                                     <label for="idNacionalidad"> Nacionalidad </label>
-                                    <input  [(ngModel)]="persona.idNacionalidad"  formControlName="idNacionalidad" id="idNacionalidad" type="number" class="form-control">
+                                    <select formControlName="idNacionalidad" class="form-control"
+                                    [(ngModel)]="persona.idNacionalidad" name="idNacionalidad" id="idNacionalidad">
+                                   <option *ngFor="let n of nacionalidades; let i = index" [value]="n.idNacionalidad">
+                                    {{n.descripcionNacionalidad}}
+                                   </option>
+                                   </select>
                                 </div>
                             </div>
                             <div class=" col-md-3 pr-md-1">
@@ -82,19 +106,34 @@
                             <div class=" col-md-3 pr-md-1">
                                 <div class=" form-group">
                                     <label for="idProvincia"> Provincia </label>
-                                    <input [(ngModel)]="persona.idProvincia" formControlName="idProvincia" id="idProvincia" type="number" class="form-control">
+                                    <select formControlName="idProvincia" class="form-control"
+                                    [(ngModel)]="persona.idProvincia" name="idProvincia" id="idProvincia">
+                                   <option *ngFor="let p of provincias; let i = index" [value]="p.idProvincia">
+                                    {{p.descripcionProvincia}}
+                                   </option>
+                                   </select>
                                 </div>
                             </div>
                             <div class=" col-md-3 px-md-1">
                                 <div class=" form-group">
                                     <label for="idCanton"> Canton </label>
-                                    <input [(ngModel)]="persona.idCanton" formControlName="idCanton"id="idCanton" type="number" class="form-control" >
+                                    <select formControlName="idCanton" class="form-control"
+                                    [(ngModel)]="persona.idCanton" name="idCanton" id="idCanton">
+                                   <option *ngFor="let c of cantones; let i = index" [value]="c.idCanton">
+                                    {{c.descripcionCanton}}
+                                   </option>
+                                   </select>
                                 </div>
                             </div>
                             <div class=" col-md-3 pl-md-1">
                                 <div class=" form-group">
                                     <label for="idParroquia"> Parroquia </label>
-                                    <input [(ngModel)]="persona.idParroquia" formControlName="idParroquia" id="idParroquia" type="number" class="form-control">
+                                    <select formControlName="idParroquia" class="form-control"
+                                    [(ngModel)]="persona.idParroquia" name="idParroquia" id="idParroquia">
+                                   <option *ngFor="let p of parroquias; let i = index" [value]="p.idParroquia">
+                                    {{p.descripcionParroquia}}
+                                   </option>
+                                   </select>
                                 </div>
                             </div>
                             <div class=" col-md-3 pl-md-1">
@@ -127,19 +166,24 @@
                             </div>
                             <div class=" col-md-5">
                                 <div class=" form-group">
-                                    <label for="tiempoPermanenciaAños"> Tiempo de Permanencia En Años </label>
-                                    <input formControlName="tiempoPermanenciaAños" id="tiempoPermanenciaAños" type="text" class="form-control">
+                                    <label for="tiempoPermanenciaAnnios"> Tiempo de Permanencia En Años </label>
+                                    <input [(ngModel)]="persona.tiempoPermanenciaAnnios" formControlName="tiempoPermanenciaAnnios" id="tiempoPermanenciaAnnios" type="text" class="form-control">
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
+                        
                             <div class=" col-md-10">
                                 <div class=" form-group">
                                     <label for="idMotivoIngreso"> Motivo De Ingreso </label>
-                                    <input formControlName="idMotivoIngreso" id="idMotivoIngreso" type="number" class="form-control" >
+                                    <select formControlName="idMotivoIngreso" class="form-control"
+                                    [(ngModel)]="persona.idMotivoIngreso" name="idMotivoIngreso" id="idMotivoIngreso">
+                                   <option *ngFor="let m of motivos; let i = index" [value]="m.idMotivoIngreso">
+                                    {{m.descripcionMotivoIngreso}}
+                                   </option>
+                                   </select>
                                 </div>
                             </div>
-                        </div>
+                       
 
                         <div class=" card-footer">
                             <button class=" btn btn-round btn-danger" type="submit" [routerLink]="['/Listar-Persona']">Cancelar</button>
@@ -177,3 +221,4 @@
         </div>
     </div>
 </div>
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "square-jelly-box" [fullScreen] = "true"><p style="color: white" > Cargando.. </p></ngx-spinner>
