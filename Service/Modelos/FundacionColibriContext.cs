@@ -291,7 +291,7 @@ namespace WebServiceFC.Modelos
                     .ValueGeneratedNever()
                     .HasColumnName("idHistorial");
 
-                entity.Property(e => e.EstuboAcogimiento).HasColumnName("estuboAcogimiento");
+                entity.Property(e => e.EstuvoAcogimiento).HasColumnName("estuvoAcogimiento");
 
                 entity.Property(e => e.FechaEgreso)
                     .HasColumnType("date")
@@ -522,10 +522,10 @@ namespace WebServiceFC.Modelos
                     .HasMaxLength(15)
                     .HasColumnName("telefono");
 
-                entity.Property(e => e.TiempoPermanenciaAños)
+                entity.Property(e => e.TiempoPermanenciaAnnios)
                     .HasMaxLength(50)
                     .IsUnicode(false)
-                    .HasColumnName("tiempoPermanenciaAños");
+                    .HasColumnName("tiempoPermanenciaAnnios");
 
                 entity.HasOne(d => d.IdCantonNavigation)
                     .WithMany(p => p.Personas)

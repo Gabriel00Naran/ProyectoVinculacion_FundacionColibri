@@ -149,6 +149,7 @@ namespace WebServiceFC.IServicios
         /// <returns></returns>  
         IEnumerable<HistorialCronologico> GetHistorialCronologico();
         HistorialCronologico GetHistorialCronologicoById(Guid idHistorial);
+        HistorialCronologico GetHistorialCronologicoByIdPersona(Guid idPersona);
         HistorialCronologico AddHistorialCronologico(HistorialCronologico historial);
         HistorialCronologico UpdateHistorialCronologico(HistorialCronologico historial);
         HistorialCronologico DeleteHistorialCronologico(Guid idHistorial);

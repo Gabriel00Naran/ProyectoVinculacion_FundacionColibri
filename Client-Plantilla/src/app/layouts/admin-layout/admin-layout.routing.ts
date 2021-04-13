@@ -1,4 +1,5 @@
 import { Routes } from "@angular/router";
+import { HistorialCronologicoComponent } from "src/app/pages/historial-cronologico/historial-cronologico.component";
 import { AgregarPersonaComponent } from "src/app/pages/persona/agregar-persona/agregar-persona.component";
 import { EditarPersonaComponent } from "src/app/pages/persona/editar-persona/editar-persona.component";
 import { PersonaComponent } from "src/app/pages/persona/persona.component";
@@ -11,6 +12,7 @@ export const AdminLayoutRoutes: Routes = [
    { path: 'Agregar-Persona', component: AgregarPersonaComponent },
    { path: 'Editar-Persona/:id', component: EditarPersonaComponent },
    { path: 'Ver-Persona/:idPersona', component: VerPersonaComponent },
+  { path: "historial", component: HistorialCronologicoComponent },
    { path: '**', redirectTo: '/', pathMatch: 'full' },
 
 

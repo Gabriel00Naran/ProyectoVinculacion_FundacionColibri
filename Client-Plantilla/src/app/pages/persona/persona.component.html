@@ -2,7 +2,7 @@
     <div class=" container-fluid">
     <div class=" row">
         <div class=" col-md-12">
-            <div class=" card">
+            <div class=" card card-plain">
                 <div class=" card-header">
                     <h1 class=" card-title">PERSONAS REGISTRADAS </h1>
                 </div>
@@ -11,32 +11,23 @@
                     <button class="btn btn-primary float-end" routerLink="/Agregar-Persona">Nuevo Registro</button>
                 </div>
                 <div class=" card-body">
-                    <div class=" table">
+                    <div class=" table-responsive">
                         <table *ngIf="persona.length > 0" class="table table-striped"
                             class=" table tablesorter">
                             <thead class=" text-primary">
                                 <tr>
-                                    <th>Nombre Completo</th>
-                                    <th>N°Cedula/Pasaporte</th>
-                                    <th>Genero</th>
-                                    <th>Edad</th>
-                                    <th>Provincia</th>
-                                    <th>Canton</th>
-                                    <th>Parroquia</th>
-                                    <th></th>
-                                    <th>Opciones</th>
-                                    <th></th>
+                                    <th scope="col" >Nombre Completo</th>
+                                    <th scope="col">N°Cedula/Pasaporte</th>
+                                    <th scope="col">Edad</th>
+                                    <th scope="col"></th>
+                                    <th scope="col">Opciones</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr *ngFor="let p of persona" class="table-warning">
+                                <tr *ngFor="let p of persona">
                                     <td>{{ p.nombreCompleto }}</td>
                                     <td>{{ p.documentoIdentidad }}</td>
-                                    <td>{{ p.idGenero }}</td>
                                     <td>{{ p.edad }}</td>
-                                    <td>{{ p.idProvincia }}</td>
-                                    <td>{{ p.idCanton }}</td>
-                                    <td>{{ p.idParroquia }}</td>
 
                                     <td style="width: 0.5%;">
                                         <button   (click)="edit(p.idPersona)"

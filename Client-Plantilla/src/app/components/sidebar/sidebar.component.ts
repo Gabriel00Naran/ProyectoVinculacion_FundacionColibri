@@ -17,10 +17,24 @@ export const ROUTES: RouteInfo[] = [
 
   {
     path: "/Listar-Persona",
-    title: "listar persona",
+    title: "persona",
+    icon: "icon-single-02",
+    class: ""
+  },
+
+  {
+    path: "/dashboard",
+    title: "Datos Salud",
     icon: "icon-badge",
     class: ""
-  }
+  },
+
+  {
+    path: "historial",
+    title: "Historial",
+    icon: "icon-bag-16",
+    class: ""
+  },
 ];
 
 @Component({

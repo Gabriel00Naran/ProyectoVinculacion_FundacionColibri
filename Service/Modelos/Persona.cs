@@ -36,7 +36,7 @@ namespace WebServiceFC.Modelos
         public string Direccion { get; set; }
         public DateTime? FechaDeIngresoUnidadAtencion { get; set; }
         public string EdadIngreso { get; set; }
-        public string TiempoPermanenciaAños { get; set; }
+        public string TiempoPermanenciaAnnios { get; set; }
         public int? IdMotivoIngreso { get; set; }
 
         public virtual Canton IdCantonNavigation { get; set; }

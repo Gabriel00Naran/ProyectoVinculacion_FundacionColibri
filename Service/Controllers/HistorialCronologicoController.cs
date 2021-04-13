@@ -59,5 +59,13 @@ namespace WebServiceFC.Controllers
         {
             return historialService.GetHistorialCronologicoById(idHistorial);
         }
+          // GET_ByID: api/<HistorialCronologicoController>
+        [HttpGet]
+        [Route("[action]")]
+        [Route("api/HistorialCronologico/GetHistorialCronologicoIdPersona")]
+        public HistorialCronologico GetHistorialCronologicoByIdPersona(Guid IdPersona)
+        {
+            return historialService.GetHistorialCronologicoByIdPersona(IdPersona);
+        }
     }
 }

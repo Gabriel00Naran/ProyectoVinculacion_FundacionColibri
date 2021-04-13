@@ -12,6 +12,7 @@ import { PersonaComponent } from "src/app/pages/persona/persona.component";
 import { EditarPersonaComponent } from "src/app/pages/persona/editar-persona/editar-persona.component";
 import { AgregarPersonaComponent } from "src/app/pages/persona/agregar-persona/agregar-persona.component";
 import { NgxSpinnerModule } from "ngx-spinner";
+import { HistorialCronologicoComponent } from "src/app/pages/historial-cronologico/historial-cronologico.component";
 
 @NgModule({
   imports: [
@@ -29,6 +30,7 @@ import { NgxSpinnerModule } from "ngx-spinner";
         PersonaComponent,
         AgregarPersonaComponent,
         EditarPersonaComponent,
+        HistorialCronologicoComponent
 
   ]
 })

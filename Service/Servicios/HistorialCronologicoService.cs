@@ -82,6 +82,17 @@ namespace WebServiceFC.Servicios
             return historialCronologico;
         }
 
+         /// <summary>  
+        /// traer los detalles del registrado con su id 
+        /// </summary>  
+        /// <param name="idPersona"></param>  
+        /// <returns></returns>  
+        public HistorialCronologico GetHistorialCronologicoByIdPersona(Guid IdPersona)
+        {
+            var historialCronologico = DB.HistorialCronologicos.FirstOrDefault(x => x.IdPersona == IdPersona);
+            return historialCronologico;
+        }
+
 
     }
 }
