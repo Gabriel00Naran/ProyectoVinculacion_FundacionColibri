@@ -19,13 +19,13 @@ export class PgfComponent implements OnInit {
   show: boolean;
   productDialog: boolean;
   constructor(private personaService: PersonaService,
-    private router: Router,
-       private toastr: ToastrService,
-       private spinner: NgxSpinnerService) { }
+              private router: Router,
+              private toastr: ToastrService,
+              private spinner: NgxSpinnerService) { }
 
   ngOnInit(): void {
-    this.show= false;
-    this.productDialog= false;
+    this.show = false;
+    this.productDialog = false;
     this.spinner.show();
 
     setTimeout(() => {
@@ -38,45 +38,45 @@ export class PgfComponent implements OnInit {
       { field: 'edad', header: 'Edad' },
 
     ];
-    
+
   }
 
   getPersonaList() {
     this.personaService.getPersona().subscribe(data => {
       this.formData = data;
     }, error => {
-      this.toastr.error('el servidor no funciona','Error');
+      this.toastr.error('el servidor no funciona', 'Error');
       console.log(error);
-    })
+    });
   }
 
-  mostrarpersonas(){
+  mostrarpersonas() {
     this.getPersonaList();
-    this.show= true;
+    this.show = true;
   }
 
   abrir_modalBuscar(id) {
     this.getPGF(id);
     this.productDialog = true;
-  
+
     console.log('modal id :', id);
   }
 
-  getPGF(id){
+  getPGF(id) {
     this.personaService.get('api/Pgf/GetPgfByIdPersona?IdPersona=' + id).subscribe(data => {
-        this.pgf = data;
-      }, error => {
-        this.toastr.error('el servidor no funciona','Error');
-        console.log(error);
-      })
+      this.pgf = data;
+    }, error => {
+      this.toastr.error('el servidor no funciona', 'Error');
+      console.log(error);
+    });
 
   }
 
-  agregar(){
+  agregar() {
 
   }
 
-  cancelaragregar(){
+  cancelaragregar() {
 
   }
 

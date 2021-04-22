@@ -20,6 +20,8 @@
                                     <th style="width: 35%; text-align: center;">NOMBRES COMPLETOS</th>
                                     <th style="width: 35%; text-align: center;">DOCUMENTO DE IDENTIDAD</th>
                                     <th style="width: 35%; text-align: center;">EDAD</th>
+                                    <th style="width: 35%; text-align: center;">CANTON</th>
+
 
 
                                     <th rowspan="2" style="width: 22%; text-align: center;">OPCIONES
@@ -27,11 +29,11 @@
                                 </tr>
                                 <tr>
                                     <th *ngFor="let col of columns" [ngSwitch]="col.field">
-                                        <input matInput *ngSwitchCase="'nombreCompleto'" pInputText
+                                        <input matInput *ngSwitchCase="'nombrecompleto'" pInputText
                                             type="text" placeholder="Nombre" class="ui-column-filter"
                                             style="width: 100%;"
                                             (input)="dt.filter($event.target.value, col.field, 'contains')">
-                                            <input matInput *ngSwitchCase="'documentoIdentidad'" pInputText
+                                            <input matInput *ngSwitchCase="'documentoidentidad'" pInputText
                                             type="text" placeholder="Documento de Identidad" class="ui-column-filter"
                                             style="width: 100%;"
                                             (input)="dt.filter($event.target.value, col.field, 'contains')">
@@ -40,19 +42,20 @@
                             </ng-template>
                             <ng-template pTemplate="body" let-rowData let-columns="columns">
                                 <tr [pSelectableRow]="rowData" [pEditableRow]="rowData">
-                                    <td style="text-align: center;"><strong>{{rowData.nombreCompleto}}</strong></td>
-                                    <td style="text-align: center;">{{rowData.documentoIdentidad}}</td>
+                                    <td style="text-align: center;"><strong>{{rowData.nombrecompleto}}</strong></td>
+                                    <td style="text-align: center;">{{rowData.documentoidentidad}}</td>
                                     <td style="text-align: center;" >{{rowData.edad}}</td>
+                                    <td class="text-center">{{rowData.idcanton}}</td>
 
                                     <td style="text-align: center;">
                                         <button class="btn btn-info btn-sm btn-round"
                                             pTooltip="Ver" tooltipPosition="top"
-                                            (click)="edit(rowData.idPersona)">
+                                            (click)="edit(rowData.idpersona)">
                                             <i class="material-icons">Editar</i>
                                         </button>
-                                        <button  (click)="ver(rowData.idPersona)"
+                                        <button  (click)="ver(rowData.idpersona)"
                                         class="btn btn-warning btn-sm float-end  btn-round">Detalles</button>
-                                        <button (click)="eliminarPersona (rowData.idPersona)"
+                                        <button (click)="eliminarPersona (rowData.idpersona)"
                                             class="btn btn-danger btn-sm float-end  btn-round">Eliminar</button>
                                     </td>
                                 </tr>

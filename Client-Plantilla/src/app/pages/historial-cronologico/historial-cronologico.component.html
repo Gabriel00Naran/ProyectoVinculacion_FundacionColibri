@@ -29,11 +29,11 @@
                                 </tr>
                                 <tr>
                                     <th *ngFor="let col of columns" [ngSwitch]="col.field">
-                                        <input matInput *ngSwitchCase="'nombreCompleto'" pInputText
+                                        <input matInput *ngSwitchCase="'nombrecompleto'" pInputText
                                             type="text" placeholder="Nombre" class="ui-column-filter"
                                             style="width: 100%;"
                                             (input)="dt.filter($event.target.value, col.field, 'contains')">
-                                            <input matInput *ngSwitchCase="'documentoIdentidad'" pInputText
+                                            <input matInput *ngSwitchCase="'documentoidentidad'" pInputText
                                             type="text" placeholder="Documento de Identidad" class="ui-column-filter"
                                             style="width: 100%;"
                                             (input)="dt.filter($event.target.value, col.field, 'contains')">
@@ -42,16 +42,18 @@
                             </ng-template>
                             <ng-template pTemplate="body" let-rowData let-columns="columns">
                                 <tr [pSelectableRow]="rowData" [pEditableRow]="rowData">
-                                    <td style="text-align: center;"><strong>{{rowData.nombreCompleto}}</strong></td>
-                                    <td style="text-align: center;">{{rowData.documentoIdentidad}}</td>
+                                    <td style="text-align: center;"><strong>{{rowData.nombrecompleto}}</strong></td>
+                                    <td style="text-align: center;">{{rowData.documentoidentidad}}</td>
                                     <td style="text-align: center;" >{{rowData.edad}}</td>
 
                                     <td style="text-align: center;">
                                         <button class="btn btn-info btn-sm btn-round"
                                             pTooltip="Ver" tooltipPosition="top"
-                                            (click)="abrir_modalBuscar(rowData.idPersona)">
+                                            (click)="abrir_modalBuscar(rowData.idpersona)">
                                             <i class="material-icons">Mostrar Historial</i>
                                         </button>
+                                        <button  (click)="addnew(rowData.idpersona)"
+                                        class="btn btn-primary btn-sm float-end  btn-round">Añadir</button>
 
                                     </td>
                                 </tr>
@@ -88,10 +90,10 @@
                 <tbody>
                     <tr *ngFor="let h of historial">
                         <span *ngIf="h.length === 0">No Results</span>
-                        <td>{{h.idNombreCasaAnterior}}</td>
-                        <td>{{h.fechaIngreso}}
+                        <td>{{h.idnombrecasaAnterior}}</td>
+                        <td>{{h.fechaingreso}}
                         </td>
-                        <td>{{h.fechaEgreso}}
+                        <td>{{h.fechaegreso}}
                         </td>
 
 
@@ -99,5 +101,28 @@
             </table>
         </div>
     </div>
+
+</p-dialog>
+
+
+<p-dialog [(visible)]="add" [style]="{width: '450px'}" header="Añadir Respuesta" [modal]="true"
+    styleClass="p-fluid">
+
+ 
+        <div class=" col-md-3 pr-md-1">
+     <label for="idOrganizacion"> Organizacion </label>
+            <select 
+             [(ngModel)]="historial2.idnombrecasaanterior" name="organizacion" id="idOrganizacion">
+            <option *ngFor="let o of organizaciones; let i = index" [value]="o.idorganizacion">
+             {{o.descripcionorganizacion}}
+            </option>
+            </select>
+        </div>
+   
+
+    <button pButton pRipple label="Cancelar" icon="pi pi-times" class="btn btn-danger btn-sm "
+        (click)="cancelar()"></button>
+    <button pButton pRipple label="Guardar" icon="pi pi-check" class="btn btn-success btn-sm pull-right"
+        (click)="guardarR()"></button>
 
 </p-dialog>

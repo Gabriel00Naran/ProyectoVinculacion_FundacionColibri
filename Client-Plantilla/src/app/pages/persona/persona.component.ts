@@ -15,24 +15,24 @@ export class PersonaComponent implements OnInit {
   formData: Persona;
   cols: any[];
   constructor(private personaService: PersonaService,
-    private router: Router,
-       private toastr: ToastrService,
-       private spinner: NgxSpinnerService) { }
+              private router: Router,
+              private toastr: ToastrService,
+              private spinner: NgxSpinnerService) { }
 
   ngOnInit(): void {
     this.spinner.show();
-
+    this.getPersonaList();
     setTimeout(() => {
       /** spinner ends after 5 seconds */
       this.spinner.hide();
     }, 3000);
     this.cols = [
-      { field: 'nombreCompleto', header: 'Nombre Completo' },
-      { field: 'documentoIdentidad', header: 'Documento de Identidad' },
+      { field: 'nombrecompleto', header: 'Nombre Completo' },
+      { field: 'documentoidentidad', header: 'Documento de Identidad' },
       { field: 'edad', header: 'Edad' },
 
     ];
-    this.getPersonaList();
+
   }
 
 
@@ -40,36 +40,36 @@ export class PersonaComponent implements OnInit {
     this.personaService.getPersona().subscribe(data => {
       this.formData = data;
     }, error => {
-      this.toastr.error('el servidor no funciona','Error');
+      this.toastr.error('el servidor no funciona', 'Error');
       console.log(error);
-    })
+    });
   }
 
   eliminarPersona(idPersona: any) {
     console.log(idPersona);
     this.personaService.deletePersona(idPersona).subscribe(data => {
       this.getPersonaList();
-      this.toastr.error('El Registro Fue eliminado Permanentemente!','Registro eliminado');
+      this.toastr.error('El Registro Fue eliminado Permanentemente!', 'Registro eliminado');
     }, error => {
-      this.toastr.error('el servidor no responde','Error');
+      this.toastr.error('el servidor no responde', 'Error');
       console.log(error);
-    })
+    });
   }
 
-  edit(id){
-    console.log('ID'+ id)
+  edit(id) {
+    console.log('ID' + id);
     this.router.navigate(['/Editar-Persona', id], {
       skipLocationChange: true,
     });
   }
 
-  ver(id){
-    console.log('ID'+ id)
+  ver(id) {
+    console.log('ID' + id);
     this.router.navigate(['/Ver-Persona', id], {
       skipLocationChange: true,
     });
   }
 
- 
+
 
 }
