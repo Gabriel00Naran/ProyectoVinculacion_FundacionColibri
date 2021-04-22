@@ -11,9 +11,9 @@ import { PersonaService } from 'src/app/services/persona.service';
   styleUrls: ['./persona.component.scss']
 })
 export class PersonaComponent implements OnInit {
-  persona: Persona[] = [];;
+  persona: Persona[] = [];
+  formData: Persona;
   cols: any[];
-  pregunta: any;
   constructor(private personaService: PersonaService,
     private router: Router,
        private toastr: ToastrService,
@@ -26,13 +26,19 @@ export class PersonaComponent implements OnInit {
       /** spinner ends after 5 seconds */
       this.spinner.hide();
     }, 3000);
+    this.cols = [
+      { field: 'nombreCompleto', header: 'Nombre Completo' },
+      { field: 'documentoIdentidad', header: 'Documento de Identidad' },
+      { field: 'edad', header: 'Edad' },
+
+    ];
     this.getPersonaList();
   }
 
 
   getPersonaList() {
     this.personaService.getPersona().subscribe(data => {
-      this.persona = data;
+      this.formData = data;
     }, error => {
       this.toastr.error('el servidor no funciona','Error');
       console.log(error);
@@ -53,6 +59,13 @@ export class PersonaComponent implements OnInit {
   edit(id){
     console.log('ID'+ id)
     this.router.navigate(['/Editar-Persona', id], {
+      skipLocationChange: true,
+    });
+  }
+
+  ver(id){
+    console.log('ID'+ id)
+    this.router.navigate(['/Ver-Persona', id], {
       skipLocationChange: true,
     });
   }

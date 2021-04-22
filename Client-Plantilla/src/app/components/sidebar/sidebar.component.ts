@@ -23,7 +23,7 @@ export const ROUTES: RouteInfo[] = [
   },
 
   {
-    path: "/dashboard",
+    path: "/salud",
     title: "Datos Salud",
     icon: "icon-badge",
     class: ""
@@ -33,6 +33,13 @@ export const ROUTES: RouteInfo[] = [
     path: "historial",
     title: "Historial",
     icon: "icon-bag-16",
+    class: ""
+  },
+
+  {
+    path: "pgf",
+    title: "Plan Familiar",
+    icon: "icon-satisfied",
     class: ""
   },
 ];

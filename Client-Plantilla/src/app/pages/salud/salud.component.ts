@@ -2,20 +2,19 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
-import { Historial } from 'src/app/models/historial';
 import { Persona } from 'src/app/models/persona';
+import { Salud } from 'src/app/models/salud';
 import { PersonaService } from 'src/app/services/persona.service';
-import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-historial-cronologico',
-  templateUrl: './historial-cronologico.component.html',
-  styleUrls: ['./historial-cronologico.component.scss']
+  selector: 'app-salud',
+  templateUrl: './salud.component.html',
+  styleUrls: ['./salud.component.scss']
 })
-export class HistorialCronologicoComponent implements OnInit {
+export class SaludComponent implements OnInit {
   persona: Persona[] = [];
   formData: Persona;
-  historial: Historial;
+  salud: Salud;
   cols: any[];
   show: boolean;
   productDialog: boolean;
@@ -64,8 +63,8 @@ export class HistorialCronologicoComponent implements OnInit {
   }
 
   getHistorial(id){
-    this.personaService.get('api/HistorialCronologico/GetHistorialCronologicoByIdPersona?IdPersona=' + id).subscribe(data => {
-        this.historial = data;
+    this.personaService.get('api/DatosSalud/GetDatosSaludByIdPersona?IdPersona=' + id).subscribe(data => {
+        this.salud = data;
       }, error => {
         this.toastr.error('el servidor no funciona','Error');
         console.log(error);

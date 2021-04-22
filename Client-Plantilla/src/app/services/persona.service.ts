@@ -26,12 +26,17 @@ export class PersonaService {
   private POST ='api/Persona/AddPersona/';
   private PUT = 'api/Persona/EditPersona';
   private DELETE ='api/Persona/DeletePersona?idPersona=';
+  private GETbyIDCronologico = 'api​/HistorialCronologico​/GetHistorialCronologicoByIdPersona?idPersona='
   /////////////////////////////////////////////
 
   constructor(private http: HttpClient) { }
 
   getPersona(): Observable<any> {
     return this.http.get(environment.SERVER + this.GET );
+  }
+
+  getCronologico(idPersona): Observable<any> {
+    return this.http.get(environment.SERVER + this.GETbyIDCronologico + idPersona);
   }
 
   deletePersona(idPersona: number): Observable<any> {

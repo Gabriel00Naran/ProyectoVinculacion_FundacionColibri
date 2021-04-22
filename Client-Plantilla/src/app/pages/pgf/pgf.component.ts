@@ -2,20 +2,19 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
-import { Historial } from 'src/app/models/historial';
 import { Persona } from 'src/app/models/persona';
+import { Pgf } from 'src/app/models/pgf';
 import { PersonaService } from 'src/app/services/persona.service';
-import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-historial-cronologico',
-  templateUrl: './historial-cronologico.component.html',
-  styleUrls: ['./historial-cronologico.component.scss']
+  selector: 'app-pgf',
+  templateUrl: './pgf.component.html',
+  styleUrls: ['./pgf.component.scss']
 })
-export class HistorialCronologicoComponent implements OnInit {
+export class PgfComponent implements OnInit {
   persona: Persona[] = [];
   formData: Persona;
-  historial: Historial;
+  pgf: Pgf;
   cols: any[];
   show: boolean;
   productDialog: boolean;
@@ -57,15 +56,15 @@ export class HistorialCronologicoComponent implements OnInit {
   }
 
   abrir_modalBuscar(id) {
-    this.getHistorial(id);
+    this.getPGF(id);
     this.productDialog = true;
   
     console.log('modal id :', id);
   }
 
-  getHistorial(id){
-    this.personaService.get('api/HistorialCronologico/GetHistorialCronologicoByIdPersona?IdPersona=' + id).subscribe(data => {
-        this.historial = data;
+  getPGF(id){
+    this.personaService.get('api/Pgf/GetPgfByIdPersona?IdPersona=' + id).subscribe(data => {
+        this.pgf = data;
       }, error => {
         this.toastr.error('el servidor no funciona','Error');
         console.log(error);

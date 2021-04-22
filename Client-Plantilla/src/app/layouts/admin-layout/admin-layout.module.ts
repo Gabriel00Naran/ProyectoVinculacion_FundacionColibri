@@ -13,6 +13,15 @@ import { EditarPersonaComponent } from "src/app/pages/persona/editar-persona/edi
 import { AgregarPersonaComponent } from "src/app/pages/persona/agregar-persona/agregar-persona.component";
 import { NgxSpinnerModule } from "ngx-spinner";
 import { HistorialCronologicoComponent } from "src/app/pages/historial-cronologico/historial-cronologico.component";
+import { ButtonModule } from 'primeng/button';
+import { DynamicDialogModule } from 'primeng/dynamicdialog';
+import { TableModule } from 'primeng/table';
+import { DialogModule } from 'primeng/dialog';
+import { DropdownModule } from 'primeng/dropdown';
+import { RadioButtonModule } from 'primeng/radiobutton';
+import {AutoCompleteModule} from 'primeng/autocomplete';
+import { SaludComponent } from "src/app/pages/salud/salud.component";
+import { PgfComponent } from "src/app/pages/pgf/pgf.component";
 
 @NgModule({
   imports: [
@@ -23,6 +32,13 @@ import { HistorialCronologicoComponent } from "src/app/pages/historial-cronologi
     HttpClientModule,
     NgbModule,
     ReactiveFormsModule,
+    ButtonModule,
+    DynamicDialogModule,
+    TableModule,
+    DialogModule,
+    DropdownModule,
+    RadioButtonModule,
+    AutoCompleteModule,
   ],
   declarations: [
     DashboardComponent,
@@ -30,8 +46,9 @@ import { HistorialCronologicoComponent } from "src/app/pages/historial-cronologi
         PersonaComponent,
         AgregarPersonaComponent,
         EditarPersonaComponent,
-        HistorialCronologicoComponent
-
+        HistorialCronologicoComponent,
+        SaludComponent,
+        PgfComponent
   ]
 })
 export class AdminLayoutModule {}

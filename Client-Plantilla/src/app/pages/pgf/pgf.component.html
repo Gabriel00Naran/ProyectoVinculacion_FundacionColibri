@@ -4,14 +4,16 @@
         <div class=" col-md-12">
             <div class=" card card-plain">
                 <div class=" card-header">
-                    <h1 class=" card-title">PERSONAS REGISTRADAS </h1>
+                    <h1 class=" card-title">PLAN GLOBAL FAMILIAR </h1>
                 </div>
 
                 <div class="card-header">
-                    <button class="btn btn-primary float-end" routerLink="/Agregar-Persona">Nuevo Registro</button>
+                    <button class="btn btn-secondary float-end" (click)="mostrarpersonas()">Mostrar Personas</button>
                 </div>
                 <div class=" card-body">
+                    <div *ngIf="show"> 
                     <div class="table-responsive">
+                        
                             <p-table #dt styleClass="ui-table-formularios" [columns]="cols" [value]="formData"
                             [paginator]="true" [rows]="5" selectionMode="single"
                             [rowsPerPageOptions]="[5,10,20]" [responsive]="true">
@@ -47,13 +49,10 @@
                                     <td style="text-align: center;">
                                         <button class="btn btn-info btn-sm btn-round"
                                             pTooltip="Ver" tooltipPosition="top"
-                                            (click)="edit(rowData.idPersona)">
-                                            <i class="material-icons">Editar</i>
+                                            (click)="abrir_modalBuscar(rowData.idPersona)">
+                                            <i class="material-icons">Mostrar Plan Familiar</i>
                                         </button>
-                                        <button  (click)="ver(rowData.idPersona)"
-                                        class="btn btn-warning btn-sm float-end  btn-round">Detalles</button>
-                                        <button (click)="eliminarPersona (rowData.idPersona)"
-                                            class="btn btn-danger btn-sm float-end  btn-round">Eliminar</button>
+
                                     </td>
                                 </tr>
                             </ng-template>
@@ -62,9 +61,43 @@
                         
                     </div>
                 </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
 </div>
 <ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "square-jelly-box" [fullScreen] = "true"><p style="color: white" > Cargando.. </p></ngx-spinner>
+
+<p-dialog [(visible)]="productDialog" [style]="{width: '450px'}" header="Plan Global Familiar" [modal]="true"
+    styleClass="p-fluid">
+    <div class="row">
+        <div class="table-responsive">
+            <table class="table">
+                <thead class=" text-primary">
+                    <th>
+                        Nombre del Familiar
+                    </th>
+                    <th>
+                        Provincia
+                    </th>
+                    <th>
+                        Telefono
+                    </th>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let p of pgf">
+                        <span *ngIf="p.length === 0">No Results</span>
+                        <td>{{p.nombreFamiliar}}</td>
+                        <td>{{p.idProvincia}}
+                        </td>
+                        <td>{{p.telefono}}
+                        </td>
+
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</p-dialog>

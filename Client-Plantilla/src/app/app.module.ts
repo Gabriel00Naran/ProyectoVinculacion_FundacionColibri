@@ -15,7 +15,10 @@ import { AppRoutingModule } from "./app-routing.module";
 import { ComponentsModule } from "./components/components.module";
 import { PersonaService } from "./services/persona.service";
 import { NgxSpinnerModule } from "ngx-spinner";
-import { HistorialCronologicoComponent } from './pages/historial-cronologico/historial-cronologico.component';
+import { DynamicDialogModule } from 'primeng/dynamicdialog';
+import { TableModule } from 'primeng/table';
+import { SaludComponent } from './pages/salud/salud.component';
+import { PgfComponent } from './pages/pgf/pgf.component';
 
 @NgModule({
   imports: [
@@ -27,6 +30,8 @@ import { HistorialCronologicoComponent } from './pages/historial-cronologico/his
     NgbModule,
     RouterModule,
     AppRoutingModule,
+    DynamicDialogModule,
+    TableModule,
     ToastrModule.forRoot()
   ],
   declarations: [AppComponent, AdminLayoutComponent],
