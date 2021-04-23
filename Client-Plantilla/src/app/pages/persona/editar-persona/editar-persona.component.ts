@@ -24,21 +24,20 @@ export class EditarPersonaComponent implements OnInit {
   nacionalidades: any = [];
   provincias: any = [];
   cantones: any = [];
-  parroquias: any =[];
-  motivos: any=[];
+  parroquias: any = [];
+  motivos: any = [];
   /////////////////////////////////////////////////////////////
   constructor(private fb: FormBuilder,
-    private personaService: PersonaService,
-    private route: ActivatedRoute,
-    private router: Router,
-    private toastr: ToastrService,
-    private spinner: NgxSpinnerService) 
-    {
-      this.navigationSubscription = this.router.events.subscribe((e: any) => {
-        if (e instanceof NavigationEnd) {
-          
-        }
-      });
+              private personaService: PersonaService,
+              private route: ActivatedRoute,
+              private router: Router,
+              private toastr: ToastrService,
+              private spinner: NgxSpinnerService) {
+    this.navigationSubscription = this.router.events.subscribe((e: any) => {
+      if (e instanceof NavigationEnd) {
+
+      }
+    });
   }
 
   ngOnInit(): void {
@@ -58,7 +57,7 @@ export class EditarPersonaComponent implements OnInit {
       /** spinner ends after 5 seconds */
       this.spinner.hide();
     }, 3000);
-    this.getGPreguntaId(this.idform); 
+    this.getGPreguntaId(this.idform);
     this.editarPersona = this.fb.group({
       idOrganizacion: ['', []],
       idModalidad: ['', []],
@@ -81,8 +80,8 @@ export class EditarPersonaComponent implements OnInit {
       idMotivoIngreso: ['', []]
 
       //////////////////////////////////////////////
-    })
-    
+    });
+
   }
 
   initializar() {
@@ -94,19 +93,19 @@ export class EditarPersonaComponent implements OnInit {
 
   getGPreguntaId(id: number) {
     this.persona = [];
-    this.personaService.getPersonaById(id).subscribe((data: {}) => {
+    this.personaService.getPersonaById('api/Persona/GetPersonaById?idPersona=' + id).subscribe((data: {}) => {
       this.persona = data;
       console.log('PERSONAS', this.persona);
 
     });
   }
 
-  submit(){
+  submit() {
     this.EditarPersona();
   }
   ///////////////////////////////////////////////////////////////////////////////////////////////////////
-  EditarPersona(){
-    this.personaService.put(this.persona);
+  EditarPersona() {
+    this.personaService.put('api/Persona/EditPersona', this.persona);
     console.log('GUARDADO', this.persona);
     this.router.navigate(['/Listar-Persona'], {
       skipLocationChange: true,
@@ -122,7 +121,7 @@ export class EditarPersonaComponent implements OnInit {
     });
   }
 
-  getModalidades(){
+  getModalidades() {
     this.modalidades = [];
     this.personaService.get('api/Modalidad/GetModalidad').subscribe((data: {}) => {
       this.modalidades = data;
@@ -131,7 +130,7 @@ export class EditarPersonaComponent implements OnInit {
     });
   }
 
-  getGeneros(){
+  getGeneros() {
     this.generos = [];
     this.personaService.get('api/Genero/GetGenero').subscribe((data: {}) => {
       this.generos = data;
@@ -140,7 +139,7 @@ export class EditarPersonaComponent implements OnInit {
     });
   }
 
-  getEtnias(){
+  getEtnias() {
     this.etnias = [];
     this.personaService.get('api/Etnia/GetEtnia').subscribe((data: {}) => {
       this.etnias = data;
@@ -149,7 +148,7 @@ export class EditarPersonaComponent implements OnInit {
     });
   }
 
-  getNacionalidades(){
+  getNacionalidades() {
     this.nacionalidades = [];
     this.personaService.get('api/Nacionalidad/GetNacionalidad').subscribe((data: {}) => {
       this.nacionalidades = data;
@@ -158,7 +157,7 @@ export class EditarPersonaComponent implements OnInit {
     });
   }
 
-  getProvincias(){
+  getProvincias() {
     this.provincias = [];
     this.personaService.get('api/Provincia/GetProvincia').subscribe((data: {}) => {
       this.provincias = data;
@@ -167,7 +166,7 @@ export class EditarPersonaComponent implements OnInit {
     });
   }
 
-  getCantones(){
+  getCantones() {
     this.cantones = [];
     this.personaService.get('api/Canton/GetCanton').subscribe((data: {}) => {
       this.cantones = data;
@@ -176,7 +175,7 @@ export class EditarPersonaComponent implements OnInit {
     });
   }
 
-  getParroquias(){
+  getParroquias() {
     this.parroquias = [];
     this.personaService.get('api/Parroquia/GetParroquia').subscribe((data: {}) => {
       this.parroquias = data;
@@ -185,7 +184,7 @@ export class EditarPersonaComponent implements OnInit {
     });
   }
 
-  getMotivos(){
+  getMotivos() {
     this.motivos = [];
     this.personaService.get('api/MotivoIngreso/GetMotivoIngreso').subscribe((data: {}) => {
       this.motivos = data;

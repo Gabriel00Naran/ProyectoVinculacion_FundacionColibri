@@ -78,7 +78,7 @@ export class AgregarPersonaComponent implements OnInit {
     });
 
     this.persona = {
-      idorganizacion: '',
+      idorganizacion: 84,
       idmodalidad: '',
       nombres: '',
       apellidos: '',
@@ -106,7 +106,7 @@ export class AgregarPersonaComponent implements OnInit {
   }
   ///////////////////////////////////////////////////////////////////////////////////////////////////////
   AgregarPersona() {
-    this.personaService.post(this.persona);
+    this.personaService.post('api/Persona/AddPersona/', this.persona);
     console.log('GUARDADO', this.persona);
     this.router.navigate(['/Listar-Persona'], {
       skipLocationChange: true,

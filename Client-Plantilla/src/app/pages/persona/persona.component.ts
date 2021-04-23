@@ -47,7 +47,7 @@ export class PersonaComponent implements OnInit {
 
   eliminarPersona(idPersona: any) {
     console.log(idPersona);
-    this.personaService.deletePersona(idPersona).subscribe(data => {
+    this.personaService.deletePersona('api/Persona/DeletePersona?idPersona=' + idPersona).subscribe(data => {
       this.getPersonaList();
       this.toastr.error('El Registro Fue eliminado Permanentemente!', 'Registro eliminado');
     }, error => {

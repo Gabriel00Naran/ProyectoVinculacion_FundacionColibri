@@ -15,7 +15,7 @@ import Swal from 'sweetalert2';
 export class HistorialCronologicoComponent implements OnInit {
   persona: Persona[] = [];
   formData: Persona;
-  historial: Historial;
+  historial: any;
   historial2: any;
   cols: any[];
   show: boolean;
@@ -25,9 +25,9 @@ export class HistorialCronologicoComponent implements OnInit {
   respuesta: any;
 
   constructor(private personaService: PersonaService,
-    private router: Router,
-    private toastr: ToastrService,
-    private spinner: NgxSpinnerService) { }
+              private router: Router,
+              private toastr: ToastrService,
+              private spinner: NgxSpinnerService) { }
 
   ngOnInit(): void {
     this.add = false;
@@ -39,15 +39,11 @@ export class HistorialCronologicoComponent implements OnInit {
       this.spinner.hide();
     }, 3000);
     this.cols = [
-      { field: 'nombreCompleto', header: 'Nombre Completo' },
-      { field: 'documentoIdentidad', header: 'Documento de Identidad' },
+      { field: 'nombrecompleto', header: 'Nombre Completo' },
+      { field: 'documentoidentidad', header: 'Documento de Identidad' },
       { field: 'edad', header: 'Edad' },
 
     ];
-
-    this.historial2 = {
-      idnombrecasaanterior: '',
-    };
 
 
 
@@ -74,9 +70,11 @@ export class HistorialCronologicoComponent implements OnInit {
   }
 
   getHistorial(id) {
+    this.historial = [];
     this.personaService.get('api/HistorialCronologico/GetHistorialCronologicoByIdPersona?IdPersona=' + id).subscribe(data => {
       this.historial = data;
-      if (data === null) {
+      console.log(this.historial);
+      if (this.historial.length === 0) {
         Swal.fire(
           'No tienes historial',
           'Ingresa si es necesario',
@@ -84,7 +82,6 @@ export class HistorialCronologicoComponent implements OnInit {
         );
       }
       else {
-        this.getOrganizaciones();
         this.productDialog = true;
 
       }
@@ -95,12 +92,23 @@ export class HistorialCronologicoComponent implements OnInit {
 
   }
 
-  guardarR() {
-
+  eliminarHistorial(id: any) {
+    console.log(id);
+    this.personaService.deletePersona('api/HistorialCronologico/DeleteHistorialCronologico?idHistorial=' + id).subscribe(data => {
+      this.getPersonaList();
+      this.toastr.error('El Registro Fue eliminado Permanentemente!', 'Registro eliminado');
+      this.productDialog = false;
+    }, error => {
+      this.toastr.error('el servidor no responde', 'Error');
+      console.log(error);
+    });
   }
 
-  cancelar() {
-
+  editar(id) {
+    console.log('ID' + id);
+    this.router.navigate(['/Editar-Historial', id], {
+      skipLocationChange: true,
+    });
   }
 
 
@@ -113,11 +121,12 @@ export class HistorialCronologicoComponent implements OnInit {
     });
   }
 
-  addnew(id) {
-    console.log('modal id :', id);
-    this.getOrganizaciones();
-    this.add = true;
 
+  addnew(id) {
+    console.log('ID' + id);
+    this.router.navigate(['/add-historial', id], {
+
+    });
   }
 
 }

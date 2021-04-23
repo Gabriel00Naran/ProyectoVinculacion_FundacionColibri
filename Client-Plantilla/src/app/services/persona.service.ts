@@ -41,8 +41,8 @@ export class PersonaService {
     return this.http.get(environment.SERVER + this.GETbyIDCronologico + idPersona);
   }
 
-  deletePersona(idPersona: number): Observable<any> {
-    return this.http.delete(environment.SERVER + this.DELETE + idPersona);
+  deletePersona(url): Observable<any> {
+    return this.http.delete(environment.SERVER + url);
   }
 
   addPersona(persona: Persona): Observable<any> {
@@ -50,8 +50,8 @@ export class PersonaService {
   }
 
   //// volvi a dejar el tipo de dato en number ya que antes estana en Guid
-  getPersonaById(idPersona): Observable<any> {
-    return this.http.get(environment.SERVER + this.GETbyID + idPersona);
+  getPersonaById(url): Observable<any> {
+    return this.http.get(environment.SERVER + url);
   }
 
   getPersonaByCantonId(idCanton): Observable<Canton[]> {
@@ -71,8 +71,8 @@ export class PersonaService {
   }
 
 
-  post(data: any) {
-    return this.http.post(environment.SERVER + this.POST, data).subscribe(
+  post(url, data: any) {
+    return this.http.post(environment.SERVER + url, data).subscribe(
       response => {
 
       },
@@ -82,8 +82,8 @@ export class PersonaService {
     );
   }
 
-  put(data: any) {
-    return this.http.put(environment.SERVER + this.PUT, data).subscribe(
+  put(url, data: any) {
+    return this.http.put(environment.SERVER + url, data).subscribe(
       response => {
 
       },

@@ -86,14 +86,22 @@
                     <th>
                         Fecha de Egreso
                     </th>
+                    <th>
+                        Opciones
+                    </th>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let h of historial">
-                        <span *ngIf="h.length === 0">No Results</span>
-                        <td>{{h.idnombrecasaAnterior}}</td>
+                    <tr *ngFor="let h of historial; let i = index">
+                        <td>{{h.idnombrecasaanterior}}</td>
                         <td>{{h.fechaingreso}}
                         </td>
                         <td>{{h.fechaegreso}}
+                        </td>
+                        <td>
+                            <button  (click)="editar(h.idhistorial)"
+                            class="btn btn-success btn-sm float-end  btn-round">Editar</button>
+                            <button (click)="eliminarHistorial (h.idhistorial)"
+                                class="btn btn-danger btn-sm float-end  btn-round">Eliminar</button>
                         </td>
 
 
@@ -101,28 +109,5 @@
             </table>
         </div>
     </div>
-
-</p-dialog>
-
-
-<p-dialog [(visible)]="add" [style]="{width: '450px'}" header="Añadir Respuesta" [modal]="true"
-    styleClass="p-fluid">
-
- 
-        <div class=" col-md-3 pr-md-1">
-     <label for="idOrganizacion"> Organizacion </label>
-            <select 
-             [(ngModel)]="historial2.idnombrecasaanterior" name="organizacion" id="idOrganizacion">
-            <option *ngFor="let o of organizaciones; let i = index" [value]="o.idorganizacion">
-             {{o.descripcionorganizacion}}
-            </option>
-            </select>
-        </div>
-   
-
-    <button pButton pRipple label="Cancelar" icon="pi pi-times" class="btn btn-danger btn-sm "
-        (click)="cancelar()"></button>
-    <button pButton pRipple label="Guardar" icon="pi pi-check" class="btn btn-success btn-sm pull-right"
-        (click)="guardarR()"></button>
 
 </p-dialog>
