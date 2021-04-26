@@ -21,8 +21,8 @@ export class PersonaComponent implements OnInit {
 
   ngOnInit(): void {
     this.spinner.show();
-    this.getPersonaList();
     setTimeout(() => {
+      this.getPersonaList();
       /** spinner ends after 5 seconds */
       this.spinner.hide();
     }, 3000);

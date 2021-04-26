@@ -13,7 +13,7 @@
                                 <div class=" form-group">
                          <label for="idOrganizacion"> Organizacion </label>
                                 <select formControlName="idOrganizacion" class="form-control"
-                                 [(ngModel)]="persona.idorganizacion" name="organizacion" id="idOrganizacion">
+                                 [(ngModel)]="persona.idorganizacion" name="organizacion" id="idOrganizacion" disabled>
                                 <option *ngFor="let o of organizaciones; let i = index" [value]="o.idorganizacion">
                                  {{o.descripcionorganizacion}}
                                 </option>
