@@ -55,7 +55,7 @@ export class HistorialCronologicoComponent implements OnInit {
     this.personaService.getPersona().subscribe(data => {
       this.formData = data;
     }, error => {
-      this.toastr.error('el servidor no funciona', 'Error');
+      this.toastr.error('El servidor no funciona', 'Error');
       console.log(error);
     });
   }
@@ -89,7 +89,7 @@ export class HistorialCronologicoComponent implements OnInit {
 
       }
     }, error => {
-      this.toastr.error('el servidor no funciona', 'Error');
+      this.toastr.error('El servidor no funciona', 'Error');
       console.log(error);
     });
 
@@ -102,7 +102,7 @@ export class HistorialCronologicoComponent implements OnInit {
       this.toastr.error('El Registro Fue eliminado Permanentemente!', 'Registro eliminado');
       this.productDialog = false;
     }, error => {
-      this.toastr.error('el servidor no responde', 'Error');
+      this.toastr.error('El servidor no responde', 'Error');
       console.log(error);
     });
   }
