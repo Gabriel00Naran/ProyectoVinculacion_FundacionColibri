@@ -21,6 +21,7 @@ export class DatosLegalesComponent implements OnInit {
   add: boolean;
   organizaciones: any = [];
   respuesta: any;
+  showbutton: boolean;
 
   constructor(private personaService: PersonaService,
               private router: Router,
@@ -30,6 +31,7 @@ export class DatosLegalesComponent implements OnInit {
   ngOnInit(): void {
     this.add = false;
     this.show = false;
+    this.showbutton = true;
     this.productDialog = false;
     this.spinner.show();
     setTimeout(() => {
@@ -58,6 +60,7 @@ export class DatosLegalesComponent implements OnInit {
 
   mostrarpersonas() {
     this.getPersonaList();
+    this.showbutton = false;
     this.show = true;
   }
 

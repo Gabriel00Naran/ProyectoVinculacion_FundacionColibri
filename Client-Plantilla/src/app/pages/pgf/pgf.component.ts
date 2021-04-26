@@ -19,6 +19,8 @@ export class PgfComponent implements OnInit {
   cols: any[];
   show: boolean;
   productDialog: boolean;
+  showbutton: boolean;
+
   constructor(private personaService: PersonaService,
               private router: Router,
               private toastr: ToastrService,
@@ -26,6 +28,7 @@ export class PgfComponent implements OnInit {
 
   ngOnInit(): void {
     this.show = false;
+    this.showbutton = true;
     this.productDialog = false;
     this.spinner.show();
 
@@ -53,6 +56,7 @@ export class PgfComponent implements OnInit {
 
   mostrarpersonas() {
     this.getPersonaList();
+    this.showbutton = false;
     this.show = true;
   }
 

@@ -23,6 +23,7 @@ export class HistorialCronologicoComponent implements OnInit {
   add: boolean;
   organizaciones: any = [];
   respuesta: any;
+  showbutton: boolean;
 
   constructor(private personaService: PersonaService,
               private router: Router,
@@ -31,6 +32,7 @@ export class HistorialCronologicoComponent implements OnInit {
 
   ngOnInit(): void {
     this.add = false;
+    this.showbutton = true;
     this.show = false;
     this.productDialog = false;
     this.spinner.show();
@@ -60,6 +62,7 @@ export class HistorialCronologicoComponent implements OnInit {
 
   mostrarpersonas() {
     this.getPersonaList();
+    this.showbutton = false;
     this.show = true;
   }
 
