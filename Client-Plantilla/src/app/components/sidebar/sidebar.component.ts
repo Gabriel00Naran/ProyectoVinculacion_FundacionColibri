@@ -42,6 +42,15 @@ export const ROUTES: RouteInfo[] = [
     icon: 'icon-satisfied',
     class: ''
   },
+
+  {
+    path: 'legal',
+    title: 'Datos Legales',
+    icon: 'icon-notes',
+    class: ''
+  },
+
+
 ];
 
 @Component({

@@ -26,6 +26,11 @@ import { AgregarHistorialCronologicoComponent } from 'src/app/pages/historial-cr
 import { EditarHistorialCronologicoComponent } from 'src/app/pages/historial-cronologico/editar-historial-cronologico/editar-historial-cronologico.component';
 import { AgregarSaludComponent } from 'src/app/pages/salud/agregar-salud/agregar-salud.component';
 import { EditarSaludComponent } from 'src/app/pages/salud/editar-salud/editar-salud.component';
+import { AddPgfComponent } from 'src/app/pages/pgf/add-pgf/add-pgf.component';
+import { EditPgfComponent } from 'src/app/pages/pgf/edit-pgf/edit-pgf.component';
+import { DatosLegalesComponent } from 'src/app/pages/datos-legales/datos-legales.component';
+import { EditLegalComponent } from 'src/app/pages/datos-legales/edit-legal/edit-legal.component';
+import { AddLegalComponent } from 'src/app/pages/datos-legales/add-legal/add-legal.component';
 
 @NgModule({
   imports: [
@@ -56,7 +61,12 @@ import { EditarSaludComponent } from 'src/app/pages/salud/editar-salud/editar-sa
         AgregarHistorialCronologicoComponent,
         EditarHistorialCronologicoComponent,
         AgregarSaludComponent,
-        EditarSaludComponent
+        EditarSaludComponent,
+        AddPgfComponent,
+        EditPgfComponent,
+        DatosLegalesComponent,
+        EditLegalComponent,
+        AddLegalComponent
   ]
 })
 export class AdminLayoutModule {}

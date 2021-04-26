@@ -3,32 +3,35 @@ import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { Persona } from 'src/app/models/persona';
-import { Pgf } from 'src/app/models/pgf';
 import { PersonaService } from 'src/app/services/persona.service';
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-pgf',
-  templateUrl: './pgf.component.html',
-  styleUrls: ['./pgf.component.scss']
+  selector: 'app-datos-legales',
+  templateUrl: './datos-legales.component.html',
+  styleUrls: ['./datos-legales.component.scss']
 })
-export class PgfComponent implements OnInit {
+export class DatosLegalesComponent implements OnInit {
   persona: Persona[] = [];
   formData: Persona;
-  pgf: any;
+  dlegales: any;
   cols: any[];
   show: boolean;
   productDialog: boolean;
+  add: boolean;
+  organizaciones: any = [];
+  respuesta: any;
+
   constructor(private personaService: PersonaService,
               private router: Router,
               private toastr: ToastrService,
               private spinner: NgxSpinnerService) { }
 
   ngOnInit(): void {
+    this.add = false;
     this.show = false;
     this.productDialog = false;
     this.spinner.show();
-
     setTimeout(() => {
       /** spinner ends after 5 seconds */
       this.spinner.hide();
@@ -39,6 +42,8 @@ export class PgfComponent implements OnInit {
       { field: 'edad', header: 'Edad' },
 
     ];
+
+
 
   }
 
@@ -57,16 +62,19 @@ export class PgfComponent implements OnInit {
   }
 
   abrir_modalBuscar(id) {
-    this.getPGF(id);
+    this.getDatosJudiciales(id);
+
     console.log('modal id :', id);
   }
 
-  getPGF(id) {
-    this.personaService.get('api/Pgf/GetPgfByIdPersona?idpersona=' + id).subscribe(data => {
-      this.pgf = data;
-      if (this.pgf.length === 0) {
+  getDatosJudiciales(id) {
+    this.dlegales = [];
+    this.personaService.get('api/DatosJudicialPenal/GetDatosJudicialPenalByIdPersona?IdPersona=' + id).subscribe(data => {
+      this.dlegales = data;
+      console.log(this.dlegales);
+      if (this.dlegales.length === 0) {
         Swal.fire(
-          'No tienes ningun registro',
+          'No tienes datos legales',
           'Ingresa si es necesario',
           'question'
         );
@@ -81,16 +89,10 @@ export class PgfComponent implements OnInit {
     });
 
   }
-  addnew(id) {
-    console.log('ID' + id);
-    this.router.navigate(['/add-pgf', id], {
 
-    });
-  }
-
-  eliminarPgf(id: any) {
+  eliminarDatoJudicial(id: any) {
     console.log(id);
-    this.personaService.deletePersona('api/Pgf/DeletePgf?idPgf=' + id).subscribe(data => {
+    this.personaService.deletePersona('/api/DatosJudicialPenal/DeleteDatosJudicialPenal?idJudicialPenal=' + id).subscribe(data => {
       this.getPersonaList();
       this.toastr.error('El Registro Fue eliminado Permanentemente!', 'Registro eliminado');
       this.productDialog = false;
@@ -102,8 +104,26 @@ export class PgfComponent implements OnInit {
 
   editar(id) {
     console.log('ID' + id);
-    this.router.navigate(['/edit-pgf', id], {
+    this.router.navigate(['/edit-legal', id], {
       skipLocationChange: true,
+    });
+  }
+
+
+  getOrganizaciones() {
+    this.organizaciones = [];
+    this.personaService.get('api/Organizacion/GetOrganizacion').subscribe((data: {}) => {
+      this.organizaciones = data;
+      console.log('ORGANIZACIONES', this.organizaciones);
+
+    });
+  }
+
+
+  addnew(id) {
+    console.log('ID' + id);
+    this.router.navigate(['/add-legal', id], {
+
     });
   }
 
