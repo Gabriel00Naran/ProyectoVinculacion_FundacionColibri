@@ -17,13 +17,6 @@ import { PersonaService } from './services/persona.service';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import { TableModule } from 'primeng/table';
-import { AgregarSaludComponent } from './pages/salud/agregar-salud/agregar-salud.component';
-import { EditarSaludComponent } from './pages/salud/editar-salud/editar-salud.component';
-import { AddPgfComponent } from './pages/pgf/add-pgf/add-pgf.component';
-import { EditPgfComponent } from './pages/pgf/edit-pgf/edit-pgf.component';
-import { DatosLegalesComponent } from './pages/datos-legales/datos-legales.component';
-import { AddLegalComponent } from './pages/datos-legales/add-legal/add-legal.component';
-import { EditLegalComponent } from './pages/datos-legales/edit-legal/edit-legal.component';
 
 @NgModule({
   imports: [

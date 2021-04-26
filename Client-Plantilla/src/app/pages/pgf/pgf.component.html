@@ -98,6 +98,8 @@
                         <td>{{p.telefono}}
                         </td>
                         <td>
+                            <button  (click)="ver(p.idpgf)"
+                            class="btn btn-secondary btn-sm float-end  btn-round">Ver</button>
                             <button  (click)="editar(p.idpgf)"
                             class="btn btn-success btn-sm float-end  btn-round">Editar</button>
                             <button (click)="eliminarPgf (p.idpgf)"

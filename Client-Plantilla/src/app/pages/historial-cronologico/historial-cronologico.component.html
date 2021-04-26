@@ -98,6 +98,8 @@
                         <td>{{h.fechaegreso}}
                         </td>
                         <td>
+                            <button  (click)="ver(h.idhistorial)"
+                            class="btn btn-secondary btn-sm float-end  btn-round">Ver</button>
                             <button  (click)="editar(h.idhistorial)"
                             class="btn btn-success btn-sm float-end  btn-round">Editar</button>
                             <button (click)="eliminarHistorial (h.idhistorial)"

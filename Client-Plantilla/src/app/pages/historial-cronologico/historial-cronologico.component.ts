@@ -111,6 +111,14 @@ export class HistorialCronologicoComponent implements OnInit {
     });
   }
 
+  ver(id) {
+    console.log('ID' + id);
+    this.router.navigate(['/ver-historial', id], {
+      skipLocationChange: true,
+    });
+  }
+
+
 
   getOrganizaciones() {
     this.organizaciones = [];

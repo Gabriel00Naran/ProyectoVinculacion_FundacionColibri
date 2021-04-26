@@ -31,6 +31,10 @@ import { EditPgfComponent } from 'src/app/pages/pgf/edit-pgf/edit-pgf.component'
 import { DatosLegalesComponent } from 'src/app/pages/datos-legales/datos-legales.component';
 import { EditLegalComponent } from 'src/app/pages/datos-legales/edit-legal/edit-legal.component';
 import { AddLegalComponent } from 'src/app/pages/datos-legales/add-legal/add-legal.component';
+import { VerSaludComponent } from 'src/app/pages/salud/ver-salud/ver-salud.component';
+import { VerHistorialCronologicoComponent } from 'src/app/pages/historial-cronologico/ver-historial-cronologico/ver-historial-cronologico.component';
+import { ViewPgfComponent } from 'src/app/pages/pgf/view-pgf/view-pgf.component';
+import { ViewLegalComponent } from 'src/app/pages/datos-legales/view-legal/view-legal.component';
 
 @NgModule({
   imports: [
@@ -66,7 +70,11 @@ import { AddLegalComponent } from 'src/app/pages/datos-legales/add-legal/add-leg
         EditPgfComponent,
         DatosLegalesComponent,
         EditLegalComponent,
-        AddLegalComponent
+        AddLegalComponent,
+        VerSaludComponent,
+        VerHistorialCronologicoComponent,
+        ViewPgfComponent,
+        ViewLegalComponent
   ]
 })
 export class AdminLayoutModule {}

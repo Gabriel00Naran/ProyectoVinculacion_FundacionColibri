@@ -1,0 +1,165 @@
+<div class=" content">
+    <div class=" row">
+        <div class=" col-md-8">
+            <div class=" card">
+                <div class=" card-header">
+                    <h2 class=" title">Editar Datos de Plan Global Familiar</h2>
+                </div>
+                <div class=" card-body">
+                    <!--desde aqui empieza el formulario-->
+                    <form [formGroup]="verpgf" (ngSubmit)="submit()">
+                        <div class=" row">
+                            <div class=" col-md-3 pr-md-1">
+                                <div class=" form-group">
+                                    <label for="estadosalud"> Familiar referente con el que se está trabajando el PGF
+                                    </label>
+                                    <select formControlName="idfamiliarreferente" class="form-control" #f
+                                        (change)="changefamiliar(f.value)" [(ngModel)]="pgf.idfamiliarreferente"
+                                        name="idfamiliarreferente" id="idfamiliarreferente" disabled>
+                                        <option *ngFor="let f of familiar; let i = index"
+                                            [value]="f.idfamiliarreferente">
+                                            {{f.descripcionfamiliarreferente}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div *ngIf="fam">
+                            <div [formGroup]="verDiscapacidad">
+                                <div class=" row">
+                                    <div class=" col-md-5 pr-md-1">
+                                        <div class=" form-group">
+                                            <label for="nombrefamiliar"> Nombre del Familiar </label>
+                                            <input [(ngModel)]="pgf.nombrefamiliar" formControlName="nombrefamiliar"
+                                                id="nombrefamiliar" type="text" class="form-control" readonly="true">
+                                        </div>
+                                    </div>
+                                    <div class=" col-md-3 px-md-1">
+                                        <div class=" form-group">
+                                            <label for="idprovincia"> Provincia </label>
+                                            <select formControlName="idprovincia" class="form-control"
+                                                [(ngModel)]="pgf.idprovincia" name="idprovincia" id="idprovincia" disabled>
+                                                <option *ngFor="let p of provincias; let i = index"
+                                                    [value]="p.idprovincia">
+                                                    {{p.descripcionprovincia}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class=" col-md-3 px-md-1">
+                                        <div class=" form-group">
+                                            <label for="idcanton"> Cantón </label>
+                                            <select formControlName="idcanton" class="form-control"
+                                                [(ngModel)]="pgf.idcanton" name="idcanton" id="idcanton" disabled>
+                                                <option *ngFor="let c of cantones; let i = index" [value]="c.idcanton">
+                                                    {{c.descripcioncanton}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <div class=" row">
+                                <div class=" col-md-8 pr-md-1">
+                                    <div class=" form-group">
+                                        <label for="direccion"> Dirección</label>
+                                        <input [(ngModel)]="pgf.direccion" formControlName="direccion" id="direccion"
+                                            type="text" class="form-control" readonly="true">
+                                    </div>
+                                </div>
+                                <div class=" col-md-4 px-md-1">
+                                    <div class=" form-group">
+                                        <label for="nombrefamiliar"> Teléfono </label>
+                                        <input [(ngModel)]="pgf.telefono" formControlName="telefono" id="telefono"
+                                            type="text" class="form-control" readonly="true">
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class=" col-md-4 px-md-1">
+                            <div class=" form-group">
+                                <label for="nnaInsertosistemaeducativo"> NNA inserto en el sistema educativo </label>
+                                <select formControlName="nnaInsertosistemaeducativo" class="form-control" #n
+                                    (change)="insertosistema(n.value)" [(ngModel)]="pgf.nnaInsertosistemaeducativo"
+                                    name="nnaInsertosistemaeducativo" id="nnaInsertosistemaeducativo" disabled>
+                                    <option value=true>Si</option>
+                                    <option value=false>No</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div *ngIf="nosistema">
+                            <div class=" col-md-5 px-md-1">
+                                <div class=" form-group">
+                                    <label for="nombreunidad"> Porque? </label>
+                                    <input [(ngModel)]="pgf.nombreunidad" formControlName="nombreunidad"
+                                        id="nombreunidad" type="text" class="form-control" disabled>
+                                </div>
+                            </div>
+                        </div>
+                        <div *ngIf="sistemaedu">
+                            <div class="row">
+                                <div class=" col-md-3">
+                                    <div class=" form-group">
+                                        <label for="idnivelacademico"> Nivel de escolaridad </label>
+                                        <select formControlName="idnivelacademico" class="form-control"
+                                            [(ngModel)]="pgf.idnivelacademico" name="idnivelacademico"
+                                            id="idnivelacademico" disabled>
+                                            <option *ngFor="let ni of nacademico; let i = index"
+                                                [value]="ni.idnivelacademico">
+                                                {{ni.descripcionacademico}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class=" col-md-7">
+                                    <div class=" form-group">
+                                        <label for="nombreunidad"> Nombre entidad educativa / institución de formación
+                                            artesanal </label>
+                                        <input [(ngModel)]="pgf.nombreunidad" formControlName="nombreunidad"
+                                            id="nombreunidad" type="text" class="form-control" readonly="true">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class=" card-footer">
+                            <button class=" btn btn-round btn-success" type="submit"
+                                [routerLink]="['/pgf']">Regresar</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+
+        <!--aqui empieza el panel informativo de la derecha-->
+        <div class=" col-md-4">
+            <div class=" card card-user">
+                <div class=" card-body">
+                    <p class=" card-text"></p>
+                    <div class=" author">
+                        <div class=" block block-one"></div>
+                        <div class=" block block-two"></div>
+                        <div class=" block block-three"></div>
+                        <div class=" block block-four"></div>
+                        <a href="javascript:void(0)">
+                            <img alt="..." class=" avatar" src="assets/colibriRegistro.png" />
+                            <h5 class=" title">Fundacion Alas Del Colibri</h5>
+                        </a>
+                        <p class=" description">RECUERDA..</p>
+                    </div>
+                    <div class=" card-description">
+                        no todos los datos son obligatorios, pero se recomienda
+                        poner al menos un nombre y apellido.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="square-jelly-box" [fullScreen]="true">
+    <p style="color: white"> Cargando.. </p>
+</ngx-spinner>

@@ -3,17 +3,17 @@
         <div class=" col-md-8">
             <div class=" card">
                 <div class=" card-header">
-                    <h2 class=" title">Editar Datos de Salud</h2>
+                    <h2 class=" title">Datos de Salud</h2>
                 </div>
                 <div class=" card-body">
                     <!--desde aqui empieza el formulario-->
-                    <form [formGroup]="editarSalud" (ngSubmit)="submit()">
+                    <form [formGroup]="verSalud" (ngSubmit)="submit()">
                         <div class=" row">
                             <div class=" col-md-3 pr-md-1">
                                 <div class=" form-group">
                          <label for="estadosalud"> Estado de Salud </label>
                                 <select formControlName="estadosalud" class="form-control" #e (change)="estadodesalud(e.value)"
-                                 [(ngModel)]="salud.estadosalud" name="estadosalud" id="estadosalud">
+                                 [(ngModel)]="salud.estadosalud" name="estadosalud" id="estadosalud" disabled>
                                  <option value="San@">San@</option>
                                  <option value="Enferm@">Enferm@</option>
                                 </select>
@@ -26,7 +26,7 @@
                             <div class=" col-md-5 px-md-1">
                                     <div class=" form-group">
                                         <label for="detalleenfermedad"> Detalle de Enfermedad </label>
-                                        <input [(ngModel)]="salud.detalleenfermedad" formControlName="detalleenfermedad" id="detalleenfermedad" type="text" class="form-control">
+                                        <input [(ngModel)]="salud.detalleenfermedad" formControlName="detalleenfermedad" id="detalleenfermedad" type="text" class="form-control" readonly="true">
                                     </div>
                                 </div>
                             </div>
@@ -34,7 +34,7 @@
                                 <div class=" form-group">
                                     <label for="medicacion"> Medicación </label>
                                     <select formControlName="medicacion" class="form-control" #m 
-                                     [(ngModel)]="salud.medicacion" name="medicacion" id="medicacion">
+                                     [(ngModel)]="salud.medicacion" name="medicacion" id="medicacion" disabled>
                                      <option value=true>Si</option>
                                      <option value=false>No</option>
                                     </select>
@@ -44,7 +44,7 @@
                                 <div class=" form-group">
                                     <label for="adolescenteperdiodogestacion">Adolescente en período de gestación </label>
                                     <select formControlName="adolescenteperdiodogestacion" class="form-control" #m 
-                                     [(ngModel)]="salud.adolescenteperdiodogestacion" name="adolescenteperdiodogestacion" id="adolescenteperdiodogestacion">
+                                     [(ngModel)]="salud.adolescenteperdiodogestacion" name="adolescenteperdiodogestacion" id="adolescenteperdiodogestacion" disabled>
                                      <option value=true>Si</option>
                                      <option value=false>No</option>
                                     </select>
@@ -54,7 +54,7 @@
                                 <div class=" form-group">
                                     <label for="algunadiscapacidad"> ¿Alguna discapacidad? </label>
                                     <select formControlName="algunadiscapacidad" class="form-control" #d (change)="discapacidad(d.value)"
-                                     [(ngModel)]="salud.algunadiscapacidad" name="algunadiscapacidad" id="algunadiscapacidad">
+                                     [(ngModel)]="salud.algunadiscapacidad" name="algunadiscapacidad" id="algunadiscapacidad" disabled>
                                      <option value=true>Si</option>
                                      <option value=false>No</option>
                                     </select>
@@ -65,28 +65,26 @@
                                 <div class=" col-md-4">
                                     <div class=" form-group">
                                         <label for="tipodiscapacidad"> Tipo de Discapacidad </label>
-                                        <input [(ngModel)]="salud.tipodiscapacidad" formControlName="tipodiscapacidad" id="tipodiscapacidad" type="text" class="form-control">
+                                        <input [(ngModel)]="salud.tipodiscapacidad" formControlName="tipodiscapacidad" id="tipodiscapacidad" type="text" class="form-control" readonly="true">
                                     </div>
                                 </div>
                                 <div class=" col-md-4">
                                     <div class=" form-group">
                                         <label for="porcentajediscapacidad"> Porcentaje de Discapacidad </label>
-                                        <input [(ngModel)]="salud.porcentajediscapacidad" formControlName="porcentajediscapacidad" id="porcentajediscapacidad" type="number" class="form-control">
+                                        <input [(ngModel)]="salud.porcentajediscapacidad" formControlName="porcentajediscapacidad" id="porcentajediscapacidad" type="number" class="form-control" readonly="true">
                                     </div>
                                 </div>      
                                 <div class=" col-md-4">
                                     <div class=" form-group">
                                         <label for="numerocarnet"> Número de Carnet de Discapacidad </label>
-                                        <input [(ngModel)]="salud.numerocarnet" formControlName="numerocarnet" id="numerocarnet" type="text" class="form-control">
+                                        <input [(ngModel)]="salud.numerocarnet" formControlName="numerocarnet" id="numerocarnet" type="text" class="form-control" readonly="true">
                                     </div>
                                 </div>      
                             </div>   
                             </div>
                         </div>
                         <div class=" card-footer">
-                            <button class=" btn btn-round btn-danger" type="submit" [routerLink]="['/salud']">Cancelar</button>
-                            &nbsp;&nbsp;
-                            <button class=" btn btn-round btn-warning"class="btn btn-secondary" type="submit">Guardar</button>
+                            <button class=" btn btn-round btn-success" type="submit" [routerLink]="['/salud']">Regresar</button>
                         </div>
                     </form>
                 </div>

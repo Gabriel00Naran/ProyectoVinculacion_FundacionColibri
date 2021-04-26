@@ -107,4 +107,10 @@ export class PgfComponent implements OnInit {
     });
   }
 
+  ver(id) {
+    console.log('ID' + id);
+    this.router.navigate(['/view-pgf', id], {
+      skipLocationChange: true,
+    });
+  }
 }

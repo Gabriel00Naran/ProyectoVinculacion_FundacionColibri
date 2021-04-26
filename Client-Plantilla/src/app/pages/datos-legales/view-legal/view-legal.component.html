@@ -1,0 +1,257 @@
+<div class=" content">
+    <div class=" row">
+        <div class=" col-md-8">
+            <div class=" card">
+                <div class=" card-header">
+                    <h2 class=" title">Editar Datos Judiciales</h2>
+                </div>
+                <div class=" card-body">
+                    <!--desde aqui empieza el formulario-->
+                    <form [formGroup]="verDJudicial" (ngSubmit)="submit()">
+                        <div class=" row">
+                            <div class=" col-md-3 pr-md-1">
+                                <div class=" form-group">
+                                    <label for="idmedida"> Medida </label>
+                                    <select formControlName="idmedida" class="form-control"
+                                        [(ngModel)]="djudicial.idmedida" name="idmedida" id="idmedida" disabled>
+                                        <option *ngFor="let m of medidas; let i = index" [value]="m.idmedida">
+                                            {{m.descripcionmedida}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class=" col-md-5 px-md-1">
+                                <div class=" form-group">
+                                    <label for="idprovincia"> Provincia en la que se lleva el proceso judicial </label>
+                                    <select formControlName="idprovincia" class="form-control"
+                                        [(ngModel)]="djudicial.idprovincia" name="idprovincia" disabled>
+                                        <option *ngFor="let p of provincias; let i = index" [value]="p.idprovincia">
+                                            {{p.descripcionprovincia}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class=" col-md-4 px-md-1">
+                                <div class=" form-group">
+                                    <label for="idcanton"> Cantón de la unidad </label>
+                                    <select formControlName="idcanton" class="form-control"
+                                        [(ngModel)]="djudicial.idcanton" name="idcanton" disabled>
+                                        <option *ngFor="let c of cantones; let i = index" [value]="c.idcanton">
+                                            {{c.descripcioncanton}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class=" row">
+                            <div class=" col-md-6 pr-md-1">
+                                <div class=" form-group">
+                                    <label for="ncausaacogimiento"> Nro. Causa de medida de acogimiento </label>
+                                    <input [(ngModel)]="djudicial.ncausaacogimiento" formControlName="ncausaacogimiento"
+                                        id="ncausaacogimiento" type="text" class="form-control" readonly="true">
+                                </div>
+                            </div>
+
+                            <div class=" col-md-6 px-md-1">
+                                <div class=" form-group">
+                                    <label for="unidadjudicial"> Unidad judicial que tramita el proceso actual </label>
+                                    <input [(ngModel)]="djudicial.unidadjudicial" formControlName="unidadjudicial"
+                                        id="unidadjudicial" type="text" class="form-control" readonly="true">
+                                </div>
+                            </div>
+                        </div>
+                        <div class=" row">
+                            <div class=" col-md-10 pr-md-1">
+                                <div class=" form-group">
+                                    <label for="idnudoscriticos"> Nudos Críticos </label>
+                                    <select formControlName="idnudoscriticos" class="form-control"
+                                        [(ngModel)]="djudicial.idnudoscriticos" name="idnudoscriticos" disabled>
+                                        <option *ngFor="let n of ncriticos; let i = index" [value]="n.idnudoscriticos">
+                                            {{n.descripcionnudoscriticos}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class=" col-md-2 px-md-1">
+                                <div class=" form-group">
+                                    <label for="existecausapenal">Existe causa penal </label>
+                                    <select formControlName="existecausapenal" class="form-control" #m
+                                        (change)="existe(m.value)" [(ngModel)]="djudicial.existecausapenal"
+                                        name="existecausapenal" id="existecausapenal" disabled>
+                                        <option value=true>Si</option>
+                                        <option value=false>No</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div *ngIf="proceso">
+                            <div class=" row">
+                                <div class=" col-md-4 pr-md-1">
+                                    <div class=" form-group">
+                                        <label for="encuentrainsertSpavt">Se encuentra insert@ en el SPAVT </label>
+                                        <select formControlName="encuentrainsertSpavt" class="form-control" #m
+                                            [(ngModel)]="djudicial.encuentrainsertSpavt" name="encuentrainsertSpavt"
+                                            id="encuentrainsertSpavt" disabled>
+                                            <option value=true>Si</option>
+                                            <option value=false>No</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class=" col-md-4 px-md-1">
+                                    <div class=" form-group">
+                                        <label for="idnudoscriticos"> Infracción denunciada </label>
+                                        <select formControlName="idinfracciondenunciada" class="form-control"
+                                            [(ngModel)]="djudicial.idinfracciondenunciada"
+                                            name="idinfracciondenunciada" disabled>
+                                            <option *ngFor="let de of idenunciada; let i = index"
+                                                [value]="de.idinfracciondenunciada">
+                                                {{de.descripcioninfracciondenuncia}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class=" col-md-4 px-md-1">
+                                    <div class=" form-group">
+                                        <label for="descripciondelito"> Descripción del delito </label>
+                                        <input [(ngModel)]="djudicial.descripciondelito"
+                                            formControlName="descripciondelito" id="descripciondelito" type="text"
+                                            class="form-control" readonly="true">
+                                    </div>
+                                </div>
+
+                                <div class=" col-md-4 pr-md-1">
+                                    <div class=" form-group">
+                                        <label for="ncasofiscalia"> Número de caso en la Fiscalía </label>
+                                        <input [(ngModel)]="djudicial.ncasofiscalia" formControlName="ncasofiscalia"
+                                            id="ncasofiscalia" type="text" class="form-control" readonly="true">
+                                    </div>
+                                </div>
+
+                                <div class=" col-md-4 px-md-1">
+                                    <div class=" form-group">
+                                        <label for="nprocesopenalesatje"> No. Proceso penal eSatje </label>
+                                        <input [(ngModel)]="djudicial.nprocesopenalesatje"
+                                            formControlName="nprocesopenalesatje" id="nprocesopenalesatje" type="text"
+                                            class="form-control" readonly="true">
+                                    </div>
+                                </div>
+
+                                <div class=" col-md-4 px-md-1">
+                                    <div class=" form-group">
+                                        <label for="idestadoprocesal"> Estado procesal </label>
+                                        <select formControlName="idestadoprocesal" class="form-control"
+                                            [(ngModel)]="djudicial.idestadoprocesal" name="idestadoprocesal" disabled>
+                                            <option *ngFor="let es of estadoprocesal; let i = index"
+                                                [value]="es.idestadoprocesal">
+                                                {{es.descripcionprocesal}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class=" row">
+                            <div class=" col-md-3 pr-md-1">
+                                <div class=" form-group">
+                                    <label for="egresoporreinsercion">¿Egresó por reinserción? </label>
+                                    <select formControlName="egresoporreinsercion" class="form-control" #r
+                                        (change)="reinsercion(r.value)" [(ngModel)]="djudicial.egresoporreinsercion"
+                                        name="egresoporreinsercion" id="egresoporreinsercion" disabled>
+                                        <option value=true>Si</option>
+                                        <option value=false>No</option>
+                                    </select>
+                                </div>
+                            </div>
+                           
+                        </div>
+                        <div *ngIf="reinser">
+                            <div class=" row">
+                            <div class=" col-md-6 pr-md-1">
+                                <div class=" form-group">
+                                    <label for="fechareinsercion"> Fecha en que el/la Juez dispone reinserción </label>
+                                    <input [(ngModel)]="djudicial.fechareinsercion" formControlName="fechareinsercion"
+                                        id="fechareinsercion" type="datetime-local" class="form-control" readonly="true">
+                                </div>
+                            </div>
+                            <div class=" col-md-6 px-md-1">
+                                <div class=" form-group">
+                                    <label for="fechaegreso"> Fecha de egreso de la casa de la unidad </label>
+                                    <input [(ngModel)]="djudicial.fechaegreso" formControlName="fechaegreso"
+                                        id="fechaegreso" type="datetime-local" class="form-control" readonly="true">
+                                </div>
+                            </div>
+
+                            <div class=" col-md-4 pr-md-1">
+                                <div class=" form-group">
+                                    <label for="fecharesoluciontraslado"> Fecha de resolución de traslado </label>
+                                    <input [(ngModel)]="djudicial.fecharesoluciontraslado" formControlName="fecharesoluciontraslado"
+                                        id="fecharesoluciontraslado" type="datetime-local" class="form-control" readonly="true">
+                                </div>
+                            </div>
+
+                            <div class=" col-md-4 px-md-1">
+                                <div class=" form-group">
+                                    <label for="unidadtraslado"> Unidad a la que se traslada </label>
+                                    <input [(ngModel)]="djudicial.unidadtraslado"
+                                        formControlName="unidadtraslado" id="unidadtraslado" type="text"
+                                        class="form-control" readonly="true">
+                                </div>
+                            </div>
+
+                            <div class=" col-md-4 pr-md-1">
+                                <div class=" form-group">
+                                    <label for="fechasalidaunidadactual"> Fecha de salida de la unidad actual </label>
+                                    <input [(ngModel)]="djudicial.fechasalidaunidadactual" formControlName="fechasalidaunidadactual"
+                                        id="fechasalidaunidadactual" type="datetime-local" class="form-control" readonly="true">
+                                </div>
+                            </div>
+
+                            <div class=" col-md-12 pr-md-1">
+                                <div class=" form-group">
+                                    <label for="observacion"> Observación </label>
+                                    <input [(ngModel)]="djudicial.observacion"
+                                        formControlName="observacion" id="observacion" type="text"
+                                        class="form-control" readonly="true">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                        <div class=" card-footer">
+                            <button class=" btn btn-round btn-success" type="submit"
+                                [routerLink]="['/legal']">Regresar</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+
+        <!--aqui empieza el panel informativo de la derecha-->
+        <div class=" col-md-4">
+            <div class=" card card-user">
+                <div class=" card-body">
+                    <p class=" card-text"></p>
+                    <div class=" author">
+                        <div class=" block block-one"></div>
+                        <div class=" block block-two"></div>
+                        <div class=" block block-three"></div>
+                        <div class=" block block-four"></div>
+                        <a href="javascript:void(0)">
+                            <img alt="..." class=" avatar" src="assets/colibriRegistro.png" />
+                            <h5 class=" title">Fundacion Alas Del Colibri</h5>
+                        </a>
+                        <p class=" description">RECUERDA..</p>
+                    </div>
+                    <div class=" card-description">
+                        no todos los datos son obligatorios, pero se recomienda
+                        poner al menos un nombre y apellido.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="square-jelly-box" [fullScreen]="true">
+    <p style="color: white"> Cargando.. </p>
+</ngx-spinner>

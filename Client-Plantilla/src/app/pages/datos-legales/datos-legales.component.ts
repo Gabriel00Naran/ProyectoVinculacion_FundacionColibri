@@ -109,6 +109,13 @@ export class DatosLegalesComponent implements OnInit {
     });
   }
 
+  ver(id) {
+    console.log('ID' + id);
+    this.router.navigate(['/view-legal', id], {
+      skipLocationChange: true,
+    });
+  }
+
 
   getOrganizaciones() {
     this.organizaciones = [];

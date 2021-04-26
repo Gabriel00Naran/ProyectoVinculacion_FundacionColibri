@@ -70,7 +70,7 @@
 </div>
 <ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "square-jelly-box" [fullScreen] = "true"><p style="color: white" > Cargando.. </p></ngx-spinner>
 
-<p-dialog [(visible)]="productDialog" [style]="{width: '450px'}" header="Datos de Salud" [modal]="true"
+<p-dialog [(visible)]="productDialog" [style]="{width: '650px'}" header="Datos de Salud" [modal]="true"
     styleClass="p-fluid">
     <div class="row">
         <div class="table-responsive">
@@ -97,6 +97,8 @@
                         <td>{{s.medicacion}}
                         </td>
                         <td>
+                            <button  (click)="ver(s.iddatossalud)"
+                            class="btn btn-secondary btn-sm float-end  btn-round">Ver</button>
                             <button  (click)="editar(s.iddatossalud)"
                             class="btn btn-success btn-sm float-end  btn-round">Editar</button>
                             <button (click)="eliminarSalud(s.iddatossalud)"
