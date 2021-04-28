@@ -26,12 +26,13 @@ export class VerHistorialCronologicoComponent implements OnInit {
 
     this.navigationSubscription = this.router.events.subscribe((e: any) => {
       if (e instanceof NavigationEnd) {
-        this.initializar();
+
       }
     });
   }
 
   ngOnInit(): void {
+    this.initializar();
     this.spinner.show();
 
     setTimeout(() => {

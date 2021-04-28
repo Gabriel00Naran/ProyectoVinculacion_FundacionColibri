@@ -29,12 +29,12 @@ export class VerSaludComponent implements OnInit {
 
     this.navigationSubscription = this.router.events.subscribe((e: any) => {
       if (e instanceof NavigationEnd) {
-        this.initializar();
       }
     });
   }
 
   ngOnInit(): void {
+    this.initializar();
     this.essalud = false;
     this.disc = false;
     this.spinner.show();
