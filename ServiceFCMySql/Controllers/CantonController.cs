@@ -59,5 +59,13 @@ namespace WebServiceFC.Controllers
         {
             return cantonService.GetCantonById(idCanton);
         }
+
+        [HttpGet]
+        [Route("[action]")]
+        [Route("api/Canton/GetCantonIdProvincia")]
+        public List<Canton> GetCantonByIdProvincia(int idprovincia)
+        {
+            return cantonService.GetCantonByIdProvincia(idprovincia);
+        }
     }
 }

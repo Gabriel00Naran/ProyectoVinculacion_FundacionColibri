@@ -83,5 +83,17 @@ namespace WebServiceFC.Servicios
         }
 
 
+        ///<summary>  
+        /// traer los detalles del registrado con su id 
+        /// </summary>  
+        /// <param name="idprovincia"></param>  
+        /// <returns></returns>  
+        public List<Canton> GetCantonByIdProvincia(int idprovincia)
+        {
+            var canton = DB.Cantons.Where(x => x.Idprovincia == idprovincia).ToList();
+            return canton;
+        }
+
+
     }
 }

@@ -59,5 +59,13 @@ namespace WebServiceFC.Controllers
         {
             return parroquiaService.GetParroquiaById(idParroquium);
         }
+
+        [HttpGet]
+        [Route("[action]")]
+        [Route("api/Canton/GetParroquiaIdCanton")]
+        public List<Parroquium> GetParroquiaByIdCanton(int idcanton)
+        {
+            return parroquiaService.GetParroquiaByIdCanton(idcanton);
+        }
     }
 }

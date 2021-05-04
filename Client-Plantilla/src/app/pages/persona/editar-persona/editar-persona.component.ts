@@ -193,4 +193,34 @@ export class EditarPersonaComponent implements OnInit {
     });
   }
 
+  getCantonesbyidProvincia(id) {
+    this.cantones = [];
+    this.personaService.get('api/Canton/GetCantonByIdProvincia?idprovincia=' + id).subscribe((data: {}) => {
+      this.cantones = data;
+      console.log('CANTONES', this.cantones);
+
+    });
+  }
+
+  getParroquiasbyidCanton(id){
+    this.parroquias = [];
+    this.personaService.get('api/Parroquia/GetParroquiaByIdCanton?idcanton=' +id).subscribe((data: {}) => {
+      this.parroquias = data;
+      console.log('PARROQUIAS', this.parroquias);
+
+    });
+  }
+
+  canton(value) {
+    //console.log(value);
+    this.getCantonesbyidProvincia(value);
+    this.cantones.provincia = value;
+}
+
+  parroquia(value) {
+  //console.log(value);
+  this.getParroquiasbyidCanton(value);
+  this.parroquias.canton = value;
+}
+
 }

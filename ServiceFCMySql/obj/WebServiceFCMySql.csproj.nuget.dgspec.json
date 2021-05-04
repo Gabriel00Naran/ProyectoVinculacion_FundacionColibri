@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\NADIE\\Desktop\\Fundacion Alas de Colibri\\Servidor\\WebServiceFCMySql.csproj": {}
+    "C:\\Users\\carlos\\Documents\\GitHub\\ProyectoVinculacion_FundacionColibri\\ServiceFCMySql\\WebServiceFCMySql.csproj": {}
   },
   "projects": {
-    "C:\\Users\\NADIE\\Desktop\\Fundacion Alas de Colibri\\Servidor\\WebServiceFCMySql.csproj": {
+    "C:\\Users\\carlos\\Documents\\GitHub\\ProyectoVinculacion_FundacionColibri\\ServiceFCMySql\\WebServiceFCMySql.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\NADIE\\Desktop\\Fundacion Alas de Colibri\\Servidor\\WebServiceFCMySql.csproj",
+        "projectUniqueName": "C:\\Users\\carlos\\Documents\\GitHub\\ProyectoVinculacion_FundacionColibri\\ServiceFCMySql\\WebServiceFCMySql.csproj",
         "projectName": "WebServiceFCMySql",
-        "projectPath": "C:\\Users\\NADIE\\Desktop\\Fundacion Alas de Colibri\\Servidor\\WebServiceFCMySql.csproj",
-        "packagesPath": "C:\\Users\\NADIE\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\NADIE\\Desktop\\Fundacion Alas de Colibri\\Servidor\\obj\\",
+        "projectPath": "C:\\Users\\carlos\\Documents\\GitHub\\ProyectoVinculacion_FundacionColibri\\ServiceFCMySql\\WebServiceFCMySql.csproj",
+        "packagesPath": "C:\\Users\\carlos\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\carlos\\Documents\\GitHub\\ProyectoVinculacion_FundacionColibri\\ServiceFCMySql\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\NADIE\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\carlos\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

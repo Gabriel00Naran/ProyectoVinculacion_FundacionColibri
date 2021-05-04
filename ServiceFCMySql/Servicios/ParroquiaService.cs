@@ -82,6 +82,13 @@ namespace WebServiceFC.Servicios
             return parroquia;
         }
 
+        public List<Parroquium> GetParroquiaByIdCanton(int idcanton)
+        {
+            var parroquia = DB.Parroquia.Where(x => x.Idcanton == idcanton).ToList();
+            return parroquia;
+        }
+
+
 
     }
 }

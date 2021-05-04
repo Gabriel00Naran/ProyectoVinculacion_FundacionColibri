@@ -46,7 +46,6 @@ export class AddLegalComponent implements OnInit {
       /** spinner ends after 5 seconds */
       this.getMedidas();
       this.getProvincias();
-      this.getCantones();
       this.getNudos();
       this.spinner.hide();
     }, 3000);
@@ -204,6 +203,19 @@ export class AddLegalComponent implements OnInit {
     }
   }
 
+  canton(value) {
+    //console.log(value);
+    this.getCantonesbyidProvincia(value);
+    this.cantones.provincia = value;
+}
 
+getCantonesbyidProvincia(id) {
+  this.cantones = [];
+  this.personaService.get('api/Canton/GetCantonByIdProvincia?idprovincia=' + id).subscribe((data: {}) => {
+    this.cantones = data;
+    console.log('CANTONES', this.cantones);
+
+  });
+}
 
 }

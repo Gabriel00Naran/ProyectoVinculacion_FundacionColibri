@@ -47,8 +47,6 @@ export class AgregarPersonaComponent implements OnInit {
       this.getEtnias();
       this.getNacionalidades();
       this.getProvincias();
-      this.getCantones();
-      this.getParroquias();
       this.getMotivos();
       this.spinner.hide();
     }, 3000);
@@ -176,9 +174,27 @@ export class AgregarPersonaComponent implements OnInit {
     });
   }
 
+  getCantonesbyidProvincia(id) {
+    this.cantones = [];
+    this.personaService.get('api/Canton/GetCantonByIdProvincia?idprovincia=' + id).subscribe((data: {}) => {
+      this.cantones = data;
+      console.log('CANTONES', this.cantones);
+
+    });
+  }
+
   getParroquias() {
     this.parroquias = [];
     this.personaService.get('api/Parroquia/GetParroquia').subscribe((data: {}) => {
+      this.parroquias = data;
+      console.log('PARROQUIAS', this.parroquias);
+
+    });
+  }
+
+  getParroquiasbyidCanton(id){
+    this.parroquias = [];
+    this.personaService.get('api/Parroquia/GetParroquiaByIdCanton?idcanton=' +id).subscribe((data: {}) => {
       this.parroquias = data;
       console.log('PARROQUIAS', this.parroquias);
 
@@ -193,4 +209,17 @@ export class AgregarPersonaComponent implements OnInit {
 
     });
   }
+
+  canton(value) {
+    //console.log(value);
+    this.getCantonesbyidProvincia(value);
+    this.cantones.provincia = value;
+}
+
+  parroquia(value) {
+  //console.log(value);
+  this.getParroquiasbyidCanton(value);
+  this.parroquias.canton = value;
+}
+
 }

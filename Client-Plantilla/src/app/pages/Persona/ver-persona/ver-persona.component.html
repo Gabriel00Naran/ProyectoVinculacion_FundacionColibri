@@ -11,7 +11,7 @@
                         <div class=" row">
                             <div class=" col-md-6 pr-md-1">
                                 <div class=" form-group">
-                                    <label for="idOrganizacion"> Organizacion </label>
+                                    <label for="idOrganizacion"> Organización </label>
                                     <select formControlName="idOrganizacion" class="form-control"
                                         [(ngModel)]="persona.idorganizacion" name="organizacion" id="idOrganizacion"
                                         disabled>
@@ -55,7 +55,7 @@
                         <div class="row">
                             <div class=" col-md-5">
                                 <div class=" form-group">
-                                    <label for="telefono"> Telefono </label>
+                                    <label for="telefono"> Teléfono </label>
                                     <input [(ngModel)]="persona.telefono" formControlName="telefono" id="telefono"
                                         type="text" class="form-control" placeholder="ejem: 09999999999"
                                         readonly="true">
@@ -74,7 +74,7 @@
                         <div class=" row">
                             <div class=" col-md-3 pr-md-1">
                                 <div class=" form-group">
-                                    <label for="idGenero"> Genero </label>
+                                    <label for="idGenero"> Género </label>
                                     <select formControlName="idGenero" class="form-control"
                                         [(ngModel)]="persona.idgenero" name="idGenero" id="idGenero" disabled>
                                         <option *ngFor="let g of generos; let i = index" [value]="g.idgenero">
@@ -129,7 +129,7 @@
                             </div>
                             <div class=" col-md-3 px-md-1">
                                 <div class=" form-group">
-                                    <label for="idCanton"> Canton </label>
+                                    <label for="idCanton"> Cantón </label>
                                     <select formControlName="idCanton" class="form-control"
                                         [(ngModel)]="persona.idcanton" name="idCanton" id="idCanton" disabled>
                                         <option *ngFor="let c of cantones; let i = index" [value]="c.idcanton">
@@ -160,7 +160,7 @@
                         <div class=" row">
                             <div class=" col-md-12">
                                 <div class=" form-group">
-                                    <label for="direccion"> Direccion </label>
+                                    <label for="direccion"> Dirección </label>
                                     <input [(ngModel)]="persona.direccion" formControlName="direccion" id="direccion"
                                         type="text" class="form-control" readonly="true">
                                 </div>
@@ -169,7 +169,7 @@
                         <div class="row">
                             <div class=" col-md-4">
                                 <div class=" form-group">
-                                    <label for="fechaDeIngresoUnidadAtencion"> Fecha de Ingreso A la Unidad </label>
+                                    <label for="fechaDeIngresoUnidadAtencion"> Fecha de Ingreso a la unidad </label>
                                     <input [(ngModel)]="persona.fechadeingresounidadatencion"
                                         formControlName="fechaDeIngresoUnidadAtencion" id="fechaDeIngresoUnidadAtencion"
                                         type="datetime-local" class="form-control" readonly="true">
@@ -227,10 +227,10 @@
                             <img alt="..." class=" avatar" src="assets/colibriRegistro.png" />
                             <h5 class=" title">Fundacion Alas Del Colibri</h5>
                         </a>
-                        <p class=" description">RECUERDA..</p>
+                        <p class=" description"> <b>¡IMPORTANTE!</b> </p>
                     </div>
                     <div class=" card-description">
-                        no todos los datos son obligatorios, pero se recomienda
+                        No todos los datos son obligatorios, pero se recomienda
                         poner al menos un nombre y apellido.
                     </div>
                 </div>

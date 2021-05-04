@@ -110,7 +110,6 @@ export class AddPgfComponent implements OnInit {
     console.log(value);
     if (value !== ('16')) {
       this.getProvincias();
-      this.getCantones();
       this.fam = true;
     } else {
       this.fam = false;
@@ -174,4 +173,19 @@ export class AddPgfComponent implements OnInit {
 
     });
   }
+
+  canton(value) {
+    //console.log(value);
+    this.getCantonesbyidProvincia(value);
+    this.cantones.provincia = value;
+}
+
+getCantonesbyidProvincia(id) {
+  this.cantones = [];
+  this.personaService.get('api/Canton/GetCantonByIdProvincia?idprovincia=' + id).subscribe((data: {}) => {
+    this.cantones = data;
+    console.log('CANTONES', this.cantones);
+
+  });
+}
 }

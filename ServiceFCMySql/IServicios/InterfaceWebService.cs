@@ -29,9 +29,12 @@ namespace WebServiceFCMySql.IServicios
         /// <returns></returns>  
         IEnumerable<Canton> GetCanton();
         Canton GetCantonById(int idCanton);
+
         Canton AddCanton(Canton canton);
         Canton UpdateCanton(Canton canton);
         Canton DeleteCanton(int idCanton);
+
+        List<Canton> GetCantonByIdProvincia(int idprovincia);
     }
 
 
@@ -294,6 +297,8 @@ namespace WebServiceFCMySql.IServicios
         Parroquium AddParroquia(Parroquium persona);
         Parroquium UpdateParroquia(Parroquium persona);
         Parroquium DeleteParroquia(int idParroquia);
+        List<Parroquium> GetParroquiaByIdCanton(int idcanton);
+
     }
 
     public interface IPgfService
