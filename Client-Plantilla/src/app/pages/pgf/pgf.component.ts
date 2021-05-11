@@ -20,6 +20,7 @@ export class PgfComponent implements OnInit {
   show: boolean;
   productDialog: boolean;
   showbutton: boolean;
+  userauth;
 
   constructor(private personaService: PersonaService,
               private router: Router,
@@ -27,6 +28,7 @@ export class PgfComponent implements OnInit {
               private spinner: NgxSpinnerService) { }
 
   ngOnInit(): void {
+    this.userauth = atob(localStorage.getItem('currentUser'));
     this.show = false;
     this.showbutton = true;
     this.productDialog = false;
@@ -46,10 +48,11 @@ export class PgfComponent implements OnInit {
   }
 
   getPersonaList() {
-    this.personaService.getPersona().subscribe(data => {
+    this.personaService.getPersona(this.userauth).subscribe(data => {
       this.formData = data;
     }, error => {
-      this.toastr.error('El servidor no funciona', 'Error');
+  this.router.navigate(['/error']);                    
+this.toastr.error('El servidor no funciona', 'Error');
       console.log(error);
     });
   }
@@ -66,7 +69,7 @@ export class PgfComponent implements OnInit {
   }
 
   getPGF(id) {
-    this.personaService.get('api/Pgf/GetPgfByIdPersona?idpersona=' + id).subscribe(data => {
+    this.personaService.get('api/Pgf/GetPgfByIdPersona?idpersona=' + id, this.userauth).subscribe(data => {
       this.pgf = data;
       if (this.pgf.length === 0) {
         Swal.fire(
@@ -80,7 +83,8 @@ export class PgfComponent implements OnInit {
 
       }
     }, error => {
-      this.toastr.error('El servidor no funciona', 'Error');
+  this.router.navigate(['/error']);                    
+this.toastr.error('El servidor no funciona', 'Error');
       console.log(error);
     });
 
@@ -94,7 +98,7 @@ export class PgfComponent implements OnInit {
 
   eliminarPgf(id: any) {
     console.log(id);
-    this.personaService.deletePersona('api/Pgf/DeletePgf?idPgf=' + id).subscribe(data => {
+    this.personaService.deletePersona('api/Pgf/DeletePgf?idPgf=' + id, this.userauth).subscribe(data => {
       this.getPersonaList();
       this.toastr.error('El Registro Fue eliminado Permanentemente!', 'Registro eliminado');
       this.productDialog = false;

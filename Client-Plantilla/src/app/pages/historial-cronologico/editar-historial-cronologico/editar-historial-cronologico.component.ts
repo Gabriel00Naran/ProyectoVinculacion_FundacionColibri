@@ -17,6 +17,7 @@ export class EditarHistorialCronologicoComponent implements OnInit {
   historial: any;
   navigationSubscription: any;
   idhistorial;
+  userauth;
 
   constructor(private personaService: PersonaService,
               private fb: FormBuilder,
@@ -32,11 +33,12 @@ export class EditarHistorialCronologicoComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.userauth = atob(localStorage.getItem('currentUser'));
     this.initializar();
     this.spinner.show();
 
     setTimeout(() => {
-      this.getHistorialbyid(this.idhistorial);
+      this.getHistorialbyid(atob(this.idhistorial));
       /** spinner ends after 5 seconds */
       this.getOrganizaciones();
       this.spinner.hide();
@@ -66,7 +68,7 @@ export class EditarHistorialCronologicoComponent implements OnInit {
 
   getOrganizaciones() {
     this.organizaciones = [];
-    this.personaService.get('api/Organizacion/GetOrganizacion').subscribe((data: {}) => {
+    this.personaService.get('api/Organizacion/GetOrganizacion', this.userauth).subscribe((data: {}) => {
       this.organizaciones = data;
       console.log('ORGANIZACIONES', this.organizaciones);
 
@@ -75,8 +77,8 @@ export class EditarHistorialCronologicoComponent implements OnInit {
 
   initializar() {
     if (this.route.snapshot.params.id.length) {
-      this.idhistorial = this.route.snapshot.params.id;
-      console.log('parametro capturado id ', this.idhistorial);
+      this.idhistorial = btoa(this.route.snapshot.params.id);
+      console.log('parametro capturado id ', btoa(this.idhistorial));
     }
   }
 
@@ -87,16 +89,16 @@ export class EditarHistorialCronologicoComponent implements OnInit {
 
 
   EditarHistorial() {
-    this.personaService.put('api/HistorialCronologico/EditHistorialCronologico', this.historial);
+    this.personaService.put('api/HistorialCronologico/EditHistorialCronologico', this.historial, this.userauth);
     console.log('GUARDADO', this.historial);
     this.router.navigate(['/historial'], {
       skipLocationChange: true,
     });
   }
 
-  getHistorialbyid(id: number) {
+  getHistorialbyid(id) {
     this.historial = [];
-    this.personaService.getPersonaById('api/HistorialCronologico/GetHistorialCronologicoById?idHistorial=' + id).subscribe((data: {}) => {
+    this.personaService.getPersonaById('api/HistorialCronologico/GetHistorialCronologicoById?idHistorial=' + id, this.userauth).subscribe((data: {}) => {
       this.historial = data;
       console.log('Historial', this.historial);
 

@@ -35,6 +35,8 @@ import { VerSaludComponent } from 'src/app/pages/salud/ver-salud/ver-salud.compo
 import { VerHistorialCronologicoComponent } from 'src/app/pages/historial-cronologico/ver-historial-cronologico/ver-historial-cronologico.component';
 import { ViewPgfComponent } from 'src/app/pages/pgf/view-pgf/view-pgf.component';
 import { ViewLegalComponent } from 'src/app/pages/datos-legales/view-legal/view-legal.component';
+import { LoginComponent } from 'src/app/pages/login/login.component';
+import { ErrorComponent } from 'src/app/pages/error/error.component';
 
 @NgModule({
   imports: [
@@ -54,6 +56,8 @@ import { ViewLegalComponent } from 'src/app/pages/datos-legales/view-legal/view-
     AutoCompleteModule,
   ],
   declarations: [
+    LoginComponent,
+    ErrorComponent,
     DashboardComponent,
         VerPersonaComponent,
         PersonaComponent,
@@ -74,7 +78,7 @@ import { ViewLegalComponent } from 'src/app/pages/datos-legales/view-legal/view-
         VerSaludComponent,
         VerHistorialCronologicoComponent,
         ViewPgfComponent,
-        ViewLegalComponent
+        ViewLegalComponent,
   ]
 })
 export class AdminLayoutModule {}

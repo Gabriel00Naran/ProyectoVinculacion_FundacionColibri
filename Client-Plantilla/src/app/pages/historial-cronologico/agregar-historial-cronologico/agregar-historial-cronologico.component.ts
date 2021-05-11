@@ -18,6 +18,7 @@ organizaciones: any = [];
 historial: any;
 navigationSubscription: any;
 idpersona;
+userauth;
 
   constructor(private personaService: PersonaService,
               private fb: FormBuilder,
@@ -34,6 +35,7 @@ idpersona;
               }
 
   ngOnInit(): void {
+    this.userauth = atob(localStorage.getItem('currentUser'));
     this.spinner.show();
 
     setTimeout(() => {
@@ -65,7 +67,7 @@ idpersona;
 
   getOrganizaciones() {
     this.organizaciones = [];
-    this.personaService.get('api/Organizacion/GetOrganizacion').subscribe((data: {}) => {
+    this.personaService.get('api/Organizacion/GetOrganizacion', this.userauth).subscribe((data: {}) => {
       this.organizaciones = data;
       console.log('ORGANIZACIONES', this.organizaciones);
 
@@ -86,7 +88,7 @@ idpersona;
 
 
   AgregarHistorial() {
-    this.personaService.post('api/HistorialCronologico/AddHistorialCronologico', this.historial);
+    this.personaService.post('api/HistorialCronologico/AddHistorialCronologico', this.historial, this.userauth);
     console.log('GUARDADO', this.historial);
     this.router.navigate(['/historial'], {
       skipLocationChange: true,

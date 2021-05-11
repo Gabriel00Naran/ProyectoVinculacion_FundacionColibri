@@ -23,47 +23,56 @@ export class PersonaService {
 
   ///////////// API-REST/////////////////////////
   private GET = 'api/Persona/GetPersona';
-  private GETbyID = 'api/Persona/GetPersonaById?idPersona=';
-  private POST = 'api/Persona/AddPersona/';
   private PUT = 'api/Persona/EditPersona';
-  private DELETE = 'api/Persona/DeletePersona?idPersona=';
-  private GETbyIDCronologico = 'api​/HistorialCronologico​/GetHistorialCronologicoByIdPersona?idPersona=';
-  private GETbyIDCanton = '/api/Canton/GetCantonById?idCanton=';
+
   /////////////////////////////////////////////
 
   constructor(private http: HttpClient) { }
 
-  getPersona(): Observable<any> {
-    return this.http.get(environment.SERVER + this.GET);
+  getPersona(auth_token): Observable<any> {
+    const httpOptions  = {
+      headers: new HttpHeaders({  
+      Authorization: `Bearer ${auth_token}`
+    })
+    };
+    return this.http.get(environment.SERVER + this.GET, httpOptions);
   }
 
-  getCronologico(idPersona): Observable<any> {
-    return this.http.get(environment.SERVER + this.GETbyIDCronologico + idPersona);
+  deletePersona(url, auth_token): Observable<any> {
+    const httpOptions  = {
+      headers: new HttpHeaders({  
+      Authorization: `Bearer ${auth_token}`
+    })
+    };
+    return this.http.delete(environment.SERVER + url, httpOptions);
   }
-
-  deletePersona(url): Observable<any> {
-    return this.http.delete(environment.SERVER + url);
-  }
-
-  addPersona(persona: Persona): Observable<any> {
-    return this.http.post(environment.SERVER + this.POST, persona);
-  }
-
   //// volvi a dejar el tipo de dato en number ya que antes estana en Guid
-  getPersonaById(url): Observable<any> {
-    return this.http.get(environment.SERVER + url);
+  getPersonaById(url, auth_token): Observable<any> {
+    const httpOptions  = {
+      headers: new HttpHeaders({  
+      Authorization: `Bearer ${auth_token}`
+    })
+    };
+    return this.http.get(environment.SERVER + url, httpOptions);
   }
 
-  getPersonaByCantonId(idCanton): Observable<Canton[]> {
-    return this.http.get<Canton[]>(environment.SERVER + this.GETbyIDCanton + idCanton);
-  }
   //// lo mismo en el update.
-  updatePersona(persona: Persona): Observable<any> {
-    return this.http.put((environment.SERVER + this.PUT), persona);
+  updatePersona(persona: Persona , auth_token): Observable<any> {
+    const httpOptions  = {
+      headers: new HttpHeaders({  
+      Authorization: `Bearer ${auth_token}`
+    })
+    };
+    return this.http.put((environment.SERVER + this.PUT), persona, httpOptions);
   }
 
-  get(url: string) {
-    return this.http.get(environment.SERVER + url).pipe(
+  get(url: string, auth_token) {
+    const httpOptions  = {
+      headers: new HttpHeaders({  
+      Authorization: `Bearer ${auth_token}`
+    })
+    };
+    return this.http.get(environment.SERVER + url, httpOptions).pipe(
       map(data => {
         return data;
       })
@@ -71,8 +80,13 @@ export class PersonaService {
   }
 
 
-  post(url, data: any) {
-    return this.http.post(environment.SERVER + url, data).subscribe(
+  post(url, data: any , auth_token) {
+    const httpOptions  = {
+      headers: new HttpHeaders({  
+      Authorization: `Bearer ${auth_token}`
+    })
+    };
+    return this.http.post(environment.SERVER + url , data, httpOptions).subscribe(
       response => {
 
       },
@@ -82,8 +96,13 @@ export class PersonaService {
     );
   }
 
-  put(url, data: any) {
-    return this.http.put(environment.SERVER + url, data).subscribe(
+  put(url, data: any, auth_token) {
+    const httpOptions  = {
+      headers: new HttpHeaders({  
+      Authorization: `Bearer ${auth_token}`
+    })
+    };
+    return this.http.put(environment.SERVER + url, data, httpOptions ).subscribe(
       response => {
 
       },
@@ -92,4 +111,7 @@ export class PersonaService {
 
     );
   }
+
+
+
 }

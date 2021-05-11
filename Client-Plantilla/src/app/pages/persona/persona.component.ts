@@ -14,12 +14,14 @@ export class PersonaComponent implements OnInit {
   persona: Persona[] = [];
   formData: Persona;
   cols: any[];
+  userauth;
   constructor(private personaService: PersonaService,
               private router: Router,
               private toastr: ToastrService,
               private spinner: NgxSpinnerService) { }
 
   ngOnInit(): void {
+    this.userauth = atob(localStorage.getItem('currentUser'));
     this.spinner.show();
     setTimeout(() => {
       this.getPersonaList();
@@ -37,17 +39,18 @@ export class PersonaComponent implements OnInit {
 
 
   getPersonaList() {
-    this.personaService.getPersona().subscribe(data => {
+    this.personaService.getPersona(this.userauth).subscribe(data => {
       this.formData = data;
     }, error => {
-      this.toastr.error('El servidor no funciona', 'Error');
+  this.router.navigate(['/error']);                    
+this.toastr.error('El servidor no funciona', 'Error');
       console.log(error);
     });
   }
 
   eliminarPersona(idPersona: any) {
     console.log(idPersona);
-    this.personaService.deletePersona('api/Persona/DeletePersona?idPersona=' + idPersona).subscribe(data => {
+    this.personaService.deletePersona('api/Persona/DeletePersona?idPersona=' + idPersona, this.userauth).subscribe(data => {
       this.getPersonaList();
       this.toastr.error('El Registro Fue eliminado Permanentemente!', 'Registro eliminado');
     }, error => {

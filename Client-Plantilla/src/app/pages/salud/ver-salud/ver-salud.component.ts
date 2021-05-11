@@ -19,6 +19,7 @@ export class VerSaludComponent implements OnInit {
   essalud: boolean;
   disc: boolean;
   iddatossalud;
+  userauth;
 
   constructor(private personaService: PersonaService,
               private fb: FormBuilder,
@@ -34,11 +35,12 @@ export class VerSaludComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.userauth = atob(localStorage.getItem('currentUser'));
     this.initializar();
     this.essalud = false;
     this.disc = false;
     this.spinner.show();
-    this.getSaludbyid(this.iddatossalud);
+    this.getSaludbyid(atob(this.iddatossalud));
     setTimeout(() => {
       /** spinner ends after 5 seconds */
       this.spinner.hide();
@@ -104,8 +106,8 @@ export class VerSaludComponent implements OnInit {
 
   initializar() {
     if (this.route.snapshot.params.id.length) {
-      this.iddatossalud = this.route.snapshot.params.id;
-      console.log('parametro capturado id ', this.iddatossalud);
+      this.iddatossalud = btoa(this.route.snapshot.params.id);
+      console.log('parametro capturado id ', btoa(this.iddatossalud));
     }
   }
 
@@ -116,16 +118,16 @@ export class VerSaludComponent implements OnInit {
 
 
   EditarSalud() {
-    this.personaService.put('api/DatosSalud/EditDatosSalud', this.salud);
+    this.personaService.put('api/DatosSalud/EditDatosSalud', this.salud , this.userauth);
     console.log('GUARDADO', this.salud);
     this.router.navigate(['/salud'], {
       skipLocationChange: true,
     });
   }
 
-  getSaludbyid(id: number) {
+  getSaludbyid(id) {
     this.salud = [];
-    this.personaService.getPersonaById('api/DatosSalud/GetDatosSaludById?idDatosSalud=' + id).subscribe((data: {}) => {
+    this.personaService.getPersonaById('api/DatosSalud/GetDatosSaludById?idDatosSalud=' + id, this.userauth).subscribe((data: {}) => {
       this.salud = data;
       if (this.salud.estadosalud === 'Enferm@'){
         this.essalud = true;

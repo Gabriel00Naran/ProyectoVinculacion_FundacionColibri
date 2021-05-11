@@ -3,6 +3,8 @@ import { ROUTES } from "../sidebar/sidebar.component";
 import { Location } from "@angular/common";
 import { Router } from "@angular/router";
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { AuthenticationService } from "src/app/services/authentication.service";
+import { User } from "src/app/models/user";
 
 @Component({
   selector: "app-navbar",
@@ -10,6 +12,7 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ["./navbar.component.css"]
 })
 export class NavbarComponent implements OnInit, OnDestroy {
+  currentUser: User;
   private listTitles: any[];
   location: Location;
   mobile_menu_visible: any = 0;
@@ -21,9 +24,10 @@ export class NavbarComponent implements OnInit, OnDestroy {
   closeResult: string;
 
   constructor(
+    private router: Router,
+    private authenticationService: AuthenticationService,
     location: Location,
     private element: ElementRef,
-    private router: Router,
     private modalService: NgbModal
   ) {
     this.location = location;
@@ -41,6 +45,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
      }
    };
   ngOnInit() {
+    this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
     window.addEventListener("resize", this.updateColor);
     this.listTitles = ROUTES.filter(listTitle => listTitle);
     const navbar: HTMLElement = this.element.nativeElement;
@@ -192,5 +197,10 @@ export class NavbarComponent implements OnInit, OnDestroy {
   }
   ngOnDestroy(){
      window.removeEventListener("resize", this.updateColor);
+  }
+
+  logout() {
+      this.authenticationService.logout();
+      this.router.navigate(['/login']);
   }
 }

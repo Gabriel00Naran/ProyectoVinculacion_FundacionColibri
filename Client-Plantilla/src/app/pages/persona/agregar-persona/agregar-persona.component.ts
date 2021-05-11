@@ -27,6 +27,7 @@ export class AgregarPersonaComponent implements OnInit {
   cantones: any = [];
   parroquias: any = [];
   motivos: any = [];
+  userauth;
   /////////////////////////////////////////////////////////////
   constructor(private fb: FormBuilder,
               private personaService: PersonaService,
@@ -37,6 +38,7 @@ export class AgregarPersonaComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.userauth = atob(localStorage.getItem('currentUser'));
     this.spinner.show();
 
     setTimeout(() => {
@@ -104,7 +106,7 @@ export class AgregarPersonaComponent implements OnInit {
   }
   ///////////////////////////////////////////////////////////////////////////////////////////////////////
   AgregarPersona() {
-    this.personaService.post('api/Persona/AddPersona/', this.persona);
+    this.personaService.post('api/Persona/AddPersona/', this.persona, this.userauth);
     console.log('GUARDADO', this.persona);
     this.router.navigate(['/Listar-Persona'], {
       skipLocationChange: true,
@@ -113,7 +115,7 @@ export class AgregarPersonaComponent implements OnInit {
 
   getOrganizaciones() {
     this.organizaciones = [];
-    this.personaService.get('api/Organizacion/GetOrganizacion').subscribe((data: {}) => {
+    this.personaService.get('api/Organizacion/GetOrganizacion', this.userauth).subscribe((data: {}) => {
       this.organizaciones = data;
       console.log('ORGANIZACIONES', this.organizaciones);
 
@@ -122,7 +124,7 @@ export class AgregarPersonaComponent implements OnInit {
 
   getModalidades() {
     this.modalidades = [];
-    this.personaService.get('api/Modalidad/GetModalidad').subscribe((data: {}) => {
+    this.personaService.get('api/Modalidad/GetModalidad', this.userauth).subscribe((data: {}) => {
       this.modalidades = data;
       console.log('MODALIDADES', this.modalidades);
 
@@ -131,7 +133,7 @@ export class AgregarPersonaComponent implements OnInit {
 
   getGeneros() {
     this.generos = [];
-    this.personaService.get('api/Genero/GetGenero').subscribe((data: {}) => {
+    this.personaService.get('api/Genero/GetGenero', this.userauth).subscribe((data: {}) => {
       this.generos = data;
       console.log('GENEROS', this.generos);
 
@@ -140,7 +142,7 @@ export class AgregarPersonaComponent implements OnInit {
 
   getEtnias() {
     this.etnias = [];
-    this.personaService.get('api/Etnia/GetEtnia').subscribe((data: {}) => {
+    this.personaService.get('api/Etnia/GetEtnia', this.userauth).subscribe((data: {}) => {
       this.etnias = data;
       console.log('ETNIAS', this.etnias);
 
@@ -149,7 +151,7 @@ export class AgregarPersonaComponent implements OnInit {
 
   getNacionalidades() {
     this.nacionalidades = [];
-    this.personaService.get('api/Nacionalidad/GetNacionalidad').subscribe((data: {}) => {
+    this.personaService.get('api/Nacionalidad/GetNacionalidad', this.userauth).subscribe((data: {}) => {
       this.nacionalidades = data;
       console.log('NACIONALIDADES', this.nacionalidades);
 
@@ -158,7 +160,7 @@ export class AgregarPersonaComponent implements OnInit {
 
   getProvincias() {
     this.provincias = [];
-    this.personaService.get('api/Provincia/GetProvincia').subscribe((data: {}) => {
+    this.personaService.get('api/Provincia/GetProvincia', this.userauth).subscribe((data: {}) => {
       this.provincias = data;
       console.log('PROVINCIAS', this.provincias);
 
@@ -167,7 +169,7 @@ export class AgregarPersonaComponent implements OnInit {
 
   getCantones() {
     this.cantones = [];
-    this.personaService.get('api/Canton/GetCanton').subscribe((data: {}) => {
+    this.personaService.get('api/Canton/GetCanton', this.userauth).subscribe((data: {}) => {
       this.cantones = data;
       console.log('CANTONES', this.cantones);
 
@@ -176,7 +178,7 @@ export class AgregarPersonaComponent implements OnInit {
 
   getCantonesbyidProvincia(id) {
     this.cantones = [];
-    this.personaService.get('api/Canton/GetCantonByIdProvincia?idprovincia=' + id).subscribe((data: {}) => {
+    this.personaService.get('api/Canton/GetCantonByIdProvincia?idprovincia=' + id, this.userauth).subscribe((data: {}) => {
       this.cantones = data;
       console.log('CANTONES', this.cantones);
 
@@ -185,7 +187,7 @@ export class AgregarPersonaComponent implements OnInit {
 
   getParroquias() {
     this.parroquias = [];
-    this.personaService.get('api/Parroquia/GetParroquia').subscribe((data: {}) => {
+    this.personaService.get('api/Parroquia/GetParroquia', this.userauth).subscribe((data: {}) => {
       this.parroquias = data;
       console.log('PARROQUIAS', this.parroquias);
 
@@ -194,7 +196,7 @@ export class AgregarPersonaComponent implements OnInit {
 
   getParroquiasbyidCanton(id){
     this.parroquias = [];
-    this.personaService.get('api/Parroquia/GetParroquiaByIdCanton?idcanton=' +id).subscribe((data: {}) => {
+    this.personaService.get('api/Parroquia/GetParroquiaByIdCanton?idcanton=' +id, this.userauth).subscribe((data: {}) => {
       this.parroquias = data;
       console.log('PARROQUIAS', this.parroquias);
 
@@ -203,7 +205,7 @@ export class AgregarPersonaComponent implements OnInit {
 
   getMotivos() {
     this.motivos = [];
-    this.personaService.get('api/MotivoIngreso/GetMotivoIngreso').subscribe((data: {}) => {
+    this.personaService.get('api/MotivoIngreso/GetMotivoIngreso', this.userauth).subscribe((data: {}) => {
       this.motivos = data;
       console.log('MOTIVOS', this.motivos);
 

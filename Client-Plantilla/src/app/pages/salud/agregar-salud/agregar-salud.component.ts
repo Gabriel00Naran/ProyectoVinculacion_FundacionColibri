@@ -19,6 +19,7 @@ export class AgregarSaludComponent implements OnInit {
   idpersona;
   essalud: boolean;
   disc: boolean;
+  userauth;
 
   constructor(private personaService: PersonaService,
               private fb: FormBuilder,
@@ -35,6 +36,7 @@ export class AgregarSaludComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.userauth = atob(localStorage.getItem('currentUser'));
     this.essalud = false;
     this.disc = false;
     this.spinner.show();
@@ -115,7 +117,7 @@ export class AgregarSaludComponent implements OnInit {
 
 
   AgregarSalud() {
-    this.personaService.post('api/DatosSalud/AddDatosSalud', this.salud);
+    this.personaService.post('api/DatosSalud/AddDatosSalud', this.salud, this.userauth);
     console.log('GUARDADO', this.salud);
     this.router.navigate(['/salud'], {
       skipLocationChange: true,

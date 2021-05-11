@@ -24,7 +24,7 @@ export class AddPgfComponent implements OnInit {
   provincias: any = [];
   cantones: any = [];
   nacademico: any = [];
-
+  userauth;
 
   constructor(private personaService: PersonaService,
               private fb: FormBuilder,
@@ -41,6 +41,7 @@ export class AddPgfComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.userauth = atob(localStorage.getItem('currentUser'));
     this.sistemaedu = false;
     this.nosistema = false;
     this.fam = false;
@@ -78,7 +79,7 @@ export class AddPgfComponent implements OnInit {
     });
 
     this.pgf = {
-      idperonsa: this.idpersona,
+      idperonsa: atob(this.idpersona),
       idfamiliarreferente: '',
       nombrefamiliar: '',
       idprovincia: '',
@@ -118,8 +119,8 @@ export class AddPgfComponent implements OnInit {
 
   initializar() {
     if (this.route.snapshot.params.id.length) {
-      this.idpersona = this.route.snapshot.params.id;
-      console.log('parametro capturado id ', this.idpersona);
+      this.idpersona = btoa(this.route.snapshot.params.id);
+      console.log('parametro capturado id ', btoa(this.idpersona));
     }
   }
 
@@ -130,7 +131,7 @@ export class AddPgfComponent implements OnInit {
 
 
   AgregarPgf() {
-    this.personaService.post('api/Pgf/AddPgf', this.pgf);
+    this.personaService.post('api/Pgf/AddPgf', this.pgf, this.userauth);
     console.log('GUARDADO', this.pgf);
     this.router.navigate(['/pgf'], {
       skipLocationChange: true,
@@ -140,7 +141,7 @@ export class AddPgfComponent implements OnInit {
 
   getFamiliarTipo() {
     this.familiar = [];
-    this.personaService.get('api/FamiliarReferente/GetFamiliarReferente').subscribe((data: {}) => {
+    this.personaService.get('api/FamiliarReferente/GetFamiliarReferente',this.userauth).subscribe((data: {}) => {
       this.familiar = data;
       console.log('familiar', this.familiar);
 
@@ -149,7 +150,7 @@ export class AddPgfComponent implements OnInit {
 
   getProvincias() {
     this.provincias = [];
-    this.personaService.get('api/Provincia/GetProvincia').subscribe((data: {}) => {
+    this.personaService.get('api/Provincia/GetProvincia',this.userauth).subscribe((data: {}) => {
       this.provincias = data;
       console.log('PROVINCIAS', this.provincias);
 
@@ -158,7 +159,7 @@ export class AddPgfComponent implements OnInit {
 
   getCantones() {
     this.cantones = [];
-    this.personaService.get('api/Canton/GetCanton').subscribe((data: {}) => {
+    this.personaService.get('api/Canton/GetCanton', this.userauth).subscribe((data: {}) => {
       this.cantones = data;
       console.log('CANTONES', this.cantones);
 
@@ -167,7 +168,7 @@ export class AddPgfComponent implements OnInit {
 
   getNacademico() {
     this.nacademico = [];
-    this.personaService.get('api/NivelAcademico/GetNivelAcademico').subscribe((data: {}) => {
+    this.personaService.get('api/NivelAcademico/GetNivelAcademico', this.userauth).subscribe((data: {}) => {
       this.nacademico = data;
       console.log('Niveles Academicos', this.nacademico);
 
@@ -182,7 +183,7 @@ export class AddPgfComponent implements OnInit {
 
 getCantonesbyidProvincia(id) {
   this.cantones = [];
-  this.personaService.get('api/Canton/GetCantonByIdProvincia?idprovincia=' + id).subscribe((data: {}) => {
+  this.personaService.get('api/Canton/GetCantonByIdProvincia?idprovincia=' + id, this.userauth).subscribe((data: {}) => {
     this.cantones = data;
     console.log('CANTONES', this.cantones);
 

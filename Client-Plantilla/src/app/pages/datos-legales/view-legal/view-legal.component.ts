@@ -23,6 +23,7 @@ export class ViewLegalComponent implements OnInit {
   estadoprocesal: any = [];
   proceso: boolean;
   reinser: boolean;
+  userauth;
 
   constructor(private personaService: PersonaService,
               private fb: FormBuilder,
@@ -38,13 +39,14 @@ export class ViewLegalComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.userauth = atob(localStorage.getItem('currentUser'));
     this.initializar();
     this.spinner.show();
     this.proceso = false;
     this.reinser = false;
     setTimeout(() => {
       /** spinner ends after 5 seconds */
-      this.getDatoJudicialbyid(this.idjudicialpenal);
+      this.getDatoJudicialbyid(atob(this.idjudicialpenal));
       this.getMedidas();
       this.getProvincias();
       this.getCantones();
@@ -107,7 +109,7 @@ export class ViewLegalComponent implements OnInit {
 
   getMedidas() {
     this.medidas = [];
-    this.personaService.get('api/Medida/GetMedida').subscribe((data: {}) => {
+    this.personaService.get('api/Medida/GetMedida', this.userauth).subscribe((data: {}) => {
       this.medidas = data;
       console.log('MEDIDAS', this.medidas);
 
@@ -116,8 +118,8 @@ export class ViewLegalComponent implements OnInit {
 
   initializar() {
     if (this.route.snapshot.params.id.length) {
-      this.idjudicialpenal = this.route.snapshot.params.id;
-      console.log('parametro capturado id ', this.idjudicialpenal);
+      this.idjudicialpenal = btoa(this.route.snapshot.params.id);
+      console.log('parametro capturado id ', btoa(this.idjudicialpenal));
     }
   }
 
@@ -128,7 +130,7 @@ export class ViewLegalComponent implements OnInit {
 
 
   EditarDatoJudicial() {
-    this.personaService.put('api/DatosJudicialPenal/EditDatosJudicialPenal', this.djudicial);
+    this.personaService.put('api/DatosJudicialPenal/EditDatosJudicialPenal', this.djudicial, this.userauth);
     console.log('GUARDADO', this.djudicial);
     this.router.navigate(['/legal'], {
       skipLocationChange: true,
@@ -137,7 +139,7 @@ export class ViewLegalComponent implements OnInit {
 
   getProvincias() {
     this.provincias = [];
-    this.personaService.get('api/Provincia/GetProvincia').subscribe((data: {}) => {
+    this.personaService.get('api/Provincia/GetProvincia', this.userauth).subscribe((data: {}) => {
       this.provincias = data;
       console.log('PROVINCIAS', this.provincias);
 
@@ -146,7 +148,7 @@ export class ViewLegalComponent implements OnInit {
 
   getCantones() {
     this.cantones = [];
-    this.personaService.get('api/Canton/GetCanton').subscribe((data: {}) => {
+    this.personaService.get('api/Canton/GetCanton', this.userauth).subscribe((data: {}) => {
       this.cantones = data;
       console.log('CANTONES', this.cantones);
 
@@ -155,7 +157,7 @@ export class ViewLegalComponent implements OnInit {
 
   getNudos() {
     this.ncriticos = [];
-    this.personaService.get('api/NudosCritico/GetNudosCritico').subscribe((data: {}) => {
+    this.personaService.get('api/NudosCritico/GetNudosCritico', this.userauth).subscribe((data: {}) => {
       this.ncriticos = data;
       console.log('NUDOS CRITICOS', this.ncriticos);
 
@@ -164,7 +166,7 @@ export class ViewLegalComponent implements OnInit {
 
   getinfraccionesD() {
     this.idenunciada = [];
-    this.personaService.get('api/InfraccionDenunciada/GetInfraccionDenunciada').subscribe((data: {}) => {
+    this.personaService.get('api/InfraccionDenunciada/GetInfraccionDenunciada', this.userauth).subscribe((data: {}) => {
       this.idenunciada = data;
       console.log('INFRACCIONES DENUNCIADAS', this.idenunciada);
 
@@ -173,7 +175,7 @@ export class ViewLegalComponent implements OnInit {
 
   getEstadoProcesal() {
     this.estadoprocesal = [];
-    this.personaService.get('api/EstadoProcesal/GetEstadoProcesal').subscribe((data: {}) => {
+    this.personaService.get('api/EstadoProcesal/GetEstadoProcesal', this.userauth).subscribe((data: {}) => {
       this.estadoprocesal = data;
       console.log('ESTADO PROCESAL', this.estadoprocesal);
 
@@ -207,9 +209,9 @@ export class ViewLegalComponent implements OnInit {
   }
 
 
-  getDatoJudicialbyid(id: number) {
+  getDatoJudicialbyid(id) {
     this.djudicial = [];
-    this.personaService.getPersonaById('api/DatosJudicialPenal/GetDatosJudicialPenalById?idJudicialPenal=' + id).subscribe((data: {}) => {
+    this.personaService.getPersonaById('api/DatosJudicialPenal/GetDatosJudicialPenalById?idJudicialPenal=' + id, this.userauth).subscribe((data: {}) => {
       this.djudicial = data;
       if (this.djudicial.egresoporreinsercion === true){
         this.getinfraccionesD();

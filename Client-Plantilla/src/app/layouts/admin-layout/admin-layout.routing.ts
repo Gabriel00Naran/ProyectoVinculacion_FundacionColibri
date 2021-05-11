@@ -3,10 +3,12 @@ import { AddLegalComponent } from 'src/app/pages/datos-legales/add-legal/add-leg
 import { DatosLegalesComponent } from 'src/app/pages/datos-legales/datos-legales.component';
 import { EditLegalComponent } from 'src/app/pages/datos-legales/edit-legal/edit-legal.component';
 import { ViewLegalComponent } from 'src/app/pages/datos-legales/view-legal/view-legal.component';
+import { ErrorComponent } from 'src/app/pages/error/error.component';
 import { AgregarHistorialCronologicoComponent } from 'src/app/pages/historial-cronologico/agregar-historial-cronologico/agregar-historial-cronologico.component';
 import { EditarHistorialCronologicoComponent } from 'src/app/pages/historial-cronologico/editar-historial-cronologico/editar-historial-cronologico.component';
 import { HistorialCronologicoComponent } from 'src/app/pages/historial-cronologico/historial-cronologico.component';
 import { VerHistorialCronologicoComponent } from 'src/app/pages/historial-cronologico/ver-historial-cronologico/ver-historial-cronologico.component';
+import { LoginComponent } from 'src/app/pages/login/login.component';
 import { AgregarPersonaComponent } from 'src/app/pages/persona/agregar-persona/agregar-persona.component';
 import { EditarPersonaComponent } from 'src/app/pages/persona/editar-persona/editar-persona.component';
 import { PersonaComponent } from 'src/app/pages/persona/persona.component';
@@ -22,6 +24,8 @@ import { DashboardComponent } from '../../pages/dashboard/dashboard.component';
 import { VerPersonaComponent } from '../../pages/persona/ver-persona/ver-persona.component';
 
 export const AdminLayoutRoutes: Routes = [
+  { path: 'login', component: LoginComponent },
+  { path: 'error', component: ErrorComponent },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'Listar-Persona', component: PersonaComponent },
   { path: 'Agregar-Persona', component: AgregarPersonaComponent },

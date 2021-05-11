@@ -22,6 +22,7 @@ export class DatosLegalesComponent implements OnInit {
   organizaciones: any = [];
   respuesta: any;
   showbutton: boolean;
+  userauth;
 
   constructor(private personaService: PersonaService,
               private router: Router,
@@ -29,6 +30,7 @@ export class DatosLegalesComponent implements OnInit {
               private spinner: NgxSpinnerService) { }
 
   ngOnInit(): void {
+    this.userauth = atob(localStorage.getItem('currentUser'));
     this.add = false;
     this.show = false;
     this.showbutton = true;
@@ -50,10 +52,11 @@ export class DatosLegalesComponent implements OnInit {
   }
 
   getPersonaList() {
-    this.personaService.getPersona().subscribe(data => {
+    this.personaService.getPersona(this.userauth).subscribe(data => {
       this.formData = data;
     }, error => {
-      this.toastr.error('El servidor no funciona', 'Error' );
+  this.router.navigate(['/error']);                    
+this.toastr.error('El servidor no funciona', 'Error' );
       console.log(error);
     });
   }
@@ -72,7 +75,7 @@ export class DatosLegalesComponent implements OnInit {
 
   getDatosJudiciales(id) {
     this.dlegales = [];
-    this.personaService.get('api/DatosJudicialPenal/GetDatosJudicialPenalByIdPersona?IdPersona=' + id).subscribe(data => {
+    this.personaService.get('api/DatosJudicialPenal/GetDatosJudicialPenalByIdPersona?IdPersona=' + id, this.userauth).subscribe(data => {
       this.dlegales = data;
       console.log(this.dlegales);
       if (this.dlegales.length === 0) {
@@ -87,7 +90,8 @@ export class DatosLegalesComponent implements OnInit {
 
       }
     }, error => {
-      this.toastr.error('El servidor no funciona', 'Error');
+  this.router.navigate(['/error']);                    
+this.toastr.error('El servidor no funciona', 'Error');
       console.log(error);
     });
 
@@ -95,7 +99,7 @@ export class DatosLegalesComponent implements OnInit {
 
   eliminarDatoJudicial(id: any) {
     console.log(id);
-    this.personaService.deletePersona('/api/DatosJudicialPenal/DeleteDatosJudicialPenal?idJudicialPenal=' + id).subscribe(data => {
+    this.personaService.deletePersona('/api/DatosJudicialPenal/DeleteDatosJudicialPenal?idJudicialPenal=' + id, this.userauth).subscribe(data => {
       this.getPersonaList();
       this.toastr.error('El Registro Fue eliminado Permanentemente!', 'Registro eliminado');
       this.productDialog = false;
@@ -122,7 +126,7 @@ export class DatosLegalesComponent implements OnInit {
 
   getOrganizaciones() {
     this.organizaciones = [];
-    this.personaService.get('api/Organizacion/GetOrganizacion').subscribe((data: {}) => {
+    this.personaService.get('api/Organizacion/GetOrganizacion', this.userauth).subscribe((data: {}) => {
       this.organizaciones = data;
       console.log('ORGANIZACIONES', this.organizaciones);
 

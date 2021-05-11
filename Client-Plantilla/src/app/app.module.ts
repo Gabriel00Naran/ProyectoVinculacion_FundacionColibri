@@ -1,7 +1,7 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule , HTTP_INTERCEPTORS  } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { ToastrModule } from 'ngx-toastr';
 
@@ -17,6 +17,11 @@ import { PersonaService } from './services/persona.service';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import { TableModule } from 'primeng/table';
+import { LoginComponent } from './pages/login/login.component';
+import { AuthenticationService } from './services/authentication.service';
+import { ErrorInterceptor } from './helpers/error.interceptor';
+import { JwtInterceptor } from './helpers/jwt.interceptor';
+import { ErrorComponent } from './pages/error/error.component';
 
 @NgModule({
   imports: [
@@ -33,7 +38,9 @@ import { TableModule } from 'primeng/table';
     ToastrModule.forRoot()
   ],
   declarations: [AppComponent, AdminLayoutComponent],
-  providers: [PersonaService],
+  providers: [   { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    PersonaService, AuthenticationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

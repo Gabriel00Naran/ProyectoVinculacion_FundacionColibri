@@ -20,13 +20,14 @@ export class SaludComponent implements OnInit {
   show: boolean;
   productDialog: boolean;
   showbutton: boolean;
-
+  userauth;
   constructor(private personaService: PersonaService,
               private router: Router,
               private toastr: ToastrService,
               private spinner: NgxSpinnerService) { }
 
   ngOnInit(): void {
+    this.userauth = atob(localStorage.getItem('currentUser'));
     this.show = false;
     this.showbutton = true;
     this.productDialog = false;
@@ -46,10 +47,11 @@ export class SaludComponent implements OnInit {
   }
 
   getPersonaList() {
-    this.personaService.getPersona().subscribe(data => {
+    this.personaService.getPersona(this.userauth).subscribe(data => {
       this.formData = data;
     }, error => {
-      this.toastr.error('El servidor no funciona', 'Error');
+  this.router.navigate(['/error']);                    
+this.toastr.error('El servidor no funciona', 'Error');
       console.log(error);
     });
   }
@@ -66,7 +68,7 @@ export class SaludComponent implements OnInit {
   }
 
   getHistorial(id) {
-    this.personaService.get('api/DatosSalud/GetDatosSaludByIdPersona?IdPersona=' + id).subscribe(data => {
+    this.personaService.get('api/DatosSalud/GetDatosSaludByIdPersona?IdPersona=' + id, this.userauth).subscribe(data => {
       this.salud = data;
       if (this.salud.length === 0) {
         Swal.fire(
@@ -80,7 +82,8 @@ export class SaludComponent implements OnInit {
 
       }
     }, error => {
-      this.toastr.error('El servidor no funciona', 'Error');
+  this.router.navigate(['/error']);                    
+this.toastr.error('El servidor no funciona', 'Error');
       console.log(error);
     });
 
@@ -96,7 +99,7 @@ export class SaludComponent implements OnInit {
 
   eliminarSalud(id: any) {
     console.log(id);
-    this.personaService.deletePersona('api/DatosSalud/DeleteDatosSalud?idDatosSalud=' + id).subscribe(data => {
+    this.personaService.deletePersona('api/DatosSalud/DeleteDatosSalud?idDatosSalud=' + id, this.userauth).subscribe(data => {
       this.getPersonaList();
       this.toastr.error('El Registro Fue eliminado Permanentemente!', 'Registro eliminado');
       this.productDialog = false;

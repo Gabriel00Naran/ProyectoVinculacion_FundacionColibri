@@ -1,9 +1,13 @@
 <div class="wrapper">
-  <div class="sidebar">
-    <app-sidebar></app-sidebar>
+  <div *ngIf="permisos">
+    <div class="sidebar">
+      <app-sidebar></app-sidebar>
+    </div>
   </div>
   <div class="main-panel">
-    <app-navbar></app-navbar>
+    <div *ngIf="permisos">
+      <app-navbar></app-navbar>
+    </div>
     <router-outlet></router-outlet>
     <app-footer></app-footer>
   </div>
