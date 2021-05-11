@@ -1,7 +1,7 @@
 <div class="col-md-6 offset-md-3 mt-5">
     <div class="card">
         
-        <h4 class="card-header">    <img class="img-fluid" alt="..." class=" avatar" src="assets/anima.gif" /> Sistema de Gestion de Información ACF Nido </h4>
+        <h4 class="card-header">    <img class="img-fluid" alt="..." class=" avatar" src="assets/anima.gif" /> Sistema de Gestión de Información ACF Nido </h4>
      
         <div class="card-body">
             <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
@@ -19,10 +19,12 @@
                         <div *ngIf="f.password.errors.required">Contraseña es requerida</div>
                     </div>
                 </div>
+                <div class="col-md-11 text-center">
                 <button [disabled]="loading" class="btn btn-info">
                     <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
                     Iniciar Sesión
                 </button>
+            </div>
                 <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
             </form>
         </div>
