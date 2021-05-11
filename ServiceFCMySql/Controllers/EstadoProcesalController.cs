@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using WebServiceFCMySql.IServicios;
@@ -8,6 +9,7 @@ using WebServiceFCMySql.Modelos;
 namespace WebServiceFC.Controllers
 
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class EstadoProcesalController : ControllerBase

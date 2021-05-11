@@ -1,17 +1,19 @@
 ﻿using System;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using WebServiceFCMySql.Autenticacion;
 
 #nullable disable
 
 namespace WebServiceFCMySql.Modelos
 {
-    public partial class fundacioncolibriContext : DbContext
+    public partial class fundacioncolibriContext : IdentityDbContext<AplicacionUsuario>
     {
         public fundacioncolibriContext()
         {
-        }
 
+        }
         public fundacioncolibriContext(DbContextOptions<fundacioncolibriContext> options)
             : base(options)
         {
@@ -50,6 +52,7 @@ namespace WebServiceFCMySql.Modelos
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Canton>(entity =>
             {
                 entity.HasKey(e => e.Idcanton)
