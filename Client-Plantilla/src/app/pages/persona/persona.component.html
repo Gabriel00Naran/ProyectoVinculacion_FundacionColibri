@@ -1,7 +1,5 @@
 <div class=" content">
     <div class=" container-fluid">
-    <div class=" row">
-        <div class=" col-md-12">
             <div class=" card card-plain">
                 <div class=" card-header">
                     <h1 class=" card-title">PERSONAS REGISTRADAS </h1>
@@ -10,8 +8,8 @@
                 <div class="card-header">
                     <button class="btn btn-primary float-end" routerLink="/Agregar-Persona">Nuevo Registro</button>
                 </div>
-                <div class=" card-body">
-                    <div class="table-responsive">
+            </div>
+            
                             <p-table #dt styleClass="ui-table-formularios" [columns]="cols" [value]="formData"
                             [paginator]="true" [rows]="5" selectionMode="single"
                             [rowsPerPageOptions]="[5,10,20]" [responsive]="true">
@@ -63,11 +61,11 @@
                         </p-table>
                           
                         
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+                   
+           
+       
+        
+
 </div>
 </div>
 <ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "square-jelly-box" [fullScreen] = "true"><p style="color: white" > Cargando.. </p></ngx-spinner>
