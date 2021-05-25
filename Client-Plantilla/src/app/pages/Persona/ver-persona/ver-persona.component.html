@@ -1,0 +1,244 @@
+<div class=" content">
+    <div class=" row">
+        <div class=" col-md-8">
+            <div class=" card">
+                <div class=" card-header">
+                    <h2 class=" title">Persona</h2>
+                </div>
+                <div class=" card-body">
+                    <!--desde aqui empieza el formulario-->
+                    <form [formGroup]="verPersona" (ngSubmit)="submit()">
+                        <div class=" row">
+                            <div class=" col-md-6 pr-md-1">
+                                <div class=" form-group">
+                                    <label for="idOrganizacion"> Organización </label>
+                                    <select formControlName="idOrganizacion" class="form-control"
+                                        [(ngModel)]="persona.idorganizacion" name="organizacion" id="idOrganizacion"
+                                        disabled>
+                                        <option *ngFor="let o of organizaciones; let i = index"
+                                            [value]="o.idorganizacion">
+                                            {{o.descripcionorganizacion}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class=" col-md-5 px-md-1">
+                                <div class=" form-group">
+                                    <label for="idModalidad"> Modalidad </label>
+                                    <select formControlName="idModalidad" class="form-control"
+                                        [(ngModel)]="persona.idmodalidad" name="idModalidad" id="idModalidad" disabled>
+                                        <option *ngFor="let m of modalidades; let i = index" [value]="m.idmodalidad">
+                                            {{m.descripcionmodalidad}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class=" row">
+                            <div class=" col-md-6 pr-md-1">
+                                <div class=" form-group">
+                                    <label for="nombres"> Nombres </label>
+                                    <input [(ngModel)]="persona.nombres" formControlName="nombres" id="nombres"
+                                        type="text" class="form-control" placeholder="Primer y Segundo Nombre" required
+                                        readonly="true">
+                                </div>
+                            </div>
+                            <div class=" col-md-6 pl-md-1">
+                                <div class=" form-group">
+                                    <label for="apellidos"> Apellidos </label>
+                                    <input [(ngModel)]="persona.apellidos" formControlName="apellidos" id="apellidos"
+                                        type="text" class="form-control" placeholder="Primer y Segundo Apellido"
+                                        required readonly="true">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class=" col-md-5">
+                                <div class=" form-group">
+                                    <label for="telefono"> Teléfono </label>
+                                    <input [(ngModel)]="persona.telefono" formControlName="telefono" id="telefono"
+                                        type="text" class="form-control" placeholder="ejem: 09999999999"
+                                        readonly="true">
+
+                                </div>
+                            </div>
+                            <div class=" col-md-5">
+                                <div class=" form-group">
+                                    <label for="documentoIdentidad"> Documento de Identidad </label>
+                                    <input [(ngModel)]="persona.documentoidentidad" formControlName="documentoIdentidad"
+                                        id="documentoIdentidad" type="text" class="form-control"
+                                        placeholder="Cedula o Pasaporte" readonly="true">
+                                </div>
+                            </div>
+                        </div>
+                        <div class=" row">
+                            <div class=" col-md-3 pr-md-1">
+                                <div class=" form-group">
+                                    <label for="idGenero"> Género </label>
+                                    <select formControlName="idGenero" class="form-control"
+                                        [(ngModel)]="persona.idgenero" name="idGenero" id="idGenero" disabled>
+                                        <option *ngFor="let g of generos; let i = index" [value]="g.idgenero">
+                                            {{g.descripciongenero}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class=" col-md-3 pr-md-1">
+                                <div class=" form-group">
+                                    <label for="idEtnia"> Etnia </label>
+                                    <select formControlName="idEtnia" class="form-control" [(ngModel)]="persona.idetnia"
+                                        name="idEtnia" id="idEtnia" disabled>
+                                        <option *ngFor="let e of etnias; let i = index" [value]="e.idetnia">
+                                            {{e.descripcionetnia}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class=" col-md-3 pr-md-1">
+                                <div class=" form-group">
+                                    <label for="idNacionalidad"> Nacionalidad </label>
+                                    <select formControlName="idNacionalidad" class="form-control"
+                                        [(ngModel)]="persona.idnacionalidad" name="idNacionalidad" id="idNacionalidad"
+                                        disabled>
+                                        <option *ngFor="let n of nacionalidades; let i = index"
+                                            [value]="n.idnacionalidad">
+                                            {{n.descripcionnacionalidad}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class=" col-md-3 pr-md-1">
+                                <div class=" form-group">
+                                    <label for="fechaNacimiento"> Fecha de Nacimiento </label>
+                                    <input [(ngModel)]="persona.fechanacimiento" formControlName="fechaNacimiento"
+                                        id="fechaNacimiento" type="datetime-local" class="form-control" readonly="true">
+                                </div>
+                            </div>
+                        </div>
+                        <div class=" row">
+                            <div class=" col-md-3 pr-md-1">
+                                <div class=" form-group">
+                                    <label for="idProvincia"> Provincia </label>
+                                    <select formControlName="idProvincia" class="form-control"
+                                        [(ngModel)]="persona.idprovincia" name="idProvincia" id="idProvincia" disabled>
+                                        <option *ngFor="let p of provincias; let i = index" [value]="p.idprovincia">
+                                            {{p.descripcionprovincia}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class=" col-md-3 px-md-1">
+                                <div class=" form-group">
+                                    <label for="idCanton"> Cantón </label>
+                                    <select formControlName="idCanton" class="form-control"
+                                        [(ngModel)]="persona.idcanton" name="idCanton" id="idCanton" disabled>
+                                        <option *ngFor="let c of cantones; let i = index" [value]="c.idcanton">
+                                            {{c.descripcioncanton}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class=" col-md-3 pl-md-1">
+                                <div class=" form-group">
+                                    <label for="idParroquia"> Parroquia </label>
+                                    <select formControlName="idParroquia" class="form-control"
+                                        [(ngModel)]="persona.idparroquia" name="idParroquia" id="idParroquia" disabled>
+                                        <option *ngFor="let p of parroquias; let i = index" [value]="p.idparroquia">
+                                            {{p.descripcionparroquia}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class=" col-md-3 pl-md-1">
+                                <div class=" form-group">
+                                    <label for="barrio"> Barrio </label>
+                                    <input [(ngModel)]="persona.barrio" formControlName="barrio" id="barrio" type="text"
+                                        class="form-control" readonly="true">
+                                </div>
+                            </div>
+                        </div>
+                        <div class=" row">
+                            <div class=" col-md-12">
+                                <div class=" form-group">
+                                    <label for="direccion"> Dirección </label>
+                                    <input [(ngModel)]="persona.direccion" formControlName="direccion" id="direccion"
+                                        type="text" class="form-control" readonly="true">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class=" col-md-4">
+                                <div class=" form-group">
+                                    <label for="fechaDeIngresoUnidadAtencion"> Fecha de Ingreso a la unidad </label>
+                                    <input [(ngModel)]="persona.fechadeingresounidadatencion"
+                                        formControlName="fechaDeIngresoUnidadAtencion" id="fechaDeIngresoUnidadAtencion"
+                                        type="datetime-local" class="form-control" readonly="true">
+                                </div>
+                            </div>
+                            <div class=" col-md-3">
+                                <div class=" form-group">
+                                    <label for="edadIngreso"> Edad De Ingreso </label>
+                                    <input [(ngModel)]="persona.edadingreso" formControlName="edadIngreso"
+                                        id="edadIngreso" type="text" class="form-control" readonly="true">
+                                </div>
+                            </div>
+                            <div class=" col-md-5">
+                                <div class=" form-group">
+                                    <label for="tiempoPermanenciaAnnios"> Tiempo de Permanencia En Años </label>
+                                    <input [(ngModel)]="persona.tiempopermanenciaannios"
+                                        formControlName="tiempoPermanenciaAnnios" id="tiempoPermanenciaAnnios"
+                                        type="text" class="form-control" readonly="true">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class=" col-md-10">
+                            <div class=" form-group">
+                                <label for="idMotivoIngreso"> Motivo De Ingreso </label>
+                                <select formControlName="idMotivoIngreso" class="form-control"
+                                    [(ngModel)]="persona.idmotivoingreso" name="idMotivoIngreso" id="idMotivoIngreso"
+                                    disabled>
+                                    <option *ngFor="let m of motivos; let i = index" [value]="m.idmotivoingreso">
+                                        {{m.descripcionmotivoingreso}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class=" card-footer">
+                            <button class=" btn btn-round btn-success" type="submit" [routerLink]="['/Listar-Persona']">Regresar</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+
+        <!--aqui empieza el panel informativo de la derecha-->
+        <div class=" col-md-4">
+            <div class=" card card-user">
+                <div class=" card-body">
+                    <p class=" card-text"></p>
+                    <div class=" author">
+                        <div class=" block block-one"></div>
+                        <div class=" block block-two"></div>
+                        <div class=" block block-three"></div>
+                        <div class=" block block-four"></div>
+                        <a href="javascript:void(0)">
+                            <img alt="..." class=" avatar" src="assets/colibriRegistro.png" />
+                            <h5 class=" title">Fundación Alas Del Colibríi</h5>
+                        </a>
+                       
+                        <p class=" description"> <b>¡IMPORTANTE!</b> </p>
+                    </div>
+                    <div class=" card-description">
+                        No todos los datos son obligatorios, pero se recomienda
+                        colocar al menos un nombre y un apellido.
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="square-jelly-box" [fullScreen]="true">
+    <p style="color: white"> Cargando.. </p>
+</ngx-spinner>

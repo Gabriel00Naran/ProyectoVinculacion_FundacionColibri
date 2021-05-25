@@ -1,0 +1,14 @@
+<div class="sidebar-wrapper">
+  <ul class="nav">
+    <li
+      routerLinkActive="active"
+      *ngFor="let menuItem of menuItems"
+      class="{{ menuItem.class }} nav-item"
+    >
+      <a [routerLink]="[menuItem.path]">
+        <i class="tim-icons  {{ menuItem.icon }}"></i>
+        <h4><p>{{ menuItem.title }}</p></h4>
+      </a>
+    </li>
+  </ul>
+</div>
