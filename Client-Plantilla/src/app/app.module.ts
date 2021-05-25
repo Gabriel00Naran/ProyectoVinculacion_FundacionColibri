@@ -22,11 +22,13 @@ import { AuthenticationService } from './services/authentication.service';
 import { ErrorInterceptor } from './helpers/error.interceptor';
 import { JwtInterceptor } from './helpers/jwt.interceptor';
 import { ErrorComponent } from './pages/error/error.component';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 @NgModule({
   imports: [
     BrowserAnimationsModule,
     FormsModule,
+    NgSelectModule,
     HttpClientModule,
     ComponentsModule,
     NgxSpinnerModule,

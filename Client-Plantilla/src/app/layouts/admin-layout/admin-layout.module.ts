@@ -37,12 +37,14 @@ import { ViewPgfComponent } from 'src/app/pages/pgf/view-pgf/view-pgf.component'
 import { ViewLegalComponent } from 'src/app/pages/datos-legales/view-legal/view-legal.component';
 import { LoginComponent } from 'src/app/pages/login/login.component';
 import { ErrorComponent } from 'src/app/pages/error/error.component';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule.forChild(AdminLayoutRoutes),
     FormsModule,
+    NgSelectModule,
     NgxSpinnerModule,
     HttpClientModule,
     NgbModule,
