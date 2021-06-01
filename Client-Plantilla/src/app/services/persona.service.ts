@@ -38,6 +38,16 @@ export class PersonaService {
     return this.http.get(environment.SERVER + this.GET, httpOptions);
   }
 
+  getObservable(url,auth_token): Observable<any> {
+    const httpOptions  = {
+      headers: new HttpHeaders({  
+      Authorization: `Bearer ${auth_token}`
+    })
+    };
+    return this.http.get(environment.SERVER + url, httpOptions);
+  }
+
+
   deletePersona(url, auth_token): Observable<any> {
     const httpOptions  = {
       headers: new HttpHeaders({  

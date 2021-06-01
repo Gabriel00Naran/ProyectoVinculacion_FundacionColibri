@@ -9,6 +9,8 @@ import { EditarHistorialCronologicoComponent } from 'src/app/pages/historial-cro
 import { HistorialCronologicoComponent } from 'src/app/pages/historial-cronologico/historial-cronologico.component';
 import { VerHistorialCronologicoComponent } from 'src/app/pages/historial-cronologico/ver-historial-cronologico/ver-historial-cronologico.component';
 import { LoginComponent } from 'src/app/pages/login/login.component';
+import { AddOpcionComponent } from 'src/app/pages/opciones/add-opcion/add-opcion.component';
+import { OpcionesComponent } from 'src/app/pages/opciones/opciones.component';
 import { AgregarPersonaComponent } from 'src/app/pages/persona/agregar-persona/agregar-persona.component';
 import { EditarPersonaComponent } from 'src/app/pages/persona/editar-persona/editar-persona.component';
 import { PersonaComponent } from 'src/app/pages/persona/persona.component';
@@ -47,6 +49,8 @@ export const AdminLayoutRoutes: Routes = [
   { path: 'add-salud/:id', component: AgregarSaludComponent },
   { path: 'edit-salud/:id', component: EditarSaludComponent },
   { path: 'ver-salud/:id', component: VerSaludComponent },
+  { path: 'opciones', component: OpcionesComponent },
+  { path: 'add-opcion', component: AddOpcionComponent },
   { path: '**', redirectTo: '/', pathMatch: 'full' },
 
 

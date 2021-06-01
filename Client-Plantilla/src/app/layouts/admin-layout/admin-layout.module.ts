@@ -38,6 +38,9 @@ import { ViewLegalComponent } from 'src/app/pages/datos-legales/view-legal/view-
 import { LoginComponent } from 'src/app/pages/login/login.component';
 import { ErrorComponent } from 'src/app/pages/error/error.component';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { OpcionesComponent } from 'src/app/pages/opciones/opciones.component';
+import {MatCardModule} from '@angular/material/card';
+import { AddOpcionComponent } from 'src/app/pages/opciones/add-opcion/add-opcion.component';
 
 @NgModule({
   imports: [
@@ -48,6 +51,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
     NgxSpinnerModule,
     HttpClientModule,
     NgbModule,
+    MatCardModule,
     ReactiveFormsModule,
     ButtonModule,
     DynamicDialogModule,
@@ -77,10 +81,12 @@ import { NgSelectModule } from '@ng-select/ng-select';
         DatosLegalesComponent,
         EditLegalComponent,
         AddLegalComponent,
+        OpcionesComponent,
         VerSaludComponent,
         VerHistorialCronologicoComponent,
         ViewPgfComponent,
         ViewLegalComponent,
+        AddOpcionComponent
   ]
 })
 export class AdminLayoutModule {}

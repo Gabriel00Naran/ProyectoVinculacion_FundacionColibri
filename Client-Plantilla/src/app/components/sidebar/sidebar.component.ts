@@ -50,6 +50,13 @@ export const ROUTES: RouteInfo[] = [
     class: ''
   },
 
+  {
+    path: 'opciones',
+    title: 'Opciones',
+    icon: 'icon-bullet-list-67',
+    class: ''
+  }
+
 
 ];
 

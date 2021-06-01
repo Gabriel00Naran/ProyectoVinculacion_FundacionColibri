@@ -1,11 +1,11 @@
 <div class=" content">
     <div class=" container-fluid">
             <div class=" card card-plain">
-                <div class=" card-header">
-                    <h1 class=" card-title">PERSONAS REGISTRADAS </h1>
+                <div class=" card-header-danger">
+                    <h1 class=" card-title text-center">PERSONAS REGISTRADAS </h1>
                 </div>
 
-                <div class="card-header">
+                <div class="card-header text-right">
                     <button class="btn btn-primary float-end" routerLink="/Agregar-Persona">Nuevo Registro</button>
                 </div>
             </div>
@@ -49,7 +49,7 @@
                                         <button class="btn btn-info btn-sm btn-round"
                                             pTooltip="Ver" tooltipPosition="top"
                                             (click)="edit(rowData.idpersona)">
-                                            <i class="material-icons">Editar</i>
+                                            Editar
                                         </button>
                                         <button  (click)="ver(rowData.idpersona)"
                                         class="btn btn-warning btn-sm float-end  btn-round">Detalles</button>

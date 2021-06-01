@@ -24,6 +24,7 @@ import { JwtInterceptor } from './helpers/jwt.interceptor';
 import { ErrorComponent } from './pages/error/error.component';
 import { NgSelectModule } from '@ng-select/ng-select';
 
+
 @NgModule({
   imports: [
     BrowserAnimationsModule,
