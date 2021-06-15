@@ -1,713 +1,1021 @@
 <div class=" content">
-    <div class=" container-fluid">
-        <div class=" card-header-primary">
-            <h1 class=" card-title text-center">OPCIONES </h1>
-        </div>
-        <div class=" row">
-            <div class=" col-md-6">
-                <div class=" card card-plain">
-                    <div class=" card-header-primary">
-                        <h1 class=" card-title text-center"><i class="material-icons" style="float:right;">travel_explore</i> ETNIAS </h1>
-                </div>
-                    <div *ngIf="showbutton">
-                        <div class="card-header">
-                            <button class="btn btn-primary float-end" (click)="mostrarEtnias()">Mostrar
-                                Etnias</button>
-                        </div>
-                    </div>
-                    <div *ngIf="addnewetnia">
-                    <div class="card-header">
-                        <button class="btn btn-secondary pull-right" (click)="addE()">Añadir
-                            Etnia</button>
-                        </div>
-                    </div>
-                    <div class=" card-body">
-                        <div *ngIf="show">
-                                <p-table #dt styleClass="ui-table-formularios" [columns]="cols" [value]="formData"
-                                    [paginator]="true" [rows]="5" selectionMode="single"
-                                    [rowsPerPageOptions]="[5,10,20]" [responsive]="true">
-                                    <ng-template pTemplate="header" let-columns>
-                                        <tr>
-                                            <th style="width: 35%; text-align: center;">DESCRIPCIÓN</th>
-                                            <th rowspan="2" style="width: 22%; text-align: center;">OPCIONES
-                                            </th>
-                                        </tr>
-                                        <tr>
-                                            <th *ngFor="let col of columns" [ngSwitch]="col.field">
-                                                <input matInput *ngSwitchCase="'descripcionetnia'" pInputText type="text"
-                                                    placeholder="Descripcion" class="ui-column-filter" style="width: 100%;"
-                                                    (input)="dt.filter($event.target.value, col.field, 'contains')">
-                                            </th>
-                                        </tr>
-                                    </ng-template>
-                                    <ng-template pTemplate="body" let-rowData let-columns="columns">
-                                        <tr [pSelectableRow]="rowData" [pEditableRow]="rowData">
-                                            <td style="text-align: center;"><strong>{{rowData.descripcionetnia}}</strong>
-                                            </td>
-                                            <td style="text-align: center;">
-                                                <button class="btn btn-info btn-sm btn-round" pTooltip="Editar"
-                                                    tooltipPosition="top"
-                                                    (click)="editar(rowData.idetnia)">
-                                                   Editar
-                                                </button>
-                                                <button (click)="eliminarEtnia(rowData.idetnia)"
-                                                    class="btn btn-danger btn-sm float-end  btn-round">Eliminar</button>
-
-                                            </td>
-                                        </tr>
-                                    </ng-template>
-                                </p-table>    
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class=" col-md-6">
-                <div class=" card card-plain">
-                    <div class=" card-header-primary">
-                        <h1 class=" card-title text-center"><i class="material-icons" style="float:right;">face</i>GENEROS </h1>
-                    </div>
-                    <div *ngIf="showbuttongeneros">
-                        <div class="card-header">
-                            <button class="btn btn-info pull-right" (click)="mostrarGeneros()">Mostrar
-                                Generos</button>
-                        </div>
-                    </div>
-                    <div *ngIf="addnewgenero">
-                        <div class="card-header">
-                            <button class="btn btn-secondary pull-right" (click)="addG()">Añadir
-                                Genero</button>
-                            </div>
-                        </div>
-                    <div class=" card-body">
-                        <div *ngIf="showgeneros">
-                                <p-table #dt styleClass="ui-table-formularios" [columns]="cols2" [value]="formData2"
-                                    [paginator]="true" [rows]="5" selectionMode="single"
-                                    [rowsPerPageOptions]="[5,10,20]" [responsive]="true">
-                                    <ng-template pTemplate="header" let-columns>
-                                        <tr>
-                                            <th style="width: 35%; text-align: center;">DESCRIPCIÓN</th>
-                                            <th rowspan="2" style="width: 22%; text-align: center;">OPCIONES
-                                            </th>
-                                        </tr>
-                                        <tr>
-                                            <th *ngFor="let col of columns" [ngSwitch]="col.field">
-                                                <input matInput *ngSwitchCase="'descripciongenero'" pInputText type="text"
-                                                    placeholder="Descripcion" class="ui-column-filter" style="width: 100%;"
-                                                    (input)="dt.filter($event.target.value, col.field, 'contains')">
-                                            </th>
-                                        </tr>
-                                    </ng-template>
-                                    <ng-template pTemplate="body" let-rowData let-columns="columns">
-                                        <tr [pSelectableRow]="rowData" [pEditableRow]="rowData">
-                                            <td style="text-align: center;"><strong>{{rowData.descripciongenero}}</strong>
-                                            </td>
-                                            <td style="text-align: center;">
-                                                <button class="btn btn-info btn-sm btn-round" pTooltip="Ver"
-                                                    tooltipPosition="top"
-                                                    (click)="editarGenero(rowData.idgenero)">
-                                                  Editar
-                                                </button>
-                                                <button (click)="eliminarGenero(rowData.idgenero)"
-                                                    class="btn btn-danger btn-sm float-end  btn-round">Eliminar</button>
-
-                                            </td>
-                                        </tr>
-                                    </ng-template>
-                                </p-table>    
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class=" col-md-6">
-                <div class=" card card-plain">
-                    <div class=" card-header-primary">
-                        <h1 class=" card-title text-center"><i class="material-icons" style="float:right;">public</i>NACIONALIDADES </h1>
-                    </div>
-                    <div *ngIf="showbuttonnacionalidades">
-                        <div class="card-header">
-                            <button class="btn btn-secondary float-end" (click)="mostrarNacionalidades()">Mostrar
-                                Nacionalidades</button>
-                        </div>
-                    </div>
-                    <div *ngIf="addnewnacionalidad">
-                        <div class="card-header">
-                            <button class="btn btn-secondary pull-right" (click)="addN()">Añadir
-                                Nacionalidad</button>
-                            </div>
-                        </div>
-                    <div class=" card-body">
-                        <div *ngIf="shownacionalidades">
-                                <p-table #dt styleClass="ui-table-formularios" [columns]="cols3" [value]="formData3"
-                                    [paginator]="true" [rows]="5" selectionMode="single"
-                                    [rowsPerPageOptions]="[5,10,20]" [responsive]="true">
-                                    <ng-template pTemplate="header" let-columns>
-                                        <tr>
-                                            <th style="width: 35%; text-align: center;">DESCRIPCIÓN</th>
-                                            <th rowspan="2" style="width: 22%; text-align: center;">OPCIONES
-                                            </th>
-                                        </tr>
-                                        <tr>
-                                            <th *ngFor="let col of columns" [ngSwitch]="col.field">
-                                                <input matInput *ngSwitchCase="'descripcionnacionalidad'" pInputText type="text"
-                                                    placeholder="Descripcion" class="ui-column-filter" style="width: 100%;"
-                                                    (input)="dt.filter($event.target.value, col.field, 'contains')">
-                                            </th>
-                                        </tr>
-                                    </ng-template>
-                                    <ng-template pTemplate="body" let-rowData let-columns="columns">
-                                        <tr [pSelectableRow]="rowData" [pEditableRow]="rowData">
-                                            <td style="text-align: center;"><strong>{{rowData.descripcionnacionalidad}}</strong>
-                                            </td>
-                                            <td style="text-align: center;">
-                                                <button class="btn btn-info btn-sm btn-round" pTooltip="Ver"
-                                                    tooltipPosition="top"
-                                                    (click)="editarNacionalidad(rowData.idnacionalidad)">
-                                                  Editar
-                                                </button>
-                                                <button (click)="eliminarNacionalidad(rowData.idnacionalidad)"
-                                                    class="btn btn-danger btn-sm float-end  btn-round">Eliminar</button>
-
-                                            </td>
-                                        </tr>
-                                    </ng-template>
-                                </p-table>    
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class=" col-md-6">
-                <div class=" card card-plain">
-                    <div class=" card-header-primary">
-                        <h1 class=" card-title text-center"><i class="material-icons" style="float:right;">emoji_nature</i>MODALIDADES </h1>
-                    </div>
-                    <div *ngIf="showbuttonmodalidades">
-                        <div class="card-header">
-                            <button class="btn btn-warning pull-right" (click)="mostrarModalidades()">Mostrar
-                                Modalidades</button>
-                        </div>
-                    </div>
-                        <div *ngIf="addnewmodalidad">
-                            <div class="card-header">
-                                <button class="btn btn-secondary pull-right" (click)="addM()">Añadir
-                                    Modalidad</button>
-                                </div>
-                            </div>
-                    <div class=" card-body">
-                        <div *ngIf="showmodalidades">
-                                <p-table #dt styleClass="ui-table-formularios" [columns]="cols4" [value]="formData4"
-                                    [paginator]="true" [rows]="5" selectionMode="single"
-                                    [rowsPerPageOptions]="[5,10,20]" [responsive]="true">
-                                    <ng-template pTemplate="header" let-columns>
-                                        <tr>
-                                            <th style="width: 35%; text-align: center;">DESCRIPCIÓN</th>
-                                            <th rowspan="2" style="width: 22%; text-align: center;">OPCIONES
-                                            </th>
-                                        </tr>
-                                        <tr>
-                                            <th *ngFor="let col of columns" [ngSwitch]="col.field">
-                                                <input matInput *ngSwitchCase="'descripcionmodalidad'" pInputText type="text"
-                                                    placeholder="Descripcion" class="ui-column-filter" style="width: 100%;"
-                                                    (input)="dt.filter($event.target.value, col.field, 'contains')">
-                                            </th>
-                                        </tr>
-                                    </ng-template>
-                                    <ng-template pTemplate="body" let-rowData let-columns="columns">
-                                        <tr [pSelectableRow]="rowData" [pEditableRow]="rowData">
-                                            <td style="text-align: center;"><strong>{{rowData.descripcionmodalidad}}</strong>
-                                            </td>
-                                            <td style="text-align: center;">
-                                                <button class="btn btn-info btn-sm btn-round" pTooltip="Ver"
-                                                    tooltipPosition="top"
-                                                    (click)="editarModalidad(rowData.idmodalidad)">
-                                                  Editar
-                                                </button>
-                                                <button (click)="eliminarModalidad(rowData.idmodalidad)"
-                                                    class="btn btn-danger btn-sm float-end  btn-round">Eliminar</button>
-
-                                            </td>
-                                        </tr>
-                                    </ng-template>
-                                </p-table>    
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class=" col-md-6">
-                <div class=" card card-plain">
-                    <div class=" card-header-primary">
-                        <h1 class=" card-title text-center"><i class="material-icons" style="float:right;">history_edu</i>MOTIVOS DE INGRESO </h1>
-                    </div>
-                    <div *ngIf="showbutton">
-                        <div class="card-header">
-                            <button class="btn btn-primary float-end" (click)="mostrarEtnias()">Mostrar
-                                Etnias</button>
-                        </div>
-                    </div>
-                    <div class=" card-body">
-                        <div *ngIf="show">
-                                <p-table #dt styleClass="ui-table-formularios" [columns]="cols" [value]="formData"
-                                    [paginator]="true" [rows]="5" selectionMode="single"
-                                    [rowsPerPageOptions]="[5,10,20]" [responsive]="true">
-                                    <ng-template pTemplate="header" let-columns>
-                                        <tr>
-                                            <th style="width: 35%; text-align: center;">DESCRIPCIÓN</th>
-                                            <th rowspan="2" style="width: 22%; text-align: center;">OPCIONES
-                                            </th>
-                                        </tr>
-                                        <tr>
-                                            <th *ngFor="let col of columns" [ngSwitch]="col.field">
-                                                <input matInput *ngSwitchCase="'descripcionetnia'" pInputText type="text"
-                                                    placeholder="Descripcion" class="ui-column-filter" style="width: 100%;"
-                                                    (input)="dt.filter($event.target.value, col.field, 'contains')">
-                                            </th>
-                                        </tr>
-                                    </ng-template>
-                                    <ng-template pTemplate="body" let-rowData let-columns="columns">
-                                        <tr [pSelectableRow]="rowData" [pEditableRow]="rowData">
-                                            <td style="text-align: center;"><strong>{{rowData.descripcionetnia}}</strong>
-                                            </td>
-                                            <td style="text-align: center;">
-                                                <button class="btn btn-info btn-sm btn-round" pTooltip="Ver"
-                                                    tooltipPosition="top"
-                                                    (click)="abrir_modalBuscar(rowData.idpersona)">
-                                                  Mostrar Historial
-                                                </button>
-                                                <button (click)="addnew(rowData.idpersona)"
-                                                    class="btn btn-primary btn-sm float-end  btn-round">Añadir</button>
-
-                                            </td>
-                                        </tr>
-                                    </ng-template>
-                                </p-table>    
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class=" col-md-6">
-                <div class=" card card-plain">
-                    <div class=" card-header-primary">
-                        <h1 class=" card-title text-center"><i class="material-icons" style="float:right;">reduce_capacity</i>ORGANIZACIONES </h1>
-                    </div>
-                    <div *ngIf="showbutton">
-                        <div class="card-header">
-                            <button class="btn btn-primary pull-right" (click)="mostrarEtnias()">Mostrar
-                                Etnias</button>
-                        </div>
-                    </div>
-                    <div class=" card-body">
-                        <div *ngIf="show">
-                                <p-table #dt styleClass="ui-table-formularios" [columns]="cols" [value]="formData"
-                                    [paginator]="true" [rows]="5" selectionMode="single"
-                                    [rowsPerPageOptions]="[5,10,20]" [responsive]="true">
-                                    <ng-template pTemplate="header" let-columns>
-                                        <tr>
-                                            <th style="width: 35%; text-align: center;">DESCRIPCIÓN</th>
-                                            <th rowspan="2" style="width: 22%; text-align: center;">OPCIONES
-                                            </th>
-                                        </tr>
-                                        <tr>
-                                            <th *ngFor="let col of columns" [ngSwitch]="col.field">
-                                                <input matInput *ngSwitchCase="'descripcionetnia'" pInputText type="text"
-                                                    placeholder="Descripcion" class="ui-column-filter" style="width: 100%;"
-                                                    (input)="dt.filter($event.target.value, col.field, 'contains')">
-                                            </th>
-                                        </tr>
-                                    </ng-template>
-                                    <ng-template pTemplate="body" let-rowData let-columns="columns">
-                                        <tr [pSelectableRow]="rowData" [pEditableRow]="rowData">
-                                            <td style="text-align: center;"><strong>{{rowData.descripcionetnia}}</strong>
-                                            </td>
-                                            <td style="text-align: center;">
-                                                <button class="btn btn-info btn-sm btn-round" pTooltip="Ver"
-                                                    tooltipPosition="top"
-                                                    (click)="abrir_modalBuscar(rowData.idpersona)">
-                                                  Mostrar Historial
-                                                </button>
-                                                <button (click)="addnew(rowData.idpersona)"
-                                                    class="btn btn-primary btn-sm float-end  btn-round">Añadir</button>
-
-                                            </td>
-                                        </tr>
-                                    </ng-template>
-                                </p-table>    
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class=" col-md-6">
-                <div class=" card card-plain">
-                    <div class=" card-header-primary">
-                        <h1 class=" card-title text-center"><i class="material-icons" style="float:right;">contacts</i>FAMILIARES </h1>
-                    </div>
-                    <div *ngIf="showbutton">
-                        <div class="card-header">
-                            <button class="btn btn-primary float-end" (click)="mostrarEtnias()">Mostrar
-                                Etnias</button>
-                        </div>
-                    </div>
-                    <div class=" card-body">
-                        <div *ngIf="show">
-                                <p-table #dt styleClass="ui-table-formularios" [columns]="cols" [value]="formData"
-                                    [paginator]="true" [rows]="5" selectionMode="single"
-                                    [rowsPerPageOptions]="[5,10,20]" [responsive]="true">
-                                    <ng-template pTemplate="header" let-columns>
-                                        <tr>
-                                            <th style="width: 35%; text-align: center;">DESCRIPCIÓN</th>
-                                            <th rowspan="2" style="width: 22%; text-align: center;">OPCIONES
-                                            </th>
-                                        </tr>
-                                        <tr>
-                                            <th *ngFor="let col of columns" [ngSwitch]="col.field">
-                                                <input matInput *ngSwitchCase="'descripcionetnia'" pInputText type="text"
-                                                    placeholder="Descripcion" class="ui-column-filter" style="width: 100%;"
-                                                    (input)="dt.filter($event.target.value, col.field, 'contains')">
-                                            </th>
-                                        </tr>
-                                    </ng-template>
-                                    <ng-template pTemplate="body" let-rowData let-columns="columns">
-                                        <tr [pSelectableRow]="rowData" [pEditableRow]="rowData">
-                                            <td style="text-align: center;"><strong>{{rowData.descripcionetnia}}</strong>
-                                            </td>
-                                            <td style="text-align: center;">
-                                                <button class="btn btn-info btn-sm btn-round" pTooltip="Ver"
-                                                    tooltipPosition="top"
-                                                    (click)="abrir_modalBuscar(rowData.idpersona)">
-                                                  Mostrar Historial
-                                                </button>
-                                                <button (click)="addnew(rowData.idpersona)"
-                                                    class="btn btn-primary btn-sm float-end  btn-round">Añadir</button>
-
-                                            </td>
-                                        </tr>
-                                    </ng-template>
-                                </p-table>    
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class=" col-md-6">
-                <div class=" card card-plain">
-                    <div class=" card-header-primary">
-                        <h1 class=" card-title text-center"><i class="material-icons" style="float:right;">volunteer_activism</i>MEDIDAS </h1>
-                    </div>
-                    <div *ngIf="showbutton">
-                        <div class="card-header">
-                            <button class="btn btn-primary pull-right" (click)="mostrarEtnias()">Mostrar
-                                Etnias</button>
-                        </div>
-                    </div>
-                    <div class=" card-body">
-                        <div *ngIf="show">
-                                <p-table #dt styleClass="ui-table-formularios" [columns]="cols" [value]="formData"
-                                    [paginator]="true" [rows]="5" selectionMode="single"
-                                    [rowsPerPageOptions]="[5,10,20]" [responsive]="true">
-                                    <ng-template pTemplate="header" let-columns>
-                                        <tr>
-                                            <th style="width: 35%; text-align: center;">DESCRIPCIÓN</th>
-                                            <th rowspan="2" style="width: 22%; text-align: center;">OPCIONES
-                                            </th>
-                                        </tr>
-                                        <tr>
-                                            <th *ngFor="let col of columns" [ngSwitch]="col.field">
-                                                <input matInput *ngSwitchCase="'descripcionetnia'" pInputText type="text"
-                                                    placeholder="Descripcion" class="ui-column-filter" style="width: 100%;"
-                                                    (input)="dt.filter($event.target.value, col.field, 'contains')">
-                                            </th>
-                                        </tr>
-                                    </ng-template>
-                                    <ng-template pTemplate="body" let-rowData let-columns="columns">
-                                        <tr [pSelectableRow]="rowData" [pEditableRow]="rowData">
-                                            <td style="text-align: center;"><strong>{{rowData.descripcionetnia}}</strong>
-                                            </td>
-                                            <td style="text-align: center;">
-                                                <button class="btn btn-info btn-sm btn-round" pTooltip="Ver"
-                                                    tooltipPosition="top"
-                                                    (click)="abrir_modalBuscar(rowData.idpersona)">
-                                                  Mostrar Historial
-                                                </button>
-                                                <button (click)="addnew(rowData.idpersona)"
-                                                    class="btn btn-primary btn-sm float-end  btn-round">Añadir</button>
-
-                                            </td>
-                                        </tr>
-                                    </ng-template>
-                                </p-table>    
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class=" col-md-6">
-                <div class=" card card-plain">
-                    <div class=" card-header-primary">
-                        <h1 class=" card-title text-center"><i class="material-icons" style="float:right;">folder_shared</i>NUDOS CRITICOS </h1>
-                    </div>
-                    <div *ngIf="showbutton">
-                        <div class="card-header">
-                            <button class="btn btn-primary float-end" (click)="mostrarEtnias()">Mostrar
-                                Etnias</button>
-                        </div>
-                    </div>
-                    <div class=" card-body">
-                        <div *ngIf="show">
-                                <p-table #dt styleClass="ui-table-formularios" [columns]="cols" [value]="formData"
-                                    [paginator]="true" [rows]="5" selectionMode="single"
-                                    [rowsPerPageOptions]="[5,10,20]" [responsive]="true">
-                                    <ng-template pTemplate="header" let-columns>
-                                        <tr>
-                                            <th style="width: 35%; text-align: center;">DESCRIPCIÓN</th>
-                                            <th rowspan="2" style="width: 22%; text-align: center;">OPCIONES
-                                            </th>
-                                        </tr>
-                                        <tr>
-                                            <th *ngFor="let col of columns" [ngSwitch]="col.field">
-                                                <input matInput *ngSwitchCase="'descripcionetnia'" pInputText type="text"
-                                                    placeholder="Descripcion" class="ui-column-filter" style="width: 100%;"
-                                                    (input)="dt.filter($event.target.value, col.field, 'contains')">
-                                            </th>
-                                        </tr>
-                                    </ng-template>
-                                    <ng-template pTemplate="body" let-rowData let-columns="columns">
-                                        <tr [pSelectableRow]="rowData" [pEditableRow]="rowData">
-                                            <td style="text-align: center;"><strong>{{rowData.descripcionetnia}}</strong>
-                                            </td>
-                                            <td style="text-align: center;">
-                                                <button class="btn btn-info btn-sm btn-round" pTooltip="Ver"
-                                                    tooltipPosition="top"
-                                                    (click)="abrir_modalBuscar(rowData.idpersona)">
-                                                  Mostrar Historial
-                                                </button>
-                                                <button (click)="addnew(rowData.idpersona)"
-                                                    class="btn btn-primary btn-sm float-end  btn-round">Añadir</button>
-
-                                            </td>
-                                        </tr>
-                                    </ng-template>
-                                </p-table>    
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+  <div class=" container-fluid">
+    <div class=" card-header bg-warning">
+      <h1 class=" card-title text-white text-center"><i class="material-icons" style="float:right;">apps</i>
+        OPCIONES </h1>
     </div>
+    <br>
+    <div class=" row">
+      <div class=" col-md-6">
+        <div class=" card card-plain">
+          <div class=" card-header-primary">
+            <h1 class=" card-title text-center"><i class="material-icons" style="float:right;">travel_explore</i> ETNIAS
+            </h1>
+          </div>
+          <div *ngIf="showbutton">
+            <div class="card-header">
+              <button class="btn btn-primary float-end" (click)="mostrarEtnias()">Mostrar
+                Etnias</button>
+            </div>
+          </div>
+          <div *ngIf="addnewetnia">
+            <div class="card-header">
+              <button class="btn btn-secondary pull-right" (click)="addE()">Añadir
+                Etnia</button>
+            </div>
+          </div>
+          <div class=" card-body">
+            <div *ngIf="show">
+              <p-table #dt styleClass="ui-table-formularios" [columns]="cols" [value]="formData" [paginator]="true"
+                [rows]="5" selectionMode="single" [rowsPerPageOptions]="[5,10,20]" [responsive]="true">
+                <ng-template pTemplate="header" let-columns>
+                  <tr>
+                    <th style="width: 35%; text-align: center;">DESCRIPCIÓN</th>
+                    <th rowspan="2" style="width: 22%; text-align: center;">OPCIONES
+                    </th>
+                  </tr>
+                  <tr>
+                    <th *ngFor="let col of columns" [ngSwitch]="col.field">
+                      <input matInput *ngSwitchCase="'descripcionetnia'" pInputText type="text"
+                        placeholder="Descripcion" class="ui-column-filter" style="width: 100%;"
+                        (input)="dt.filter($event.target.value, col.field, 'contains')">
+                    </th>
+                  </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-rowData let-columns="columns">
+                  <tr [pSelectableRow]="rowData" [pEditableRow]="rowData">
+                    <td style="text-align: center;"><strong>{{rowData.descripcionetnia}}</strong>
+                    </td>
+                    <td style="text-align: center;">
+                      <button class="btn btn-info btn-sm btn-round" pTooltip="Editar" tooltipPosition="top"
+                        (click)="editar(rowData.idetnia)">
+                        Editar
+                      </button>
+                      <button (click)="eliminarEtnia(rowData.idetnia)"
+                        class="btn btn-danger btn-sm float-end  btn-round">Eliminar</button>
+
+                    </td>
+                  </tr>
+                </ng-template>
+              </p-table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class=" col-md-6">
+        <div class=" card card-plain">
+          <div class=" card-header-primary">
+            <h1 class=" card-title text-center"><i class="material-icons" style="float:right;">face</i>GENEROS </h1>
+          </div>
+          <div *ngIf="showbuttongeneros">
+            <div class="card-header">
+              <button class="btn btn-info pull-right" (click)="mostrarGeneros()">Mostrar
+                Generos</button>
+            </div>
+          </div>
+          <div *ngIf="addnewgenero">
+            <div class="card-header">
+              <button class="btn btn-secondary pull-right" (click)="addG()">Añadir
+                Genero</button>
+            </div>
+          </div>
+          <div class=" card-body">
+            <div *ngIf="showgeneros">
+              <p-table #dt styleClass="ui-table-formularios" [columns]="cols2" [value]="formData2" [paginator]="true"
+                [rows]="5" selectionMode="single" [rowsPerPageOptions]="[5,10,20]" [responsive]="true">
+                <ng-template pTemplate="header" let-columns>
+                  <tr>
+                    <th style="width: 35%; text-align: center;">DESCRIPCIÓN</th>
+                    <th rowspan="2" style="width: 22%; text-align: center;">OPCIONES
+                    </th>
+                  </tr>
+                  <tr>
+                    <th *ngFor="let col of columns" [ngSwitch]="col.field">
+                      <input matInput *ngSwitchCase="'descripciongenero'" pInputText type="text"
+                        placeholder="Descripcion" class="ui-column-filter" style="width: 100%;"
+                        (input)="dt.filter($event.target.value, col.field, 'contains')">
+                    </th>
+                  </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-rowData let-columns="columns">
+                  <tr [pSelectableRow]="rowData" [pEditableRow]="rowData">
+                    <td style="text-align: center;"><strong>{{rowData.descripciongenero}}</strong>
+                    </td>
+                    <td style="text-align: center;">
+                      <button class="btn btn-info btn-sm btn-round" pTooltip="Ver" tooltipPosition="top"
+                        (click)="editarGenero(rowData.idgenero)">
+                        Editar
+                      </button>
+                      <button (click)="eliminarGenero(rowData.idgenero)"
+                        class="btn btn-danger btn-sm float-end  btn-round">Eliminar</button>
+
+                    </td>
+                  </tr>
+                </ng-template>
+              </p-table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class=" col-md-6">
+        <div class=" card card-plain">
+          <div class=" card-header-primary">
+            <h1 class=" card-title text-center"><i class="material-icons" style="float:right;">public</i>NACIONALIDADES
+            </h1>
+          </div>
+          <div *ngIf="showbuttonnacionalidades">
+            <div class="card-header">
+              <button class="btn btn-secondary float-end" (click)="mostrarNacionalidades()">Mostrar
+                Nacionalidades</button>
+            </div>
+          </div>
+          <div *ngIf="addnewnacionalidad">
+            <div class="card-header">
+              <button class="btn btn-secondary pull-right" (click)="addN()">Añadir
+                Nacionalidad</button>
+            </div>
+          </div>
+          <div class=" card-body">
+            <div *ngIf="shownacionalidades">
+              <p-table #dt styleClass="ui-table-formularios" [columns]="cols3" [value]="formData3" [paginator]="true"
+                [rows]="5" selectionMode="single" [rowsPerPageOptions]="[5,10,20]" [responsive]="true">
+                <ng-template pTemplate="header" let-columns>
+                  <tr>
+                    <th style="width: 35%; text-align: center;">DESCRIPCIÓN</th>
+                    <th rowspan="2" style="width: 22%; text-align: center;">OPCIONES
+                    </th>
+                  </tr>
+                  <tr>
+                    <th *ngFor="let col of columns" [ngSwitch]="col.field">
+                      <input matInput *ngSwitchCase="'descripcionnacionalidad'" pInputText type="text"
+                        placeholder="Descripcion" class="ui-column-filter" style="width: 100%;"
+                        (input)="dt.filter($event.target.value, col.field, 'contains')">
+                    </th>
+                  </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-rowData let-columns="columns">
+                  <tr [pSelectableRow]="rowData" [pEditableRow]="rowData">
+                    <td style="text-align: center;"><strong>{{rowData.descripcionnacionalidad}}</strong>
+                    </td>
+                    <td style="text-align: center;">
+                      <button class="btn btn-info btn-sm btn-round" pTooltip="Ver" tooltipPosition="top"
+                        (click)="editarNacionalidad(rowData.idnacionalidad)">
+                        Editar
+                      </button>
+                      <button (click)="eliminarNacionalidad(rowData.idnacionalidad)"
+                        class="btn btn-danger btn-sm float-end  btn-round">Eliminar</button>
+
+                    </td>
+                  </tr>
+                </ng-template>
+              </p-table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class=" col-md-6">
+        <div class=" card card-plain">
+          <div class=" card-header-primary">
+            <h1 class=" card-title text-center"><i class="material-icons"
+                style="float:right;">emoji_nature</i>MODALIDADES </h1>
+          </div>
+          <div *ngIf="showbuttonmodalidades">
+            <div class="card-header">
+              <button class="btn btn-warning pull-right" (click)="mostrarModalidades()">Mostrar
+                Modalidades</button>
+            </div>
+          </div>
+          <div *ngIf="addnewmodalidad">
+            <div class="card-header">
+              <button class="btn btn-secondary pull-right" (click)="addM()">Añadir
+                Modalidad</button>
+            </div>
+          </div>
+          <div class=" card-body">
+            <div *ngIf="showmodalidades">
+              <p-table #dt styleClass="ui-table-formularios" [columns]="cols4" [value]="formData4" [paginator]="true"
+                [rows]="5" selectionMode="single" [rowsPerPageOptions]="[5,10,20]" [responsive]="true">
+                <ng-template pTemplate="header" let-columns>
+                  <tr>
+                    <th style="width: 35%; text-align: center;">DESCRIPCIÓN</th>
+                    <th rowspan="2" style="width: 22%; text-align: center;">OPCIONES
+                    </th>
+                  </tr>
+                  <tr>
+                    <th *ngFor="let col of columns" [ngSwitch]="col.field">
+                      <input matInput *ngSwitchCase="'descripcionmodalidad'" pInputText type="text"
+                        placeholder="Descripcion" class="ui-column-filter" style="width: 100%;"
+                        (input)="dt.filter($event.target.value, col.field, 'contains')">
+                    </th>
+                  </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-rowData let-columns="columns">
+                  <tr [pSelectableRow]="rowData" [pEditableRow]="rowData">
+                    <td style="text-align: center;"><strong>{{rowData.descripcionmodalidad}}</strong>
+                    </td>
+                    <td style="text-align: center;">
+                      <button class="btn btn-info btn-sm btn-round" pTooltip="Ver" tooltipPosition="top"
+                        (click)="editarModalidad(rowData.idmodalidad)">
+                        Editar
+                      </button>
+                      <button (click)="eliminarModalidad(rowData.idmodalidad)"
+                        class="btn btn-danger btn-sm float-end  btn-round">Eliminar</button>
+
+                    </td>
+                  </tr>
+                </ng-template>
+              </p-table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class=" col-md-6">
+        <div class=" card card-plain">
+          <div class=" card-header-primary">
+            <h1 class=" card-title text-center"><i class="material-icons" style="float:right;">history_edu</i>MOTIVOS DE
+              INGRESO </h1>
+          </div>
+          <div *ngIf="showbuttonmotivos">
+            <div class="card-header">
+              <button class="btn btn-info float-end" (click)="mostrarMotivos()">Mostrar
+                Motivos</button>
+            </div>
+          </div>
+          <div *ngIf="addnewmotivo">
+            <div class="card-header">
+              <button class="btn btn-secondary pull-right" (click)="addMo()">Añadir
+                Motivo</button>
+            </div>
+          </div>
+          <div class=" card-body">
+            <div *ngIf="showmotivos">
+              <p-table #dt styleClass="ui-table-formularios" [columns]="cols5" [value]="formData5" [paginator]="true"
+                [rows]="5" selectionMode="single" [rowsPerPageOptions]="[5,10,20]" [responsive]="true">
+                <ng-template pTemplate="header" let-columns>
+                  <tr>
+                    <th style="width: 35%; text-align: center;">DESCRIPCIÓN</th>
+                    <th rowspan="2" style="width: 22%; text-align: center;">OPCIONES
+                    </th>
+                  </tr>
+                  <tr>
+                    <th *ngFor="let col of columns" [ngSwitch]="col.field">
+                      <input matInput *ngSwitchCase="'descripcionmotivoingreso'" pInputText type="text"
+                        placeholder="Descripcion" class="ui-column-filter" style="width: 100%;"
+                        (input)="dt.filter($event.target.value, col.field, 'contains')">
+                    </th>
+                  </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-rowData let-columns="columns">
+                  <tr [pSelectableRow]="rowData" [pEditableRow]="rowData">
+                    <td style="text-align: center;"><strong>{{rowData.descripcionmotivoingreso}}</strong>
+                    </td>
+                    <td style="text-align: center;">
+                      <button class="btn btn-info btn-sm btn-round" pTooltip="Ver" tooltipPosition="top"
+                        (click)="editarMotivo(rowData.idmotivoingreso)">
+                        Editar
+                      </button>
+                      <button (click)="eliminarMotivo(rowData.idmotivoingreso)"
+                        class="btn btn-danger btn-sm float-end  btn-round">Eliminar</button>
+
+                    </td>
+                  </tr>
+                </ng-template>
+              </p-table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class=" col-md-6">
+        <div class=" card card-plain">
+          <div class=" card-header-primary">
+            <h1 class=" card-title text-center"><i class="material-icons"
+                style="float:right;">reduce_capacity</i>ORGANIZACIONES </h1>
+          </div>
+          <div *ngIf="showbuttonorganizaciones">
+            <div class="card-header">
+              <button class="btn btn-primary pull-right" (click)="mostrarOrganizaciones()">Mostrar
+                Organizaciones</button>
+            </div>
+          </div>
+          <div *ngIf="addneworganizacion">
+            <div class="card-header">
+              <button class="btn btn-secondary pull-right" (click)="addO()">Añadir
+                Organización</button>
+            </div>
+          </div>
+          <div class=" card-body">
+            <div *ngIf="showorganizaciones">
+              <p-table #dt styleClass="ui-table-formularios" [columns]="cols6" [value]="formData6" [paginator]="true"
+                [rows]="5" selectionMode="single" [rowsPerPageOptions]="[5,10,20]" [responsive]="true">
+                <ng-template pTemplate="header" let-columns>
+                  <tr>
+                    <th style="width: 35%; text-align: center;">DESCRIPCIÓN</th>
+                    <th rowspan="2" style="width: 22%; text-align: center;">OPCIONES
+                    </th>
+                  </tr>
+                  <tr>
+                    <th *ngFor="let col of columns" [ngSwitch]="col.field">
+                      <input matInput *ngSwitchCase="'descripcionorganizacion'" pInputText type="text"
+                        placeholder="Descripcion" class="ui-column-filter" style="width: 100%;"
+                        (input)="dt.filter($event.target.value, col.field, 'contains')">
+                    </th>
+                  </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-rowData let-columns="columns">
+                  <tr [pSelectableRow]="rowData" [pEditableRow]="rowData">
+                    <td style="text-align: center;"><strong>{{rowData.descripcionorganizacion}}</strong>
+                    </td>
+                    <td style="text-align: center;">
+                      <button class="btn btn-info btn-sm btn-round" pTooltip="Ver" tooltipPosition="top"
+                        (click)="editarOrganizacion(rowData.idorganizacion)">
+                        Editar
+                      </button>
+                      <button (click)="eliminarOrganizacion(rowData.idorganizacion)"
+                        class="btn btn-danger btn-sm float-end  btn-round">Eliminar</button>
+
+                    </td>
+                  </tr>
+                </ng-template>
+              </p-table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class=" col-md-6">
+        <div class=" card card-plain">
+          <div class=" card-header-primary">
+            <h1 class=" card-title text-center"><i class="material-icons" style="float:right;">contacts</i>FAMILIARES
+            </h1>
+          </div>
+          <div *ngIf="showbuttonfamiliares">
+            <div class="card-header">
+              <button class="btn btn-primary float-end" (click)="mostrarFamiliares()">Mostrar
+                Familiares</button>
+            </div>
+          </div>
+          <div *ngIf="addnewfamiliar">
+            <div class="card-header">
+              <button class="btn btn-secondary pull-right" (click)="addF()">Añadir
+                Familiares</button>
+            </div>
+          </div>
+          <div class=" card-body">
+            <div *ngIf="showfamiliares">
+              <p-table #dt styleClass="ui-table-formularios" [columns]="cols7" [value]="formData7" [paginator]="true"
+                [rows]="5" selectionMode="single" [rowsPerPageOptions]="[5,10,20]" [responsive]="true">
+                <ng-template pTemplate="header" let-columns>
+                  <tr>
+                    <th style="width: 35%; text-align: center;">DESCRIPCIÓN</th>
+                    <th rowspan="2" style="width: 22%; text-align: center;">OPCIONES
+                    </th>
+                  </tr>
+                  <tr>
+                    <th *ngFor="let col of columns" [ngSwitch]="col.field">
+                      <input matInput *ngSwitchCase="'descripcionfamiliarreferente'" pInputText type="text"
+                        placeholder="Descripcion" class="ui-column-filter" style="width: 100%;"
+                        (input)="dt.filter($event.target.value, col.field, 'contains')">
+                    </th>
+                  </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-rowData let-columns="columns">
+                  <tr [pSelectableRow]="rowData" [pEditableRow]="rowData">
+                    <td style="text-align: center;"><strong>{{rowData.descripcionfamiliarreferente}}</strong>
+                    </td>
+                    <td style="text-align: center;">
+                      <button class="btn btn-info btn-sm btn-round" pTooltip="Ver" tooltipPosition="top"
+                        (click)="editarFamiliar(rowData.idfamiliarreferente)">
+                        Editar
+                      </button>
+                      <button (click)="eliminarFamiliar(rowData.idfamiliarreferente)"
+                        class="btn btn-danger btn-sm float-end  btn-round">Eliminar</button>
+
+                    </td>
+                  </tr>
+                </ng-template>
+              </p-table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class=" col-md-6">
+        <div class=" card card-plain">
+          <div class=" card-header-primary">
+            <h1 class=" card-title text-center"><i class="material-icons"
+                style="float:right;">volunteer_activism</i>MEDIDAS </h1>
+          </div>
+          <div *ngIf="showbuttonmedidas">
+            <div class="card-header">
+              <button class="btn btn-secondary pull-right" (click)="mostrarMedidas()">Mostrar
+                Medidas</button>
+            </div>
+          </div>
+          <div *ngIf="addnewmedida">
+            <div class="card-header">
+              <button class="btn btn-secondary pull-right" (click)="addMe()">Añadir
+                Medidas</button>
+            </div>
+          </div>
+          <div class=" card-body">
+            <div *ngIf="showmedidas">
+              <p-table #dt styleClass="ui-table-formularios" [columns]="cols8" [value]="formData8" [paginator]="true"
+                [rows]="5" selectionMode="single" [rowsPerPageOptions]="[5,10,20]" [responsive]="true">
+                <ng-template pTemplate="header" let-columns>
+                  <tr>
+                    <th style="width: 35%; text-align: center;">DESCRIPCIÓN</th>
+                    <th rowspan="2" style="width: 22%; text-align: center;">OPCIONES
+                    </th>
+                  </tr>
+                  <tr>
+                    <th *ngFor="let col of columns" [ngSwitch]="col.field">
+                      <input matInput *ngSwitchCase="'descripcionmedida'" pInputText type="text"
+                        placeholder="Descripcion" class="ui-column-filter" style="width: 100%;"
+                        (input)="dt.filter($event.target.value, col.field, 'contains')">
+                    </th>
+                  </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-rowData let-columns="columns">
+                  <tr [pSelectableRow]="rowData" [pEditableRow]="rowData">
+                    <td style="text-align: center;"><strong>{{rowData.descripcionmedida}}</strong>
+                    </td>
+                    <td style="text-align: center;">
+                      <button class="btn btn-info btn-sm btn-round" pTooltip="Ver" tooltipPosition="top"
+                        (click)="editarMedida(rowData.idmedida)">
+                        Editar
+                      </button>
+                      <button (click)="eliminarMedida(rowData.idmedida)"
+                        class="btn btn-danger btn-sm float-end  btn-round">Eliminar</button>
+
+                    </td>
+                  </tr>
+                </ng-template>
+              </p-table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class=" col-md-6">
+        <div class=" card card-plain">
+          <div class=" card-header-primary">
+            <h1 class=" card-title text-center"><i class="material-icons" style="float:right;">folder_shared</i>NUDOS
+              CRITICOS </h1>
+          </div>
+          <div *ngIf="showbuttonnudos">
+            <div class="card-header">
+              <button class="btn btn-primary float-end" (click)="mostrarNudos()">Mostrar
+                Nudos</button>
+            </div>
+          </div>
+          <div *ngIf="addnewnudo">
+            <div class="card-header">
+              <button class="btn btn-secondary pull-right" (click)="addNud()">Añadir
+                Nudos</button>
+            </div>
+          </div>
+          <div class=" card-body">
+            <div *ngIf="shownudos">
+              <p-table #dt styleClass="ui-table-formularios" [columns]="cols9" [value]="formData9" [paginator]="true"
+                [rows]="5" selectionMode="single" [rowsPerPageOptions]="[5,10,20]" [responsive]="true">
+                <ng-template pTemplate="header" let-columns>
+                  <tr>
+                    <th style="width: 35%; text-align: center;">DESCRIPCIÓN</th>
+                    <th rowspan="2" style="width: 22%; text-align: center;">OPCIONES
+                    </th>
+                  </tr>
+                  <tr>
+                    <th *ngFor="let col of columns" [ngSwitch]="col.field">
+                      <input matInput *ngSwitchCase="'descripcionnudoscriticos'" pInputText type="text"
+                        placeholder="Descripcion" class="ui-column-filter" style="width: 100%;"
+                        (input)="dt.filter($event.target.value, col.field, 'contains')">
+                    </th>
+                  </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-rowData let-columns="columns">
+                  <tr [pSelectableRow]="rowData" [pEditableRow]="rowData">
+                    <td style="text-align: center;"><strong>{{rowData.descripcionnudoscriticos}}</strong>
+                    </td>
+                    <td style="text-align: center;">
+                      <button class="btn btn-info btn-sm btn-round" pTooltip="Ver" tooltipPosition="top"
+                        (click)="editarNudo(rowData.idnudoscriticos)">
+                        Editar
+                      </button>
+                      <button (click)="eliminarNudo(rowData.idnudoscriticos)"
+                        class="btn btn-danger btn-sm float-end  btn-round">Eliminar</button>
+
+                    </td>
+                  </tr>
+                </ng-template>
+              </p-table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="square-jelly-box" [fullScreen]="true">
-    <p style="color: white"> Cargando.. </p>
+  <p style="color: white"> Cargando.. </p>
 </ngx-spinner>
 
 <p-dialog [(visible)]="edit" [style]="{width: '450px'}" header="Editar Etnia" [modal]="true" styleClass="p-fluid">
 
-    <!-- <ng-template pTemplate="content"> -->
+  <!-- <ng-template pTemplate="content"> -->
 
-    <div class="form-group col-md-12" *ngIf="etnia">
-        <div [formGroup]="modalForm">
-            <label for="resp">Descripción</label>
-            <input type="text" formControlName="respuesta" class="form-control" [(ngModel)]="etnia.descripcionetnia"
-                name="respuesta" />
-            <div *ngIf="submitted && m.respuesta.errors" class="invalid-feedback">
-                <div *ngIf="m.respuesta.errors.required">Descripción es
-                    requerida
-                </div>
-            </div>
-
-
+  <div class="form-group col-md-12" *ngIf="etnia">
+    <div [formGroup]="modalForm">
+      <label for="resp">Descripción</label>
+      <input type="text" formControlName="respuesta" class="form-control" [(ngModel)]="etnia.descripcionetnia"
+        name="respuesta" />
+      <div *ngIf="submitted && m.respuesta.errors" class="invalid-feedback">
+        <div *ngIf="m.respuesta.errors.required">Descripción es
+          requerida
         </div>
+      </div>
+
+
     </div>
-    <div>
+  </div>
+  <div>
 
-    </div>
+  </div>
 
 
-    <button pButton pRipple label="Cancelar" icon="pi pi-times" class="btn btn-danger btn-sm "
-        (click)="cancelareditar()"></button>
-    <button pButton pRipple label="Guardar" icon="pi pi-check" class="btn btn-success btn-sm pull-right"
-        (click)="editarEtnia(etnia.idetnia)"></button>
+  <button pButton pRipple label="Cancelar" icon="pi pi-times" class="btn btn-danger btn-sm "
+    (click)="cancelareditar()"></button>
+  <button pButton pRipple label="Guardar" icon="pi pi-check" class="btn btn-success btn-sm pull-right"
+    (click)="editarEtnia(etnia.idetnia)"></button>
 
 </p-dialog>
 
 <p-dialog [(visible)]="addEtnia" [style]="{width: '450px'}" header="Añadir Respuesta" [modal]="true"
-    styleClass="p-fluid">
+  styleClass="p-fluid">
 
-    <div class="form-group col-md-12">
-        <div [formGroup]="modalForm">
-            <label for="resp">Descripción</label>
-            <input type="text" formControlName="respuesta" class="form-control" [(ngModel)]="etnian.descripcionetnia"
-                name="respuesta" />
-            <div *ngIf="submitted && m.respuesta.errors" class="invalid-feedback">
-                <div *ngIf="m.respuesta.errors.required">Descripción es
-                    requerida
-                </div>
-            </div>
-
-
+  <div class="form-group col-md-12">
+    <div [formGroup]="modalForm">
+      <label for="resp">Descripción</label>
+      <input type="text" formControlName="respuesta" class="form-control" [(ngModel)]="etnian.descripcionetnia"
+        name="respuesta" />
+      <div *ngIf="submitted && m.respuesta.errors" class="invalid-feedback">
+        <div *ngIf="m.respuesta.errors.required">Descripción es
+          requerida
         </div>
+      </div>
+
+
     </div>
-    <button pButton pRipple label="Cancelar" icon="pi pi-times" class="btn btn-danger btn-sm "
-        (click)="cancelar()"></button>
-    <button pButton pRipple label="Guardar" icon="pi pi-check" class="btn btn-success btn-sm pull-right"
-        (click)="guardarEtnia()"></button>
+  </div>
+  <button pButton pRipple label="Cancelar" icon="pi pi-times" class="btn btn-danger btn-sm "
+    (click)="cancelar()"></button>
+  <button pButton pRipple label="Guardar" icon="pi pi-check" class="btn btn-success btn-sm pull-right"
+    (click)="guardarEtnia()"></button>
 
 </p-dialog>
 
-<p-dialog [(visible)]="editgenero" [style]="{width: '450px'}" header="Editar Genero" [modal]="true" styleClass="p-fluid">
+<p-dialog [(visible)]="editgenero" [style]="{width: '450px'}" header="Editar Genero" [modal]="true"
+  styleClass="p-fluid">
 
-    <!-- <ng-template pTemplate="content"> -->
+  <!-- <ng-template pTemplate="content"> -->
 
-    <div class="form-group col-md-12" *ngIf="genero">
-        <div [formGroup]="modalForm">
-            <label for="resp">Descripción</label>
-            <input type="text" formControlName="respuesta" class="form-control" [(ngModel)]="genero.descripciongenero"
-                name="respuesta" />
-            <div *ngIf="submitted && m.respuesta.errors" class="invalid-feedback">
-                <div *ngIf="m.respuesta.errors.required">Descripción es
-                    requerida
-                </div>
-            </div>
-
-
+  <div class="form-group col-md-12" *ngIf="genero">
+    <div [formGroup]="modalForm">
+      <label for="resp">Descripción</label>
+      <input type="text" formControlName="respuesta" class="form-control" [(ngModel)]="genero.descripciongenero"
+        name="respuesta" />
+      <div *ngIf="submitted && m.respuesta.errors" class="invalid-feedback">
+        <div *ngIf="m.respuesta.errors.required">Descripción es
+          requerida
         </div>
+      </div>
+
+
     </div>
-    <div>
+  </div>
+  <div>
 
-    </div>
+  </div>
 
 
-    <button pButton pRipple label="Cancelar" icon="pi pi-times" class="btn btn-danger btn-sm "
-        (click)="cancelareditarGenero()"></button>
-    <button pButton pRipple label="Guardar" icon="pi pi-check" class="btn btn-success btn-sm pull-right"
-        (click)="editarGen(genero.idgenero)"></button>
+  <button pButton pRipple label="Cancelar" icon="pi pi-times" class="btn btn-danger btn-sm "
+    (click)="cancelareditarGenero()"></button>
+  <button pButton pRipple label="Guardar" icon="pi pi-check" class="btn btn-success btn-sm pull-right"
+    (click)="editarGen(genero.idgenero)"></button>
 
 </p-dialog>
 
 <p-dialog [(visible)]="addGenero" [style]="{width: '450px'}" header="Añadir Respuesta" [modal]="true"
-    styleClass="p-fluid">
+  styleClass="p-fluid">
 
-    <div class="form-group col-md-12">
-        <div [formGroup]="modalForm">
-            <label for="resp">Descripción</label>
-            <input type="text" formControlName="respuesta" class="form-control" [(ngModel)]="generon.descripciongenero"
-                name="respuesta" />
-            <div *ngIf="submitted && m.respuesta.errors" class="invalid-feedback">
-                <div *ngIf="m.respuesta.errors.required">Descripción es
-                    requerida
-                </div>
-            </div>
-
-
+  <div class="form-group col-md-12">
+    <div [formGroup]="modalForm">
+      <label for="resp">Descripción</label>
+      <input type="text" formControlName="respuesta" class="form-control" [(ngModel)]="generon.descripciongenero"
+        name="respuesta" />
+      <div *ngIf="submitted && m.respuesta.errors" class="invalid-feedback">
+        <div *ngIf="m.respuesta.errors.required">Descripción es
+          requerida
         </div>
+      </div>
+
+
     </div>
-    <button pButton pRipple label="Cancelar" icon="pi pi-times" class="btn btn-danger btn-sm "
-        (click)="cancelarGenero()"></button>
-    <button pButton pRipple label="Guardar" icon="pi pi-check" class="btn btn-success btn-sm pull-right"
-        (click)="guardarGenero()"></button>
+  </div>
+  <button pButton pRipple label="Cancelar" icon="pi pi-times" class="btn btn-danger btn-sm "
+    (click)="cancelarGenero()"></button>
+  <button pButton pRipple label="Guardar" icon="pi pi-check" class="btn btn-success btn-sm pull-right"
+    (click)="guardarGenero()"></button>
 
 </p-dialog>
 
 
-<p-dialog [(visible)]="editnacionaliad" [style]="{width: '450px'}" header="Editar Nacionalidad" [modal]="true" styleClass="p-fluid">
+<p-dialog [(visible)]="editnacionaliad" [style]="{width: '450px'}" header="Editar Nacionalidad" [modal]="true"
+  styleClass="p-fluid">
 
-    <!-- <ng-template pTemplate="content"> -->
+  <!-- <ng-template pTemplate="content"> -->
 
-    <div class="form-group col-md-12" *ngIf="nacionalidad">
-        <div [formGroup]="modalForm">
-            <label for="resp">Descripción</label>
-            <input type="text" formControlName="respuesta" class="form-control" [(ngModel)]="nacionalidad.descripcionnacionalidad"
-                name="respuesta" />
-            <div *ngIf="submitted && m.respuesta.errors" class="invalid-feedback">
-                <div *ngIf="m.respuesta.errors.required">Descripción es
-                    requerida
-                </div>
-            </div>
-
-
+  <div class="form-group col-md-12" *ngIf="nacionalidad">
+    <div [formGroup]="modalForm">
+      <label for="resp">Descripción</label>
+      <input type="text" formControlName="respuesta" class="form-control"
+        [(ngModel)]="nacionalidad.descripcionnacionalidad" name="respuesta" />
+      <div *ngIf="submitted && m.respuesta.errors" class="invalid-feedback">
+        <div *ngIf="m.respuesta.errors.required">Descripción es
+          requerida
         </div>
+      </div>
+
+
     </div>
-    <div>
+  </div>
+  <div>
 
-    </div>
+  </div>
 
 
-    <button pButton pRipple label="Cancelar" icon="pi pi-times" class="btn btn-danger btn-sm "
-        (click)="cancelareditarNacionalidad()"></button>
-    <button pButton pRipple label="Guardar" icon="pi pi-check" class="btn btn-success btn-sm pull-right"
-        (click)="editarNaci(nacionalidad.idnacionalidad)"></button>
+  <button pButton pRipple label="Cancelar" icon="pi pi-times" class="btn btn-danger btn-sm "
+    (click)="cancelareditarNacionalidad()"></button>
+  <button pButton pRipple label="Guardar" icon="pi pi-check" class="btn btn-success btn-sm pull-right"
+    (click)="editarNaci(nacionalidad.idnacionalidad)"></button>
 
 </p-dialog>
 
 <p-dialog [(visible)]="addNacionalidad" [style]="{width: '450px'}" header="Añadir Respuesta" [modal]="true"
-    styleClass="p-fluid">
+  styleClass="p-fluid">
 
-    <div class="form-group col-md-12">
-        <div [formGroup]="modalForm">
-            <label for="resp">Descripción</label>
-            <input type="text" formControlName="respuesta" class="form-control" [(ngModel)]="nacionalidadn.descripcionnacionalidad"
-                name="respuesta" />
-            <div *ngIf="submitted && m.respuesta.errors" class="invalid-feedback">
-                <div *ngIf="m.respuesta.errors.required">Descripción es
-                    requerida
-                </div>
-            </div>
-
-
+  <div class="form-group col-md-12">
+    <div [formGroup]="modalForm">
+      <label for="resp">Descripción</label>
+      <input type="text" formControlName="respuesta" class="form-control"
+        [(ngModel)]="nacionalidadn.descripcionnacionalidad" name="respuesta" />
+      <div *ngIf="submitted && m.respuesta.errors" class="invalid-feedback">
+        <div *ngIf="m.respuesta.errors.required">Descripción es
+          requerida
         </div>
+      </div>
+
+
     </div>
-    <button pButton pRipple label="Cancelar" icon="pi pi-times" class="btn btn-danger btn-sm "
-        (click)="cancelarNacionalidad()"></button>
-    <button pButton pRipple label="Guardar" icon="pi pi-check" class="btn btn-success btn-sm pull-right"
-        (click)="guardarNacionalidad()"></button>
+  </div>
+  <button pButton pRipple label="Cancelar" icon="pi pi-times" class="btn btn-danger btn-sm "
+    (click)="cancelarNacionalidad()"></button>
+  <button pButton pRipple label="Guardar" icon="pi pi-check" class="btn btn-success btn-sm pull-right"
+    (click)="guardarNacionalidad()"></button>
 
 </p-dialog>
 
 
-<p-dialog [(visible)]="editmodalidad" [style]="{width: '450px'}" header="Editar Modalidad" [modal]="true" styleClass="p-fluid">
+<p-dialog [(visible)]="editmodalidad" [style]="{width: '450px'}" header="Editar Modalidad" [modal]="true"
+  styleClass="p-fluid">
 
-    <!-- <ng-template pTemplate="content"> -->
+  <!-- <ng-template pTemplate="content"> -->
 
-    <div class="form-group col-md-12" *ngIf="modalidad">
-        <div [formGroup]="modalForm">
-            <label for="resp">Descripción</label>
-            <input type="text" formControlName="respuesta" class="form-control" [(ngModel)]="modalidad.descripcionmodalidad"
-                name="respuesta" />
-            <div *ngIf="submitted && m.respuesta.errors" class="invalid-feedback">
-                <div *ngIf="m.respuesta.errors.required">Descripción es
-                    requerida
-                </div>
-            </div>
-
-
+  <div class="form-group col-md-12" *ngIf="modalidad">
+    <div [formGroup]="modalForm">
+      <label for="resp">Descripción</label>
+      <input type="text" formControlName="respuesta" class="form-control" [(ngModel)]="modalidad.descripcionmodalidad"
+        name="respuesta" />
+      <div *ngIf="submitted && m.respuesta.errors" class="invalid-feedback">
+        <div *ngIf="m.respuesta.errors.required">Descripción es
+          requerida
         </div>
+      </div>
+
+
     </div>
-    <div>
+  </div>
+  <div>
 
-    </div>
+  </div>
 
 
-    <button pButton pRipple label="Cancelar" icon="pi pi-times" class="btn btn-danger btn-sm "
-        (click)="cancelareditarModalidad()"></button>
-    <button pButton pRipple label="Guardar" icon="pi pi-check" class="btn btn-success btn-sm pull-right"
-        (click)="editarModal(modalidad.idmodalidad)"></button>
+  <button pButton pRipple label="Cancelar" icon="pi pi-times" class="btn btn-danger btn-sm "
+    (click)="cancelareditarModalidad()"></button>
+  <button pButton pRipple label="Guardar" icon="pi pi-check" class="btn btn-success btn-sm pull-right"
+    (click)="editarModal(modalidad.idmodalidad)"></button>
 
 </p-dialog>
 
 <p-dialog [(visible)]="addModalidad" [style]="{width: '450px'}" header="Añadir Respuesta" [modal]="true"
-    styleClass="p-fluid">
+  styleClass="p-fluid">
 
-    <div class="form-group col-md-12">
-        <div [formGroup]="modalForm">
-            <label for="resp">Descripción</label>
-            <input type="text" formControlName="respuesta" class="form-control" [(ngModel)]="modalidadn.descripcionmodalidad"
-                name="respuesta" />
-            <div *ngIf="submitted && m.respuesta.errors" class="invalid-feedback">
-                <div *ngIf="m.respuesta.errors.required">Descripción es
-                    requerida
-                </div>
-            </div>
-
-
+  <div class="form-group col-md-12">
+    <div [formGroup]="modalForm">
+      <label for="resp">Descripción</label>
+      <input type="text" formControlName="respuesta" class="form-control" [(ngModel)]="modalidadn.descripcionmodalidad"
+        name="respuesta" />
+      <div *ngIf="submitted && m.respuesta.errors" class="invalid-feedback">
+        <div *ngIf="m.respuesta.errors.required">Descripción es
+          requerida
         </div>
+      </div>
+
+
     </div>
-    <button pButton pRipple label="Cancelar" icon="pi pi-times" class="btn btn-danger btn-sm "
-        (click)="cancelarModalidad()"></button>
-    <button pButton pRipple label="Guardar" icon="pi pi-check" class="btn btn-success btn-sm pull-right"
-        (click)="guardarModalidad()"></button>
+  </div>
+  <button pButton pRipple label="Cancelar" icon="pi pi-times" class="btn btn-danger btn-sm "
+    (click)="cancelarModalidad()"></button>
+  <button pButton pRipple label="Guardar" icon="pi pi-check" class="btn btn-success btn-sm pull-right"
+    (click)="guardarModalidad()"></button>
+
+</p-dialog>
+
+<p-dialog [(visible)]="editmotivo" [style]="{width: '450px'}" header="Editar Motivo" [modal]="true"
+  styleClass="p-fluid">
+
+  <!-- <ng-template pTemplate="content"> -->
+
+  <div class="form-group col-md-12" *ngIf="motivo">
+    <div [formGroup]="modalForm">
+      <label for="resp">Descripción</label>
+      <input type="text" formControlName="respuesta" class="form-control" [(ngModel)]="motivo.descripcionmotivoingreso"
+        name="respuesta" />
+      <div *ngIf="submitted && m.respuesta.errors" class="invalid-feedback">
+        <div *ngIf="m.respuesta.errors.required">Descripción es
+          requerida
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+  <div>
+
+  </div>
+
+
+  <button pButton pRipple label="Cancelar" icon="pi pi-times" class="btn btn-danger btn-sm "
+    (click)="cancelareditarMotivo()"></button>
+  <button pButton pRipple label="Guardar" icon="pi pi-check" class="btn btn-success btn-sm pull-right"
+    (click)="editarMoti(motivo.idmotivo)"></button>
+
+</p-dialog>
+
+
+<p-dialog [(visible)]="addMotivo" [style]="{width: '450px'}" header="Añadir Respuesta" [modal]="true"
+  styleClass="p-fluid">
+
+  <div class="form-group col-md-12">
+    <div [formGroup]="modalForm">
+      <label for="resp">Descripción</label>
+      <input type="text" formControlName="respuesta" class="form-control" [(ngModel)]="motivon.descripcionmotivoingreso"
+        name="respuesta" />
+      <div *ngIf="submitted && m.respuesta.errors" class="invalid-feedback">
+        <div *ngIf="m.respuesta.errors.required">Descripción es
+          requerida
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+  <button pButton pRipple label="Cancelar" icon="pi pi-times" class="btn btn-danger btn-sm "
+    (click)="cancelarMotivo()"></button>
+  <button pButton pRipple label="Guardar" icon="pi pi-check" class="btn btn-success btn-sm pull-right"
+    (click)="guardarMotivo()"></button>
+
+</p-dialog>
+
+
+<p-dialog [(visible)]="editorganizacion" [style]="{width: '450px'}" header="Editar Organizacion" [modal]="true"
+  styleClass="p-fluid">
+
+  <!-- <ng-template pTemplate="content"> -->
+
+  <div class="form-group col-md-12" *ngIf="organizacion">
+    <div [formGroup]="modalForm">
+      <label for="resp">Descripción</label>
+      <input type="text" formControlName="respuesta" class="form-control"
+        [(ngModel)]="organizacion.descripcionorganizacion" name="respuesta" />
+      <div *ngIf="submitted && m.respuesta.errors" class="invalid-feedback">
+        <div *ngIf="m.respuesta.errors.required">Descripción es
+          requerida
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+  <div>
+
+  </div>
+
+
+  <button pButton pRipple label="Cancelar" icon="pi pi-times" class="btn btn-danger btn-sm "
+    (click)="cancelareditarOrganizacion()"></button>
+  <button pButton pRipple label="Guardar" icon="pi pi-check" class="btn btn-success btn-sm pull-right"
+    (click)="editarOrgan(organizacion.idorganizacion)"></button>
+
+</p-dialog>
+
+
+<p-dialog [(visible)]="addOrganizacion" [style]="{width: '450px'}" header="Añadir Respuesta" [modal]="true"
+  styleClass="p-fluid">
+
+  <div class="form-group col-md-12">
+    <div [formGroup]="modalForm">
+      <label for="resp">Descripción</label>
+      <input type="text" formControlName="respuesta" class="form-control"
+        [(ngModel)]="organizacionn.descripcionorganizacion" name="respuesta" />
+      <div *ngIf="submitted && m.respuesta.errors" class="invalid-feedback">
+        <div *ngIf="m.respuesta.errors.required">Descripción es
+          requerida
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+  <button pButton pRipple label="Cancelar" icon="pi pi-times" class="btn btn-danger btn-sm "
+    (click)="cancelarOrganizacion()"></button>
+  <button pButton pRipple label="Guardar" icon="pi pi-check" class="btn btn-success btn-sm pull-right"
+    (click)="guardarOrganizacion()"></button>
+
+</p-dialog>
+
+
+<p-dialog [(visible)]="editfamiliar" [style]="{width: '450px'}" header="Editar Familiar" [modal]="true"
+  styleClass="p-fluid">
+
+  <!-- <ng-template pTemplate="content"> -->
+
+  <div class="form-group col-md-12" *ngIf="familiar">
+    <div [formGroup]="modalForm">
+      <label for="resp">Descripción</label>
+      <input type="text" formControlName="respuesta" class="form-control"
+        [(ngModel)]="familiar.descripcionfamiliarreferente" name="respuesta" />
+      <div *ngIf="submitted && m.respuesta.errors" class="invalid-feedback">
+        <div *ngIf="m.respuesta.errors.required">Descripción es
+          requerida
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+  <div>
+
+  </div>
+
+
+  <button pButton pRipple label="Cancelar" icon="pi pi-times" class="btn btn-danger btn-sm "
+    (click)="cancelareditarFamiliar()"></button>
+  <button pButton pRipple label="Guardar" icon="pi pi-check" class="btn btn-success btn-sm pull-right"
+    (click)="editarFamil(familiar.idfamiliarreferente)"></button>
+
+</p-dialog>
+
+
+<p-dialog [(visible)]="addFamiliar" [style]="{width: '450px'}" header="Añadir Respuesta" [modal]="true"
+  styleClass="p-fluid">
+
+  <div class="form-group col-md-12">
+    <div [formGroup]="modalForm">
+      <label for="resp">Descripción</label>
+      <input type="text" formControlName="respuesta" class="form-control"
+        [(ngModel)]="familiarn.descripcionfamiliarreferente" name="respuesta" />
+      <div *ngIf="submitted && m.respuesta.errors" class="invalid-feedback">
+        <div *ngIf="m.respuesta.errors.required">Descripción es
+          requerida
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+  <button pButton pRipple label="Cancelar" icon="pi pi-times" class="btn btn-danger btn-sm "
+    (click)="cancelarFamiliar()"></button>
+  <button pButton pRipple label="Guardar" icon="pi pi-check" class="btn btn-success btn-sm pull-right"
+    (click)="guardarFamiliar()"></button>
+
+</p-dialog>
+
+
+<p-dialog [(visible)]="editmedida" [style]="{width: '450px'}" header="Editar Medida" [modal]="true"
+  styleClass="p-fluid">
+
+  <!-- <ng-template pTemplate="content"> -->
+
+  <div class="form-group col-md-12" *ngIf="medida">
+    <div [formGroup]="modalForm">
+      <label for="resp">Descripción</label>
+      <input type="text" formControlName="respuesta" class="form-control" [(ngModel)]="medida.descripcionmedida"
+        name="respuesta" />
+      <div *ngIf="submitted && m.respuesta.errors" class="invalid-feedback">
+        <div *ngIf="m.respuesta.errors.required">Descripción es
+          requerida
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+  <div>
+
+  </div>
+
+
+  <button pButton pRipple label="Cancelar" icon="pi pi-times" class="btn btn-danger btn-sm "
+    (click)="cancelareditarMedida()"></button>
+  <button pButton pRipple label="Guardar" icon="pi pi-check" class="btn btn-success btn-sm pull-right"
+    (click)="editarMed(medida.idmedida)"></button>
+
+</p-dialog>
+
+
+<p-dialog [(visible)]="addMedida" [style]="{width: '450px'}" header="Añadir Respuesta" [modal]="true"
+  styleClass="p-fluid">
+
+  <div class="form-group col-md-12">
+    <div [formGroup]="modalForm">
+      <label for="resp">Descripción</label>
+      <input type="text" formControlName="respuesta" class="form-control" [(ngModel)]="medidan.descripcionmedida"
+        name="respuesta" />
+      <div *ngIf="submitted && m.respuesta.errors" class="invalid-feedback">
+        <div *ngIf="m.respuesta.errors.required">Descripción es
+          requerida
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+  <button pButton pRipple label="Cancelar" icon="pi pi-times" class="btn btn-danger btn-sm "
+    (click)="cancelarMedida()"></button>
+  <button pButton pRipple label="Guardar" icon="pi pi-check" class="btn btn-success btn-sm pull-right"
+    (click)="guardarMedida()"></button>
+
+</p-dialog>
+
+
+<p-dialog [(visible)]="editnudo" [style]="{width: '450px'}" header="Editar Nudo" [modal]="true" styleClass="p-fluid">
+
+  <!-- <ng-template pTemplate="content"> -->
+
+  <div class="form-group col-md-12" *ngIf="nudo">
+    <div [formGroup]="modalForm">
+      <label for="resp">Descripción</label>
+      <input type="text" formControlName="respuesta" class="form-control" [(ngModel)]="nudo.descripcionnudoscriticos"
+        name="respuesta" />
+      <div *ngIf="submitted && m.respuesta.errors" class="invalid-feedback">
+        <div *ngIf="m.respuesta.errors.required">Descripción es
+          requerida
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+  <div>
+
+  </div>
+
+
+  <button pButton pRipple label="Cancelar" icon="pi pi-times" class="btn btn-danger btn-sm "
+    (click)="cancelareditarNudo()"></button>
+  <button pButton pRipple label="Guardar" icon="pi pi-check" class="btn btn-success btn-sm pull-right"
+    (click)="editarNud(nudo.idnudoscriticos)"></button>
+
+</p-dialog>
+
+
+<p-dialog [(visible)]="addNudo" [style]="{width: '450px'}" header="Añadir Respuesta" [modal]="true"
+  styleClass="p-fluid">
+
+  <div class="form-group col-md-12">
+    <div [formGroup]="modalForm">
+      <label for="resp">Descripción</label>
+      <input type="text" formControlName="respuesta" class="form-control" [(ngModel)]="nudon.descripcionnudoscriticos"
+        name="respuesta" />
+      <div *ngIf="submitted && m.respuesta.errors" class="invalid-feedback">
+        <div *ngIf="m.respuesta.errors.required">Descripción es
+          requerida
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+  <button pButton pRipple label="Cancelar" icon="pi pi-times" class="btn btn-danger btn-sm "
+    (click)="cancelarNudo()"></button>
+  <button pButton pRipple label="Guardar" icon="pi pi-check" class="btn btn-success btn-sm pull-right"
+    (click)="guardarNudo()"></button>
 
 </p-dialog>
