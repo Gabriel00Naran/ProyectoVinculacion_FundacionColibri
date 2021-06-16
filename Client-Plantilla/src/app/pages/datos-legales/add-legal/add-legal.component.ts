@@ -34,12 +34,12 @@ export class AddLegalComponent implements OnInit {
 
     this.navigationSubscription = this.router.events.subscribe((e: any) => {
       if (e instanceof NavigationEnd) {
-        this.initializar();
       }
     });
   }
 
   ngOnInit(): void {
+    this.initializar();
     this.userauth = atob(localStorage.getItem('currentUser'));
     this.spinner.show();
     this.proceso = false;

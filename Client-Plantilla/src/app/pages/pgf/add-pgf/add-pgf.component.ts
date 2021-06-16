@@ -27,20 +27,20 @@ export class AddPgfComponent implements OnInit {
   userauth;
 
   constructor(private personaService: PersonaService,
-              private fb: FormBuilder,
-              private route: ActivatedRoute,
-              private router: Router,
-              private toastr: ToastrService,
-              private spinner: NgxSpinnerService) {
+    private fb: FormBuilder,
+    private route: ActivatedRoute,
+    private router: Router,
+    private toastr: ToastrService,
+    private spinner: NgxSpinnerService) {
 
     this.navigationSubscription = this.router.events.subscribe((e: any) => {
       if (e instanceof NavigationEnd) {
-        this.initializar();
       }
     });
   }
 
   ngOnInit(): void {
+    this.initializar();
     this.userauth = atob(localStorage.getItem('currentUser'));
     this.sistemaedu = false;
     this.nosistema = false;
@@ -141,7 +141,7 @@ export class AddPgfComponent implements OnInit {
 
   getFamiliarTipo() {
     this.familiar = [];
-    this.personaService.get('api/FamiliarReferente/GetFamiliarReferente',this.userauth).subscribe((data: {}) => {
+    this.personaService.get('api/FamiliarReferente/GetFamiliarReferente', this.userauth).subscribe((data: {}) => {
       this.familiar = data;
       console.log('familiar', this.familiar);
 
@@ -150,7 +150,7 @@ export class AddPgfComponent implements OnInit {
 
   getProvincias() {
     this.provincias = [];
-    this.personaService.get('api/Provincia/GetProvincia',this.userauth).subscribe((data: {}) => {
+    this.personaService.get('api/Provincia/GetProvincia', this.userauth).subscribe((data: {}) => {
       this.provincias = data;
       console.log('PROVINCIAS', this.provincias);
 
@@ -179,14 +179,14 @@ export class AddPgfComponent implements OnInit {
     //console.log(value);
     this.getCantonesbyidProvincia(value);
     this.cantones.provincia = value;
-}
+  }
 
-getCantonesbyidProvincia(id) {
-  this.cantones = [];
-  this.personaService.get('api/Canton/GetCantonByIdProvincia?idprovincia=' + id, this.userauth).subscribe((data: {}) => {
-    this.cantones = data;
-    console.log('CANTONES', this.cantones);
+  getCantonesbyidProvincia(id) {
+    this.cantones = [];
+    this.personaService.get('api/Canton/GetCantonByIdProvincia?idprovincia=' + id, this.userauth).subscribe((data: {}) => {
+      this.cantones = data;
+      console.log('CANTONES', this.cantones);
 
-  });
-}
+    });
+  }
 }

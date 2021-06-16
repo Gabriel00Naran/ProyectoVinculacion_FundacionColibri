@@ -22,20 +22,20 @@ export class AgregarSaludComponent implements OnInit {
   userauth;
 
   constructor(private personaService: PersonaService,
-              private fb: FormBuilder,
-              private route: ActivatedRoute,
-              private router: Router,
-              private toastr: ToastrService,
-              private spinner: NgxSpinnerService) {
+    private fb: FormBuilder,
+    private route: ActivatedRoute,
+    private router: Router,
+    private toastr: ToastrService,
+    private spinner: NgxSpinnerService) {
 
     this.navigationSubscription = this.router.events.subscribe((e: any) => {
       if (e instanceof NavigationEnd) {
-        this.initializar();
       }
     });
   }
 
   ngOnInit(): void {
+    this.initializar();
     this.userauth = atob(localStorage.getItem('currentUser'));
     this.essalud = false;
     this.disc = false;
