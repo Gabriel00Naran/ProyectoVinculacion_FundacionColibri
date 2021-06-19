@@ -972,7 +972,7 @@ export class OpcionesComponent implements OnInit {
       return;
     }
     console.log('ID' + id);
-    this.personaService.put('api/FamiliarReferente/AddFamiliarReferente', this.familiar, this.userauth);
+    this.personaService.put('api/FamiliarReferente/EditFamiliarReferente', this.familiar, this.userauth);
     console.log('EDITADO', this.familiar);
     this.spinner.show();
     this.editfamiliar = false;
